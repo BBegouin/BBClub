@@ -2,8 +2,13 @@
 {% spaceless %}
 {% if page_branch_in_menu %}
 
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
 {% if branch_level == 0 %}
-<ul class="menubar data-dropdown-menu">
+<ul class="menu dropdown" data-responsive-menu="drilldown medium-dropdown" role="menubar" data-dropdownmenu="zoza2i-dropdownmenu" data-responsivemenu="ol7r3d-responsivemenu" data-i="zq4cf2-i" aria-selected="false" aria-expanded="false" data-is-click="false">
     {% for page in page_branch %}
     {% if not has_home and page.is_primary and forloop.first %}
     <li{% if on_home %} class="active"{% endif %} id="dropdown-menu-home">
@@ -11,13 +16,8 @@
     </li>
     {% endif %}
     {% if page.in_menu %}
-    <li class="{% if page.has_children_in_menu %}dropdown{% endif %}
-               {% if page.is_current_or_ascendant %}active{% endif %}"
-        id="{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}"
-        {% if page.has_children_in_menu %}
-        class="dropdown-toggle disabled" data-toggle="dropdown"
-        {% endif %}>
+    <li class="{% if page.has_children_in_menu %}dropdown{% endif %} {% if page.is_current_or_ascendant %}active{% endif %} dropdown-menu" id="{{ page.html_id }}">
+        <a href="{{ page.get_absolute_url }}" {% if page.has_children_in_menu %} class="dropdown-toggle disabled" data-toggle="dropdown" {% endif %}>
             {{ page.title }}
             {% if page.has_children_in_menu %}<b class="caret"></b>{% endif %}
         </a>
@@ -28,11 +28,14 @@
 </ul>
 
 {% else %}
-<ul class="dropdown-menu">
+<ul class="submenu menu vertical is-dropdown-submenu first-sub" data-submenu="" aria-hidden="true" tabindex="-1" role="menu">
     {% for page in page_branch %}
     {% if page.in_menu %}
     <li class="{% if page.has_children_in_menu %}dropdown-submenu{% endif %}
-               {% if page.is_current_or_ascendant %}active{% endif %}"
+               {% if page.is_current_or_ascendant %}active{% endif %}
+               is-submenu-item
+               is-dropdown-submenu-item"
+        role="menuitem"
         id="{{ page.html_id }}">
         <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
         {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
@@ -44,4 +47,3 @@
 
 {% endif %}
 {% endspaceless %}
-

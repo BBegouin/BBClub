@@ -1,0 +1,80 @@
+body{
+    background-color: #eaeaea;
+}
+
+.main-menu{
+    background-color: #585556;
+    padding-top: 4px;
+    margin-top : 15px;
+    margin-bottom : 15px;
+    font-size: 18px;
+}
+
+ul li ul:after {
+    /*
+    En gros on créé un élément carré de 10px/10px que l'on tourne de 45° et
+    que l'on va placer juste au bon endroit pour faire croire qu'il s'agit
+    d'un triangle qui dépasse du menu
+    */
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 173px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    z-index: -10;
+    transform: rotate(45deg);
+}
+
+#header{
+    margin-top:15px;
+}
+
+ul li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+ul li a{
+    color: #ffffff;
+}
+
+ul li ul li {
+    /*background-color: #585556;*/
+    background-color: #ffffff;
+    /*border:none;*/
+    margin:none;
+}
+
+ul li .is-down-arrow{
+    border : none;
+    color: #ffffff;
+}
+
+ul li a :hover{
+    color: #ffffff;
+    border-bottom:none;
+}
+
+.active{
+    border-bottom:4px solid #fafafa;
+}
+
+.inactive{
+    border-bottom:none;
+}
+
+/*ul li :hover{
+    border-bottom:4px solid #fafafa;
+}*/
+
+.button{
+    background-color:#205067;
+    border-radius: 3px;}
+
+.dropdown.menu .is-dropdown-submenu-parent.is-down-arrow > a::after {
+    border-color: #FFFFFF transparent transparent;
+}
