@@ -1,0 +1,69 @@
+
+.main-menu{
+    background-color: #585556;
+    margin-top : 15px;
+    margin-bottom : 15px;
+    font-size: 18px;
+}
+
+ul.menu.dropdown li ul:after {
+    /*
+    En gros on créé un élément carré de 10px/10px que l'on tourne de 45° et
+    que l'on va placer juste au bon endroit pour faire croire qu'il s'agit
+    d'un triangle qui dépasse du menu
+    */
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 173px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    z-index: -10;
+    transform: rotate(45deg);
+}
+
+/* couleur des libellés du menu */
+ul.menu.dropdown li a{
+    color: #e0ddde;
+}
+/* reconnaitre quel est le menu actif */
+ul.menu.dropdown li.active{
+    /*border-top:4px solid #fafafa;*/
+    background-color: #858283;
+    color: #ffffff;
+}
+
+/* couleur de fond du dropdown */
+ul.menu.dropdown li ul {
+    border:none;
+}
+
+/* couleur de fond du menu*/
+ul.menu.dropdown li ul li {
+    background-color: #858283;
+    border:none;
+    margin:none;
+}
+
+ul.menu.dropdown li a:hover, a:focus{
+    color: #ffffff;
+    background-color: #858283;
+}
+
+.inactive{
+    border-bottom:none;
+}
+
+/* flêche vers le bas absente, même si il y a des sous entrées */
+.dropdown.menu .is-dropdown-submenu-parent.is-down-arrow > a::after {
+    border-color: transparent transparent transparent;
+}
+
+/* homogénéïsation du padding après avoir viré la flêche vers le bas */
+.dropdown.menu .is-dropdown-submenu-parent.is-down-arrow a{
+    padding-right: 1rem;
+}
+

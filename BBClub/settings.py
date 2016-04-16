@@ -19,12 +19,12 @@ from django.utils.translation import ugettext_lazy as _
 
 # Controls the ordering and grouping of the admin menu.
 #
-# ADMIN_MENU_ORDER = (
-#     ("Content", ("pages.Page", "blog.BlogPost",
-#        "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
-#     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#     ("Users", ("auth.User", "auth.Group",)),
-# )
+ADMIN_MENU_ORDER = (
+     ("Content", ("pages.Page", "blog.BlogPost",
+        "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
+     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+     ("Users", ("auth.User", "auth.Group",)),
+ )
 
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
@@ -140,16 +140,33 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 # DATABASES #
 #############
 
+#DATABASES = {
+#    "default": {
+#        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+#        "ENGINE": "django.db.backends.",
+#        # DB name or path to database file if using sqlite3.
+#        "NAME": "",
+#        # Not used with sqlite3.
+#        "USER": "",
+#        # Not used with sqlite3.
+#        "PASSWORD": "",
+#        # Set to empty string for localhost. Not used with sqlite3.
+#        "HOST": "",
+#        # Set to empty string for default. Not used with sqlite3.
+#        "PORT": "",
+#    }
+#}
+
 DATABASES = {
-    "default": {
-        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.",
+"default": {
+        # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.backends.mysql",
         # DB name or path to database file if using sqlite3.
-        "NAME": "",
+        "NAME": "myproject",
         # Not used with sqlite3.
-        "USER": "",
+        "USER": "mezz",
         # Not used with sqlite3.
-        "PASSWORD": "",
+        "PASSWORD": "masterkey",
         # Set to empty string for localhost. Not used with sqlite3.
         "HOST": "",
         # Set to empty string for default. Not used with sqlite3.

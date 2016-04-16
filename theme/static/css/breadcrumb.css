@@ -1,0 +1,25 @@
+
+ul.breadcrumb {
+    list-style-type: none;
+    background-color: #fcf9fa;
+    padding : 0 0 0 0;
+    /*margin : O rem;*/
+}
+
+ul.breadcrumb li {
+    display: inline;
+    padding : 1rem;
+}
+
+li.sepa {
+    display: inline;
+    padding : 0 ;
+}
+
+ul.breadcrumb li a {
+    color: #585556;
+}
+
+ul.breadcrumb li a:active {
+    color: #585556;
+}
