@@ -140,39 +140,39 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 # DATABASES #
 #############
 
-#DATABASES = {
-#    "default": {
-#        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-#        "ENGINE": "django.db.backends.",
-#        # DB name or path to database file if using sqlite3.
-#        "NAME": "",
-#        # Not used with sqlite3.
-#        "USER": "",
-#        # Not used with sqlite3.
-#        "PASSWORD": "",
-#        # Set to empty string for localhost. Not used with sqlite3.
-#        "HOST": "",
-#        # Set to empty string for default. Not used with sqlite3.
-#        "PORT": "",
-#    }
-#}
-
 DATABASES = {
-"default": {
-        # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.mysql",
+    "default": {
+        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+        "ENGINE": "django.db.backends.",
         # DB name or path to database file if using sqlite3.
-        "NAME": "myproject",
+        "NAME": "",
         # Not used with sqlite3.
-        "USER": "mezz",
+        "USER": "",
         # Not used with sqlite3.
-        "PASSWORD": "masterkey",
+        "PASSWORD": "",
         # Set to empty string for localhost. Not used with sqlite3.
         "HOST": "",
         # Set to empty string for default. Not used with sqlite3.
         "PORT": "",
     }
 }
+
+#DATABASES = {
+#"default": {
+#        # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+#        "ENGINE": "django.db.backends.mysql",
+#        # DB name or path to database file if using sqlite3.
+#        "NAME": "myproject",
+#        # Not used with sqlite3.
+#        "USER": "mezz",
+#        # Not used with sqlite3.
+#        "PASSWORD": "masterkey",
+#        # Set to empty string for localhost. Not used with sqlite3.
+#        "HOST": "",
+#        # Set to empty string for default. Not used with sqlite3.
+#        "PORT": "",
+#    }
+#}
 
 
 #########
