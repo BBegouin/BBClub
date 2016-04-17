@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class Theme2Config(AppConfig):
-    name = 'theme'
+    name = 'LeagueManager'

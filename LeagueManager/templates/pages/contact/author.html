@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title%}
+{{block.super}}
+<h1>{{ page.author.title }}</h1>
+<h1>COIOCICOICOICOICOCICOI</h1>
+{% endblock%}
+
+{% block main%}
+
+
+<p>{{ page.author.dob }}</p>
+{% for book in page.author.book_set.all %}
+<img src="{{ MEDIA_URL }}{{ book.cover }}">
+{% endfor %}
+{% endblock %}
+
