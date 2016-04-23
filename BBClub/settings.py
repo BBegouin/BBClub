@@ -22,8 +22,9 @@ from django.utils.translation import ugettext_lazy as _
 ADMIN_MENU_ORDER = (
      ("Content", ("pages.Page", "blog.BlogPost",
         "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
-     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
      ("Users", ("auth.User", "auth.Group",)),
+     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+     ("League Manager", ("LeagueManager.models.Question")),
  )
 
 # A three item sequence, each containing a sequence of template tags
@@ -140,39 +141,33 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 # DATABASES #
 #############
 
-DATABASES = {
-    "default": {
-        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.",
-        # DB name or path to database file if using sqlite3.
-        "NAME": "",
-        # Not used with sqlite3.
-        "USER": "",
-        # Not used with sqlite3.
-        "PASSWORD": "",
-        # Set to empty string for localhost. Not used with sqlite3.
-        "HOST": "",
-        # Set to empty string for default. Not used with sqlite3.
-        "PORT": "",
-    }
-}
-
 #DATABASES = {
-#"default": {
-#        # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-#        "ENGINE": "django.db.backends.mysql",
+#    "default": {
+#        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
+#        "ENGINE": "django.db.backends.",
 #        # DB name or path to database file if using sqlite3.
-#        "NAME": "myproject",
+#        "NAME": "",
 #        # Not used with sqlite3.
-#        "USER": "mezz",
+#        "USER": "",
 #        # Not used with sqlite3.
-#        "PASSWORD": "masterkey",
+#        "PASSWORD": "",
 #        # Set to empty string for localhost. Not used with sqlite3.
 #        "HOST": "",
 #        # Set to empty string for default. Not used with sqlite3.
 #        "PORT": "",
 #    }
 #}
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "BBClub",
+        "USER": "root",
+        "PASSWORD": "root",
+        "HOST": "localhost",   # Or an IP Address that your DB is hosted on
+        "PORT": "3306",
+    }
+}
 
 
 #########
@@ -247,7 +242,7 @@ if DJANGO_VERSION < (1, 9):
 ################
 
 INSTALLED_APPS = (
-    "LeagueManager",
+    "league_manager",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

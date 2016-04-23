@@ -19,7 +19,7 @@
     <body>
 
         <div class="row" id="header">
-            <img  src="{% static "img/header3.jpg" %}"  alt="advertisement for deep fried Twinkies"/>
+            <img  src="{% static "img/header3.jpg" %}"  alt="la ligue de blood bowl de cognac"/>
         </div>
 
         <!-- Top Bar -->
@@ -56,27 +56,23 @@
 
     <div class="container">
         <div class="row">
-
-            <div class="col-md-7 middle">
                 {% block main %}{% endblock %}
-            </div>
+        </div>
 
-            <div class="col-md-3 right">
-                {% nevercache %}
-                {% include "includes/language_selector.html" %}
-                {% include "includes/user_panel.html" %}
-                {% endnevercache %}
-                <div class="panel panel-default">
-                <div class="panel-body">
-                {% block right_panel %}
-                {% ifinstalled mezzanine.twitter %}
-                {% include "twitter/tweets.html" %}
-                {% endifinstalled %}
-                {% endblock %}
-                </div>
-                </div>
+        <div class="col-md-3 right">
+            {% nevercache %}
+            {% include "includes/language_selector.html" %}
+            {% include "includes/user_panel.html" %}
+            {% endnevercache %}
+            <div class="panel panel-default">
+            <div class="panel-body">
+            {% block right_panel %}
+            {% ifinstalled mezzanine.twitter %}
+            {% include "twitter/tweets.html" %}
+            {% endifinstalled %}
+            {% endblock %}
             </div>
-
+            </div>
         </div>
     </div>
 
