@@ -5,40 +5,28 @@
     margin-bottom : 15px;
     font-size: 18px;
 }
-
-ul.menu.dropdown li ul:after {
-    /*
-    En gros on créé un élément carré de 10px/10px que l'on tourne de 45° et
-    que l'on va placer juste au bon endroit pour faire croire qu'il s'agit
-    d'un triangle qui dépasse du menu
-    */
-    content: "";
-    position: absolute;
-    top: -6px;
-    right: 173px;
-    width: 10px;
-    height: 10px;
-    background: #fff;
-    border-top: 1px solid #ddd;
-    border-left: 1px solid #ddd;
-    z-index: -10;
-    transform: rotate(45deg);
+/* couleur de fond du dropdown */
+ul.menu.dropdown li{
+    outline: none;
 }
 
 /* couleur des libellés du menu */
 ul.menu.dropdown li a{
     color: #e0ddde;
+    outline: none;
 }
 /* reconnaitre quel est le menu actif */
 ul.menu.dropdown li.active{
     /*border-top:4px solid #fafafa;*/
     background-color: #858283;
     color: #ffffff;
+    outline: none;
 }
 
 /* couleur de fond du dropdown */
 ul.menu.dropdown li ul {
     border:none;
+    outline: none;
 }
 
 /* couleur de fond du menu*/
@@ -46,6 +34,7 @@ ul.menu.dropdown li ul li {
     background-color: #858283;
     border:none;
     margin:none;
+    outline: none;
 }
 
 ul.menu.dropdown li a:hover, a:focus{
@@ -66,4 +55,289 @@ ul.menu.dropdown li a:hover, a:focus{
 .dropdown.menu .is-dropdown-submenu-parent.is-down-arrow a{
     padding-right: 1rem;
 }
+
+.f-dropdown {
+  outline: 1px dotted #333;
+}
+
+/* ------------------ MARLEY */
+figure{
+	margin: 0;
+}
+
+.grid figure {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	background: #3085a3;
+	text-align: center;
+	cursor: pointer;
+}
+
+.grid figure img {
+	position: relative;
+	display: block;
+	min-height: 100%;
+	max-width: 100%;
+	opacity: 0.8;
+}
+
+.grid figure figcaption {
+	padding: 2em 2em 2em 0;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+	pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Anchor will cover the whole item by default */
+/* For some effects it will show as a button */
+.grid figure figcaption > a {
+	z-index: 1000;
+	text-indent: 200%;
+	white-space: nowrap;
+	font-size: 0;
+	opacity: 0;
+}
+
+.grid figure h2 {
+	word-spacing: -0.15em;
+	font-weight: 300;
+}
+
+.grid figure h2 span {
+	font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+	margin: 0;
+}
+
+.grid figure p {
+	letter-spacing: 1px;
+	font-size: 68.5%;
+}
+
+/*---- marley *----*//
+figure.effect-marley figcaption {
+	text-align: right;
+}
+
+figure.effect-marley h2,
+figure.effect-marley p {
+	position: absolute;
+	right: 30px;
+	left: 30px;
+	padding: 10px 0;
+}
+
+figure.effect-marley p {
+	bottom: 30px;
+	line-height: 1.5;
+	-webkit-transform: translate3d(0,100%,0);
+	transform: translate3d(0,100%,0);
+}
+
+figure.effect-marley h2 {
+	top: 30px;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(0,20px,0);
+	transform: translate3d(0,20px,0);
+}
+
+figure.effect-marley:hover h2 {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+figure.effect-marley h2::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background: #fff;
+	content: '';
+	-webkit-transform: translate3d(0,40px,0);
+	transform: translate3d(0,40px,0);
+}
+
+figure.effect-marley h2::after,
+figure.effect-marley p {
+	opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-marley:hover h2::after,
+figure.effect-marley:hover p {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+/*-----------------*/
+/***** Goliath *****/
+/*-----------------*/
+
+figure.effect-goliath {
+	background: #df4e4e;
+}
+
+figure.effect-goliath img,
+figure.effect-goliath h2 {
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+}
+
+figure.effect-goliath img {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+figure.effect-goliath h2,
+figure.effect-goliath p {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 30px;
+}
+
+figure.effect-goliath p {
+	text-transform: none;
+	font-size: 90%;
+	opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(0,50px,0);
+	transform: translate3d(0,50px,0);
+}
+
+figure.effect-goliath:hover img {
+	-webkit-transform: translate3d(0,-80px,0);
+	transform: translate3d(0,-80px,0);
+}
+
+figure.effect-goliath:hover h2 {
+	-webkit-transform: translate3d(0,-100px,0);
+	transform: translate3d(0,-100px,0);
+}
+
+figure.effect-goliath:hover p {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+/*---------------*/
+/***** Julia *****/
+/*---------------*/
+
+figure.effect-julia figcaption h2{
+	background-color: rgba(255,255,255,0.9);
+	color : rgba(85,85,86,1);
+	min-width: 50%;
+	padding:0.1em 0.5em;
+
+	text-align : right;
+	position: relative;
+
+}
+
+figure.effect-julia {
+	background: #2f3238;
+}
+
+figure.effect-julia img {
+
+	-webkit-transition: opacity 1s, -webkit-transform 1s;
+	transition: opacity 1s, transform 1s;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+figure.effect-julia figcaption {
+	text-align: left;
+	margin : 0;
+}
+
+figure.effect-julia p {
+	/*display: inline-block;*/
+	margin: 0.25em 0 0.25em;
+	padding: 0.4em 1em;
+	background: rgba(255,255,255,0.9);
+	color: #2f3238;
+	text-transform: none;
+	font-weight: 500;
+	font-size: 75%;
+	
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.5s;
+	-webkit-transform: translate3d(-2000px,0,0);
+	transform: translate3d(-2000px,0,0);
+	text-align : right;
+}
+
+figure.effect-julia p:first-child {
+	-webkit-transition-delay: 0.15s;
+	transition-delay: 0.15s;
+}
+
+figure.effect-julia p:nth-of-type(2) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+figure.effect-julia p:nth-of-type(3) {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+}
+
+figure.effect-julia:hover p:first-child {
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+figure.effect-julia:hover p:nth-of-type(2) {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+}
+
+figure.effect-julia:hover p:nth-of-type(3) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+figure.effect-julia:hover img {
+	opacity: 0.4;
+	-webkit-transform: scale3d(1.1,1.1,1);
+	transform: scale3d(1.1,1.1,1);
+}
+
+figure.effect-julia:hover p {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+
+
+
 

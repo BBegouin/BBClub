@@ -21,4 +21,4 @@ from league_manager.models import league
 #    inlines = (BookInline,)
 #    fieldsets = deepcopy(PageAdmin.fieldsets) + author_extra_fieldsets
 #
-#admin.site.register(Author.Author, AuthorAdmin)
+admin.site.register(league.League)

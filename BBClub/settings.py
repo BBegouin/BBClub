@@ -24,7 +24,7 @@ ADMIN_MENU_ORDER = (
         "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
      ("Users", ("auth.User", "auth.Group",)),
      ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-     ("League Manager", ("LeagueManager.models.Question")),
+     ("League Manager", ("LeagueManager.models.league")),
  )
 
 # A three item sequence, each containing a sequence of template tags

@@ -1,314 +1,140 @@
-<!doctype html>
-<html class="no-js" lang="en">
-{% load pages_tags mezzanine_tags i18n staticfiles %}
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<html class="" lang="en">
+<head>
+    {% load pages_tags mezzanine_tags i18n staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bowl Club : Cognac</title>
+    <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="{% static "css/foundation.css" %}"
-        <link rel="stylesheet" href="{% static "css/app.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/menu.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/breadcrumb.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/title.css" %}"/>
+    <meta class="foundation-mq">
+    <link rel="stylesheet" href="{% static "css/menu.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/breadcrumb.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/title.css" %}"/>
+</head>
+<body style="background-color: #FAFAFA">
+<style>.fi-social-facebook {
+    color: dodgerblue;
+    font-size: 2rem;
+}
 
+.fi-social-youtube {
+    color: red;
+    font-size: 2rem;
+}
 
-    </head>
+.fi-social-pinterest {
+    color: darkred;
+    font-size: 2rem;
+}
 
-    <body>
+i.fi-social-instagram {
+    color: brown;
+    font-size: 2rem;
+}
 
-        <div class="row" id="header">
-            <img  src="{% static "img/header3.jpg" %}"  alt="la ligue de blood bowl de cognac"/>
-        </div>
+i.fi-social-tumblr {
+    color: navy;
+    font-size: 2rem;
+}
 
-        <!-- Top Bar -->
-        <div class="main-menu">
-            <div class="row">
-                {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
-            </div>
-        </div>
+.fi-social-twitter {
+    color: skyblue;
+    font-size: 2rem;
+}</style>
+<div class="row columns">
+<header>
 
-        <div class="container">
-            {% nevercache %}
-            {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{ message }}
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            {% endnevercache %}
+    <div class="row">
+        <img  src="{% static "img/header3.jpg" %}"  alt="la ligue de blood bowl de cognac"/>
+    </div>
+
+    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium"
+         data-responsivetoggle="ufg3je-responsivetoggle" style="display: none;">
+        <button class="menu-icon" type="button" data-toggle=""></button>
+        <div class="title-bar-title">Menu</div>
+    </div>
+</div>
+    <div class="main-menu" id="main-menu">
         <div class="row">
-            <h1>{%block title%}{{page.title}}{%endblock title%}</h1>
+            {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
         </div>
-        <div class="row">
-            <ul class="breadcrumb">
-                {% spaceless %}
+    </div>
+
+    <div class="row">
+        <ul class="breadcrumb">
+            {% spaceless %}
                 {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-                {% endspaceless %}
-            </ul>
-        </div>
+            {% endspaceless %}
+        </ul>
     </div>
-
-    <div class="container">
-        <div class="row">
-                {% block main %}{% endblock %}
-        </div>
-
-        <div class="col-md-3 right">
-            {% nevercache %}
-            {% include "includes/language_selector.html" %}
-            {% include "includes/user_panel.html" %}
-            {% endnevercache %}
-            <div class="panel panel-default">
-            <div class="panel-body">
-            {% block right_panel %}
-            {% ifinstalled mezzanine.twitter %}
-            {% include "twitter/tweets.html" %}
-            {% endifinstalled %}
-            {% endblock %}
-            </div>
-            </div>
-        </div>
-    </div>
-
+</header>
+<br>
+{% block all_content %}{% endblock %}
+<div class="row columns">
     <footer>
-        <div class="container">
-            {% page_menu "pages/menus/footer.html" %}
+        <div class="row expanded callout secondary">
+            <div class="large-4 columns">
+                <h5>FLICKR IMAGES</h5>
 
-            <div class="row">
-                <p class="site-info text-center">
-                    {% trans "Powered by" %}
-                    <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
-                    <a href="http://cartridge.jupo.org">Cartridge</a>{% endifinstalled %}
-                    {% trans "and" %}
-                    <a href="http://www.djangoproject.com">Django</a>
-                    <span class="separator">|</span>
-                    {% trans "Theme by" %} <a target="_blank" href="http://getbootstrap.com">Bootstrap</a>
-                    {% ifinstalled mezzanine.mobile %}
-                    <span class="separator">|</span>
-                    <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
-                    {% endifinstalled %}
-                </p>
+                <div class="row small-up-4">
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                    <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
+                </div>
+            </div>
+            <div class="large-4 columns">
+                <h5>FLICKR IMAGES</h5>
+                <span class="secondary label">Space</span>
+                <span class="secondary label">Galaxies</span>
+                <span class="secondary label">Milky Way</span>
+                <span class="secondary label">Black Holes</span>
+                <span class="secondary label">Rebels</span>
+                <span class="secondary label">Death Star</span>
+                <span class="secondary label">Republic</span>
+                <span class="secondary label">R2D2</span>
+            </div>
+            <div class="large-4 columns">
+                <h5>RANDOM MAG</h5>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quam voluptatum vel repellat ab
+                    similique molestias molestiae ea omnis eos, id asperiores est praesentium, voluptate officia nulla
+                    aspernatur sequi aliquam.</p>
+            </div>
+        </div>
+        <div class="row expanded">
+            <div class="medium-6 columns">
+                <ul class="menu">
+                    <li><a href="#">Legal</a></li>
+                    <li><a href="#">Partner</a></li>
+                    <li><a href="#">Explore</a></li>
+                </ul>
+            </div>
+            <div class="medium-6 columns">
+                <ul class="menu align-right">
+                    <li class="menu-text">Copyright © 2099 Random Mag</li>
+                </ul>
             </div>
         </div>
     </footer>
+    </div>
+</div>
 
-    {% block footer_js %}
-    {% include "includes/footer_scripts.html" %}
-    {% endblock %}
-        <div class="row">
-            <img src="{% static "img/LOGO11.jpg" %}"/>
-        </div>
-
-        <div class="row">
-            <div class="medium-1 columns">
-                <div class="callout">1
-                </div>
-            </div>
-            <div class="medium-11 columns callout">2</div>
-        </div>
-
-        <div class="row">
-            <div class="large-6 medium-6 columns">
-                <div class="callout">
-                    <p>Six columns</p>
-                </div>
-                <div class="row">
-                    <div class="large-1 medium-6 columns callout">
-                        <div class="callout">
-                            <p>Six columns</p>
-                        </div>
-                    </div>
-                    <div class="large-1 columns callout"></div>
-                    <div class="row">
-                        <div class="large-1 columns">
-                            <div class="button"></div>
-                        </div>
-                        <div class="large-1 columns callout"></div>
-                        <div class="large-1 columns callout"></div>
-                        <div class="large-1 columns callout"></div>
-                        <div class="large-1 columns callout"></div>
-                    </div>
-                    <div class="large-1 columns callout"></div>
-                    <div class="large-1 columns callout"></div>
-                    <div class="large-1 columns callout"></div>
-                    <div class="large-1 columns callout"></div>
-
-                    <div class="large-1 columns callout"></div>
-                    <div class="large-1 columns callout"></div>
-                    <div class="large-1 columns callout"></div>
-                    <div class="large-1 columns callout"></div>
-                    <div class="large-1 columns callout"></div>s
-                    <div class="large-1 medium-6 columns">
-                        <div class="callout">
-                            <p>Six columns</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="large-6 medium-6 columns">
-                <div class="callout">
-                    <p>Six columns</p>
-                </div>
-            </div>
-            <p>kjljklj</p>
-            </div>
-        </div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="{% static "js/foundation.js" %}"></script>
+{% block footer_js %}
+{% include "includes/footer_scripts.html" %}
+{% endblock %}
+<script>
+    $(document).foundation();
+</script>
+<script type="text/javascript" src="https://intercom.zurb.com/scripts/zcom.js"></script>
 
 
-        <div class="row">
-          <div class="large-12 columns">
-            <div class="callout large">
-              <h3>We&rsquo;re stoked you want to try Foundation! </h3>
-              <p>To get going, this file (index.html) includes some basic styles you can modify, play around with, or totally destroy to get going.</p>
-              <p>Once you've exhausted the fun in this document, you should check out:</p>
-              <div class="row">
-                <div class="large-4 medium-4 columns">
-                  <p><a href="http://foundation.zurb.com/sites/docs/">Foundation Documentation</a><br />Everything you need to know about using the framework.</p>
-                </div>
-                <div class="large-4 medium-4 columns">
-                  <p><a href="http://zurb.com/university/code-skills">Foundation Code Skills</a><br />These online courses offer you a chance to better understand how Foundation works and how you can master it to create awesome projects.</p>
-                </div>
-                <div class="large-4 medium-4 columns">
-                  <p><a href="http://foundation.zurb.com/forum">Foundation Forum</a><br />Join the Foundation community to ask a question or show off your knowlege.</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-4 medium-4 medium-push-2 columns">
-                  <p><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest code, issue reports, feature requests and more.</p>
-                </div>
-                <div class="large-4 medium-4 medium-pull-2 columns">
-                  <p><a href="https://twitter.com/ZURBfoundation">@zurbfoundation</a><br />Ping us on Twitter if you have questions. When you build something with this we'd love to see it (and send you a totally boss sticker).</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-8 medium-8 columns">
-            <h5>Here&rsquo;s your basic grid:</h5>
-            <!-- Grid Example -->
-
-            <div class="row">
-              <div class="large-12 columns">
-                <div class="callout ">
-                  <p><strong>This is a twelve column section in a row.</strong> Each of these includes a div.callout element so you can see where the columns are - it's not required at all for the grid.</p>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-6 medium-6 columns">
-                <div class="callout">
-                  <p>Six columns</p>
-                </div>
-              </div>
-              <div class="large-6 medium-6 columns">
-                <div class="callout">
-                  <p>Six columns</p>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-4 medium-4 small-4 columns">
-                <div class="callout">
-                  <p>Four columns</p>
-                </div>
-              </div>
-              <div class="large-4 medium-4 small-4 columns">
-                <div class="callout">
-                  <p>Four columns</p>
-                </div>
-              </div>
-              <div class="large-4 medium-4 small-4 columns">
-                <div class="callout">
-                  <p>Four columns</p>
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <h5>We bet you&rsquo;ll need a form somewhere:</h5>
-            <form>
-              <div class="row">
-                <div class="large-12 columns">
-                  <label>Input Label</label>
-                  <input type="text" placeholder="large-12.columns" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-4 medium-4 columns">
-                  <label>Input Label</label>
-                  <input type="text" placeholder="large-4.columns" />
-                </div>
-                <div class="large-4 medium-4 columns">
-                  <label>Input Label</label>
-                  <input type="text" placeholder="large-4.columns" />
-                </div>
-                <div class="large-4 medium-4 columns">
-                  <label>Input Label</label>
-                  <div class="input-group">
-                    <input type="text" placeholder="small-9.columns" class="input-group-field" />
-                    <span class="input-group-label">.com</span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <label>Select Box</label>
-                  <select>
-                    <option value="husker">Husker</option>
-                    <option value="starbuck">Starbuck</option>
-                    <option value="hotdog">Hot Dog</option>
-                    <option value="apollo">Apollo</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-6 medium-6 columns">
-                  <label>Choose Your Favorite</label>
-                  <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Radio 1</label>
-                  <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Radio 2</label>
-                </div>
-                <div class="large-6 medium-6 columns">
-                  <label>Check these out</label>
-                  <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-                  <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <label>Textarea Label</label>
-                  <textarea placeholder="small-12.columns"></textarea>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="large-4 medium-4 columns">
-            <h5>Try one of these buttons:</h5>
-            <p><a href="#" class="small button">Simple Button</a><br/>
-            <a href="#" class="medium success button">Success Button</a><br/>
-            <a href="#" class="medium alert button">Alert Button</a><br/>
-            <a href="#" class="medium secondary button">Secondary Button</a></p>
-            <div class="callout">
-              <h5>So many components, girl!</h5>
-              <p>A whole kitchen sink of goodies comes with Foundation. Check out the docs to see them all, along with details on making them your own.</p>
-              <a href="http://foundation.zurb.com/docs/" class="small button">Go to Foundation Docs</a>
-            </div>
-          </div>
-        </div>
-        {% editable_loader %}
-        <script src="{% static "js/vendor/jquery.min.js" %}"></script>
-        <script src="{% static "js/vendor/what-input.min.js" %}"></script>
-        <script src="{% static "js/foundation.min.js" %}"></script>
-        <script src="{% static "js/app.js" %}"></script>
-    </body>
+</body>
 </html>
