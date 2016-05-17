@@ -262,7 +262,7 @@ figure.effect-julia figcaption h2{
 }
 
 figure.effect-julia {
-	background: #2f3238;
+	background: #C6CBD4;
 }
 
 figure.effect-julia img {
@@ -286,8 +286,8 @@ figure.effect-julia p {
 	color: #2f3238;
 	text-transform: none;
 	font-weight: 500;
-	font-size: 75%;
-	
+	font-size: 100%;
+
 	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, transform 0.5s;
 	-webkit-transform: translate3d(-2000px,0,0);
