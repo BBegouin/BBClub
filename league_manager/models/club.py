@@ -1,7 +1,6 @@
 __author__ = 'Bertrand'
 from django.db import models
 
-
-class Ref_Roster(models.Model):
+class Club(models.Model):
     name = models.CharField(max_length=30)
-    reroll_price = models.PositiveIntegerField()
+

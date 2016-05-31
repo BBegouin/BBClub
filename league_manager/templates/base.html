@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static "css/menu.css" %}"/>
     <link rel="stylesheet" href="{% static "css/breadcrumb.css" %}"/>
     <link rel="stylesheet" href="{% static "css/title.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/common.css" %}"/>
 </head>
 <body style="background-color: #FAFAFA">
 <style>.fi-social-facebook {
@@ -69,8 +70,9 @@ i.fi-social-tumblr {
         </ul>
     </div>
 </header>
-<br>
+
 {% block all_content %}{% endblock %}
+{% block main %}{% endblock %}
 <div class="row columns">
     <footer>
         <div class="row expanded callout secondary">

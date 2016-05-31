@@ -1,0 +1,35 @@
+
+img.team-icon{
+    max-width:32;
+}
+
+.home-right-panel .title{
+    margin: 0;
+}
+
+.home-right-panel .day-block {
+    padding-top: 15;
+    margin-bottom: 15;
+}
+
+.home-right-panel .day-block .date {
+    text-align: center;
+    margin-bottom: 30;
+}
+
+.home-right-panel .day-block .team-name {
+    text-align: right;
+    padding-right : 15;
+}
+
+.home-right-panel .day-block .score {
+    float: left;
+    padding-left: 15;
+}
+
+
+
+
+
+
+

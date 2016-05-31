@@ -20,12 +20,11 @@ from django.utils.translation import ugettext_lazy as _
 # Controls the ordering and grouping of the admin menu.
 #
 ADMIN_MENU_ORDER = (
-     ("Content", ("pages.Page", "blog.BlogPost",
-        "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
+     ("Content", ("pages.Page", "blog.BlogPost","generic.ThreadedComment", (_("Media Library"), "media-library"),)),
      ("Users", ("auth.User", "auth.Group",)),
      ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-     ("League Manager", ("LeagueManager.models.league")),
- )
+     ("League Manager", ("LeagueManager.models.league",(_("coicoin"),"LeagueManager.models.general_post"),))
+     ,)
 
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
@@ -260,7 +259,8 @@ INSTALLED_APPS = (
     "mezzanine.forms",
     "mezzanine.galleries",
     "mezzanine.twitter",
-    # "mezzanine.accounts",
+    'debug_toolbar',
+    'mezzanine.accounts',
     # "mezzanine.mobile",
 )
 

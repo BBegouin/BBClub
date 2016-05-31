@@ -12,7 +12,7 @@
     {% for page in page_branch %}
     {% if not has_home and page.is_primary and forloop.first %}
     <li{% if on_home %} class="active {% endif %} "aria-haspopup="true">
-            <span><i class="fi-torso"> &nbsp;&nbsp; <a href="{% url "home" %}">{% trans "Home" %}</a></i></span>
+            <a href="{% url "home" %}"><span><i class="fi-home"> &nbsp;&nbsp; {% trans "Home" %}</i></span></a>
         </li>
     {% endif %}
     {% if page.in_menu %}
@@ -25,14 +25,25 @@
                 aria-haspopup="true"
                 id="{{ page.html_id }}">
         <a href="{{ page.get_absolute_url }}"
-           {% if page.has_children_in_menu %} class="dropdown-toggle disabled" data-toggle="dropdown" {% endif %}
-           tabindex="-1">{{ page.title }}
+           {% if page.has_children_in_menu %} class="dropdown-toggle disabled data-toggle="dropdown" {% endif %}
+           tabindex="-1"><span><i class="fi-{{ page.generalpage.menuIcon }}"> &nbsp;&nbsp; {{ page.title }}</i></span>
             {% if page.has_children_in_menu %}<b class="caret"></b>{% endif %}
         </a>
         {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
     </li>
     {% endif %}
     {% endfor %}
+    <li class=" dropdown-menu"
+                role="menuitem"
+                tabindex="0"
+                title="Connexion"
+                aria-haspopup="true"
+                id="{{ page.html_id }}">
+        <a href="/admin"
+           tabindex="-1"><span><i class="fi-key"> &nbsp;&nbsp; Connexion</i></span><b class="caret"></b>
+        </a>
+        {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
+    </li>
 </ul>
 
 {% else %}
@@ -45,7 +56,7 @@
                is-dropdown-submenu-item"
             tabindex="0"
             role="menuitem">
-            <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+            <a href="{{ page.get_absolute_url }}"><span><i class="fi-{{ page.generalpage.menuIcon }}"> &nbsp;&nbsp; {{ page.title }}</i></span></a>
             {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
         </li>
     {% endif %}

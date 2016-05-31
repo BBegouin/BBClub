@@ -2,51 +2,39 @@
 {% load pages_tags mezzanine_tags i18n staticfiles %}
 
 {% block all_content%}
-<div class="row">
-<!--
-    <div class="medium-8 columns">
-        <div class="row column">
-            <h5 style="margin: 0;" class="text-align-left">
-                <a>Titre de l'article</a>
-            </h5>
-             <p>
-                <span><i class="fi-torso"> By Thadeus &nbsp;&nbsp;</i></span>
-                <span><i class="fi-calendar"> 11/23/16 &nbsp;&nbsp;</i></span>
-                <span><i class="fi-comments"> 6 comments</i></span>
-            </p>
-            <hr>
-        </div>
-        <p><img src="{% static "img/LOGO11.jpg" %}" alt="main article image"></p>
-    </div>
-    <div class="medium-4 columns">
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum
-                        delectus aperiam nesciunt magni facilis ullam.</p>
-        <p><img src="http://placehold.it/400x200&amp;text=Other cool article" alt="article promo image"></p>
+    <div class="row">
 
-        <p><img src="http://placehold.it/400x200&amp;text=Other cool article" alt="article promo image"></p>
+{% for post in posts reversed %}
+    {%  if forloop.first %}
     </div>
--->
-</div>
+
     <div class="row grid">
     <figure class="effect-julia">
-        <img src="{% static "img/LOGO11.jpg" %}" alt="img22">
+        <img src={{ MEDIA_URL }}{{ post.featured_image }} alt="img22">
         <figcaption>
-            <h2>Le torchon <span>Brûle</span></h2>
+            <h2><span>{{ post.title }}</span></h2>
 
             <div>
-                <p>découvrez pourquoi les commis de la ligue ne se parlent plus !</p>
+                <p>{{ post.generalpost.sub_title }}</p>
             </div>
-            <a href="#">View more</a>
+            <a href="{{ post.get_absolute_url }}">View more</a>
         </figcaption>
     </figure>
     </div>
-<hr>
-<div class="row column">
-    <h4 style="margin: 0;" class="text-center">Articles Récents</h4>
-</div>
-<hr>
+
+    {%  else %}
+
+    {%  endif %}
+    {%  endfor %}
+
+
 <div class="row">
     <div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+        <hr>
+        <div class="row column">
+            <h4 style="margin: 0;" class="text-center">Actualités</h4>
+        </div>
+        <hr>
         <article>
             <div class="row">
                 <div class="large-6 columns">
@@ -58,11 +46,17 @@
                     <p>
                         <span><i class="fi-torso"> By Thadeus &nbsp;&nbsp;</i></span>
                         <span><i class="fi-calendar"> 11/23/16 &nbsp;&nbsp;</i></span>
-                        <span><i class="fi-comments"> 6 comments</i></span>
                     </p>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum
-                        delectus aperiam nesciunt magni facilis ullam.</p>
+                        delectus aperiam nesciunt magni facilis ullam.
+                    </p>
+                    <p>
+                        <span><i class="fi-comments"> 6 comments</i></span>
+                        <span><i class="fi-social-facebook"> 6 comments</i></span>
+                        <span><i class="fi-social-twitter"> 6 comments</i></span>
+
+                    <br>
                 </div>
             </div>
             <hr>
@@ -184,107 +178,125 @@
             </ul>
         </article>
     </div>
-    <div class="large-4 columns">
-        <aside>
-            <div class="row small-up-3">
-                <div class="column text-center">
-                    <i class="fi-social-facebook"></i>
-                    <h6>56,009</h6>
+    <div class="large-4 columns home-right-panel">
+        <hr>
+        <div class="row column">
+            <h4 class="title text-center">Derniers résultats</h4>
+        </div>
+        <hr>
+        <div class="day-block">
+            <h4 class="date">vendredi 12 novembre 2016</h4>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span><strong>1 </strong>(3)
+            </p>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/human.jpg" %}">&nbsp;&nbsp;los crétinos nabos</span><strong>0 </strong>(1)
+            </p>
+            </br>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/chaos.png" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/chaosdwarf.png" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            </br>
+        </div>
+        <hr>
+        <div class="day-block">
+            <h4 class="date">vendredi 12 novembre 2016</h4>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            </br>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            </br>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            <p class="team-name">
+                <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span>T
+            </p>
+            </br>
+        </div>
+        <hr>
+        <div class="row column">
+            <h4 class="title text-center">Classement</h4>
+        </div>
+        <hr>
+        <table class="column">
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>equipe1</td>
+                <td>coach</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>equipe1</td>
+                <td>coach</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>equipe1</td>
+                <td>coach</td>
+            </tr>
+            </tbody>
+        </table>
+            <hr>
 
-                    <p>
-                        <small>FOLLOWERS</small>
-                    </p>
-                    <br>
+                <div class="row column">
+                    <p class="lead">FROM OUR FRIENDS</p>
+
+                    <p><img src="http://placehold.it/400x300&amp;text=Buy Me!" alt="advertisement of ShamWow"></p>
                 </div>
-                <div class="column text-center">
-                    <i class="fi-social-twitter"></i>
-                    <h6>76,905</h6>
+                <br>
 
-                    <p>
-                        <small>FOLLOWERS</small>
-                    </p>
-                    <br>
-                </div>
-                <div class="column text-center">
-                    <i class="fi-social-instagram"></i>
-                    <h6>34,099</h6>
+                <div class="row column">
+                    <p class="lead">TRENDING POSTS</p>
 
-                    <p>
-                        <small>FOLLOWERS</small>
-                    </p>
-                    <br>
-                </div>
-                <div class="column text-center">
-                    <i class="fi-social-tumblr"></i>
-                    <h6>13,765</h6>
-
-                    <p>
-                        <small>FOLLOWERS</small>
-                    </p>
-                </div>
-                <div class="column text-center">
-                    <i class="fi-social-pinterest"></i>
-                    <h6>9,283</h6>
-
-                    <p>
-                        <small>FOLLOWERS</small>
-                    </p>
-                </div>
-                <div class="column text-center">
-                    <i class="fi-social-youtube"></i>
-                    <h6>99,000</h6>
-
-                    <p>
-                        <small>FOLLOWERS</small>
-                    </p>
-                </div>
-            </div>
-            <br>
-
-            <div class="row column">
-                <p class="lead">FROM OUR FRIENDS</p>
-
-                <p><img src="http://placehold.it/400x300&amp;text=Buy Me!" alt="advertisement of ShamWow"></p>
-            </div>
-            <br>
-
-            <div class="row column">
-                <p class="lead">TRENDING POSTS</p>
-
-                <div class="media-object">
-                    <div class="media-object-section">
-                        <img class="thumbnail" src="http://placehold.it/100">
+                    <div class="media-object">
+                        <div class="media-object-section">
+                            <img class="thumbnail" src="http://placehold.it/100">
+                        </div>
+                        <div class="media-object-section">
+                            <h5>All I need is a space suit and I'm ready to go.</h5>
+                        </div>
                     </div>
-                    <div class="media-object-section">
-                        <h5>All I need is a space suit and I'm ready to go.</h5>
+                    <div class="media-object">
+                        <div class="media-object-section">
+                            <img class="thumbnail" src="http://placehold.it/100">
+                        </div>
+                        <div class="media-object-section">
+                            <h5>Are the stars out tonight? I don't know if it's cloudy or bright.</h5>
+                        </div>
+                    </div>
+                    <div class="media-object">
+                        <div class="media-object-section">
+                            <img class="thumbnail" src="http://placehold.it/100">
+                        </div>
+                        <div class="media-object-section">
+                            <h5>And the world keeps spinning.</h5>
+                        </div>
+                    </div>
+                    <div class="media-object">
+                        <div class="media-object-section">
+                            <img class="thumbnail" src="http://placehold.it/100">
+                        </div>
+                        <div class="media-object-section">
+                            <h5>Cold hearted orb that rules the night.</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="media-object">
-                    <div class="media-object-section">
-                        <img class="thumbnail" src="http://placehold.it/100">
-                    </div>
-                    <div class="media-object-section">
-                        <h5>Are the stars out tonight? I don't know if it's cloudy or bright.</h5>
-                    </div>
-                </div>
-                <div class="media-object">
-                    <div class="media-object-section">
-                        <img class="thumbnail" src="http://placehold.it/100">
-                    </div>
-                    <div class="media-object-section">
-                        <h5>And the world keeps spinning.</h5>
-                    </div>
-                </div>
-                <div class="media-object">
-                    <div class="media-object-section">
-                        <img class="thumbnail" src="http://placehold.it/100">
-                    </div>
-                    <div class="media-object-section">
-                        <h5>Cold hearted orb that rules the night.</h5>
-                    </div>
-                </div>
-            </div>
-        </aside>
+
+        </div>
     </div>
 </div>
 {% endblock %}
