@@ -55,7 +55,7 @@ i.fi-social-tumblr {
         <button class="menu-icon" type="button" data-toggle=""></button>
         <div class="title-bar-title">Menu</div>
     </div>
-</div>
+
     <div class="main-menu" id="main-menu">
         <div class="row">
             {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
@@ -128,6 +128,7 @@ i.fi-social-tumblr {
 </div>
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src={% static "js/vendor/cropper/dist/cropper.min.js" %}></script>
 <script src="{% static "js/foundation.js" %}"></script>
 {% block footer_js %}
 {% include "includes/footer_scripts.html" %}

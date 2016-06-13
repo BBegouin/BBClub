@@ -12,7 +12,11 @@ from league_manager.models import league
 from league_manager.models.general_post import GeneralPost
 from league_manager.models.pages.general_page import GeneralPage
 from league_manager.models.coach import Coach
+from league_manager.models.club import Club
+from image_cropping import ImageCroppingMixin
 
+class MyModelAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    pass
 
 #author_extra_fieldsets = ((None, {"fields": ("dob",)}),)
 
@@ -25,5 +29,7 @@ from league_manager.models.coach import Coach
 #
 admin.site.register(league.League)
 admin.site.register(GeneralPost)
+
 admin.site.register(Coach)
 admin.site.register(GeneralPage)
+admin.site.register(Club)

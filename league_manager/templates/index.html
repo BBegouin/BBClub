@@ -4,7 +4,7 @@
 {% block all_content%}
     <div class="row">
 
-{% for post in posts reversed %}
+{% for post in posts reversed%}
     {%  if forloop.first %}
     </div>
 
@@ -22,22 +22,18 @@
     </figure>
     </div>
 
-    {%  else %}
-
+    {%  else %}{{ post.title  }}
     {%  endif %}
     {%  endfor %}
-
 
 <div class="row">
     <div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
         <hr>
-        <div class="row column">
             <h4 style="margin: 0;" class="text-center">Actualités</h4>
-        </div>
         <hr>
         <article>
             <div class="row">
-                <div class="large-6 columns">
+                <div class="large-6 columns avatar-view">
                     <p><img src="http://placehold.it/600x370&amp;text=Look at me!" alt="image for article"></p>
                 </div>
                 <div class="large-6 columns">
@@ -180,18 +176,86 @@
     </div>
     <div class="large-4 columns home-right-panel">
         <hr>
-        <div class="row column">
-            <h4 class="title text-center">Derniers résultats</h4>
-        </div>
+        <h4 class="title text-center">Classement</h4>
+        <hr>
+        <table class="column">
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td><i style="color: #888888" class="fi-arrow-right"></i></td>
+                <td><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;le PSG</td>
+                <td>59 pts</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><i style="color: #00aa00" class="fi-arrow-up"></i></td>
+                <td><img class="team-icon" src="{% static "img/human.jpg" %}">&nbsp;&nbsp;les crétinos nobos</td>
+                <td>57 pts</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><i style="color: #aa0000" class="fi-arrow-down"></i></td>
+                <td><img class="team-icon" src="{% static "img/chaos.png" %}">&nbsp;&nbsp;Les OGM</td>
+                <td>55 pts</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><i style="color: #888888" class="fi-arrow-right"></i></td>
+                <td><img class="team-icon" src="{% static "img/woodelf.png" %}">&nbsp;&nbsp;le CULTE</td>
+                <td>59 pts</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><i style="color: #00aa00" class="fi-arrow-up"></i></td>
+                <td><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;les raclures bubonicus</td>
+                <td>57 pts</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><i style="color: #aa0000" class="fi-arrow-down"></i></td>
+                <td><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;Les jouets de morg</td>
+                <td>55 pts</td>
+            </tr>
+                       <tr>
+                <td>7</td>
+                <td><i style="color: #aa0000" class="fi-arrow-down"></i></td>
+                <td><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;Les sbires de morg</td>
+                <td>55 pts</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><i style="color: #888888" class="fi-arrow-right"></i></td>
+                <td><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;Les vénusiens</td>
+                <td>59 pts</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><i style="color: #00aa00" class="fi-arrow-up"></i></td>
+                <td><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;Viol Meurtre et Massacre</td>
+                <td>57 pts</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><i style="color: #aa0000" class="fi-arrow-down"></i></td>
+                <td><img class="team-icon" src="{% static "img/darkelves.png" %}">&nbsp;&nbsp;equipe1</td>
+                <td>55 pts</td>
+            </tr>
+            </tbody>
+        </table>
+        <p style="text-align: right"><a href="#">Classement détaillé...</a></p>
+        <hr>
+        <h4 class="title text-center">Derniers résultats</h4>
         <hr>
         <div class="day-block">
             <h4 class="date">vendredi 12 novembre 2016</h4>
-            <p class="team-name">
+            <div style="background-color: #f2f2f2">
+            <p class="team-name"  >
                 <span class="score"><img class="team-icon" src="{% static "img/orcs.jpeg" %}">&nbsp;&nbsp;los crétinos nabos</span><strong>1 </strong>(3)
             </p>
-            <p class="team-name">
+            <p class="team-name" style="background-color: #f2f2f2">
                 <span class="score"><img class="team-icon" src="{% static "img/human.jpg" %}">&nbsp;&nbsp;los crétinos nabos</span><strong>0 </strong>(1)
             </p>
+            </div>
             </br>
             <p class="team-name">
                 <span class="score"><img class="team-icon" src="{% static "img/chaos.png" %}">&nbsp;&nbsp;los crétinos nabos</span>T
@@ -227,29 +291,7 @@
             </br>
         </div>
         <hr>
-        <div class="row column">
-            <h4 class="title text-center">Classement</h4>
-        </div>
-        <hr>
-        <table class="column">
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>equipe1</td>
-                <td>coach</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>equipe1</td>
-                <td>coach</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>equipe1</td>
-                <td>coach</td>
-            </tr>
-            </tbody>
-        </table>
+
             <hr>
 
                 <div class="row column">

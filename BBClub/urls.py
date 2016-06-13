@@ -5,6 +5,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.i18n import set_language
 from league_manager.views.home import tous_les_utilisateurs
+from league_manager.views import rest_page
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
@@ -38,7 +39,8 @@ urlpatterns += [
     # one out.
 
    # url("^$", direct_to_template, {"template": "index.html"}, name="home"),
-     url("^$", tous_les_utilisateurs, name="home"),
+    url("^$", tous_les_utilisateurs, name="home"),
+    url(r'^', include('league_manager.urls')),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

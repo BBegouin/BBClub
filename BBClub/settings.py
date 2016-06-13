@@ -4,6 +4,7 @@ import os
 
 from django import VERSION as DJANGO_VERSION
 from django.utils.translation import ugettext_lazy as _
+from easy_thumbnails.conf import Settings as thumbnail_settings
 
 
 ######################
@@ -261,6 +262,9 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     'debug_toolbar',
     'mezzanine.accounts',
+    'easy_thumbnails',
+    'image_cropping',
+    'rest_framework'
     # "mezzanine.mobile",
 )
 
@@ -291,6 +295,10 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
+
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 # Store these package names here as they may change in the future since
 # at the moment we are using custom forks of them.
