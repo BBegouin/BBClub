@@ -11,10 +11,16 @@ from league_manager.models.general_post import GeneralPost
 from league_manager.models.pages.general_page import GeneralPage
 from league_manager.serializer import PageSerializer
 from league_manager.serializer import GeneralPostSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
+
 
 
 @api_view(['GET','POST'])
+@permission_classes((IsAuthenticatedOrReadOnly,))
 def page_list(request, format = None):
+
     """
     List all code snippets, or create a new snippet.
     """
@@ -59,9 +65,10 @@ def page_detail(request, pk, format = None):
 
 
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticatedOrReadOnly,))
 def post(request, format = None):
     """
-    Retrieve, update or delete a code snippet.
+    Retrieve, update or delete a post
     """
 
     if request.method == 'GET':
