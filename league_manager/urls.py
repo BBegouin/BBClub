@@ -5,9 +5,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    url(r'^page/$', rest_page.page_list),
-    url(r'^post/$', rest_page.post),
-    url(r'^page/(?P<pk>[0-9]+)/$', rest_page.page_detail),
+    url(r'^api/post/$', rest_page.post),
+    url(r'^api/post/(?P<slug>.+)/$', rest_page.post_content),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
