@@ -7,8 +7,10 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from mezzanine.pages.models import Page
+from league_manager.models.general_post import GeneralPost
 from league_manager.models.pages.general_page import GeneralPage
 from league_manager.serializer import PageSerializer
+from league_manager.serializer import GeneralPostSerializer
 
 
 @api_view(['GET','POST'])
@@ -17,7 +19,7 @@ def page_list(request, format = None):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        pages = Page.objects.all()
+        pages = GeneralPage.objects.all()
         serializer = PageSerializer(pages, many=True)
         return Response(serializer.data)
 
@@ -54,3 +56,15 @@ def page_detail(request, pk, format = None):
     elif request.method == 'DELETE':
         page.delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET','PUT','DELETE'])
+def post(request, format = None):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+
+    if request.method == 'GET':
+        post = GeneralPost.objects.all()
+        serializer = GeneralPostSerializer(post, many=True)
+        return Response(serializer.data)

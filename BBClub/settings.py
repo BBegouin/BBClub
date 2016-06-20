@@ -264,7 +264,8 @@ INSTALLED_APPS = (
     'mezzanine.accounts',
     'easy_thumbnails',
     'image_cropping',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
     # "mezzanine.mobile",
 )
 
@@ -277,7 +278,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     # Uncomment if using internationalisation or localisation
     # 'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -294,6 +294,8 @@ MIDDLEWARE_CLASSES = (
     # "mezzanine.core.middleware.SSLRedirectMiddleware",
     "mezzanine.pages.middleware.PageMiddleware",
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 THUMBNAIL_PROCESSORS = (
@@ -321,6 +323,24 @@ OPTIONAL_APPS = (
 ##################
 # LOCAL SETTINGS #
 ##################
+REST_FRAMEWORK = {
+   'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # méthode utilisée pour les appels ajax
+        'rest_framework.authentication.SessionAuthentication',
+        # méthode d'uathentification utilisée pour les appels API
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+CORS_ORIGIN_WHITELIST = (
+        'localhost.com:5555',
+        '192.168.1.167',
+        'localhost.com:8000'
+    )
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Allow any settings to be defined in local_settings.py which should be
 # ignored in your version control system allowing for settings to be
