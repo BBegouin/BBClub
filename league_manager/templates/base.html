@@ -8,6 +8,7 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" type="text/css">
 
     <meta class="foundation-mq">
+    <link rel="stylesheet" href="{% static "css/classement.css" %}"/>
     <link rel="stylesheet" href="{% static "css/menu.css" %}"/>
     <link rel="stylesheet" href="{% static "css/breadcrumb.css" %}"/>
     <link rel="stylesheet" href="{% static "css/title.css" %}"/>
@@ -62,13 +63,13 @@ i.fi-social-tumblr {
         </div>
     </div>
 
-    <div class="row">
+   <!-- <div class="row">
         <ul class="breadcrumb">
             {% spaceless %}
                 {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
             {% endspaceless %}
         </ul>
-    </div>
+    </div> -->
 </header>
 
 {% block all_content %}{% endblock %}

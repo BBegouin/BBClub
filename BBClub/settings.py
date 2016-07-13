@@ -6,7 +6,21 @@ from django import VERSION as DJANGO_VERSION
 from django.utils.translation import ugettext_lazy as _
 from easy_thumbnails.conf import Settings as thumbnail_settings
 
+######################
+# User Settings
+######################
 
+FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.MemoryFileUploadHandler", "django.core.files.uploadhandler.TemporaryFileUploadHandler"]
+
+CORS_ORIGIN_WHITELIST = (
+        'localhost:5555',
+    )
+
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOW_CREDENTIALS = True
+
+######################
 ######################
 # MEZZANINE SETTINGS #
 ######################
@@ -93,7 +107,7 @@ USE_MODELTRANSLATION = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost","localhost:5555"]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -134,6 +148,7 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 
 # The numeric mode to set newly-uploaded files to. The value should be
 # a mode you'd pass directly to os.chmod.
+#FILE_UPLOAD_PERMISSIONS = 0o644
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 
@@ -205,6 +220,9 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_APP
+
+# send email to account creation
+ACCOUNTS_VERIFICATION_REQUIRED = True
 
 TEMPLATES = [
     {
@@ -329,18 +347,11 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # méthode utilisée pour les appels ajax
-        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
         # méthode d'uathentification utilisée pour les appels API
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
-
-CORS_ORIGIN_WHITELIST = (
-        'localhost.com:5555',
-        '192.168.1.167',
-        'localhost.com:8000'
-    )
-CORS_ORIGIN_ALLOW_ALL = True
 
 # Allow any settings to be defined in local_settings.py which should be
 # ignored in your version control system allowing for settings to be
