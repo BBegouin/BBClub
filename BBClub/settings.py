@@ -20,6 +20,12 @@ CORS_ORIGIN_WHITELIST = (
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bloodbowlclub@gmail.com'
+EMAIL_HOST_PASSWORD = 'dBVm367ILwu9'
+
 ######################
 ######################
 # MEZZANINE SETTINGS #
