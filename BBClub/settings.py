@@ -10,7 +10,8 @@ from easy_thumbnails.conf import Settings as thumbnail_settings
 # User Settings
 ######################
 
-FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.MemoryFileUploadHandler", "django.core.files.uploadhandler.TemporaryFileUploadHandler"]
+FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.MemoryFileUploadHandler",
+                        "django.core.files.uploadhandler.TemporaryFileUploadHandler"]
 
 CORS_ORIGIN_WHITELIST = (
         'localhost:5555',
@@ -25,6 +26,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'bloodbowlclub@gmail.com'
 EMAIL_HOST_PASSWORD = 'dBVm367ILwu9'
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ######################
 ######################
@@ -283,12 +288,19 @@ INSTALLED_APPS = (
     "mezzanine.blog",
     "mezzanine.forms",
     "mezzanine.galleries",
-    "mezzanine.twitter",
     'debug_toolbar',
     'mezzanine.accounts',
     'easy_thumbnails',
     'image_cropping',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
     'corsheaders'
     # "mezzanine.mobile",
 )
@@ -355,7 +367,7 @@ REST_FRAMEWORK = {
         # méthode utilisée pour les appels ajax
         #'rest_framework.authentication.SessionAuthentication',
         # méthode d'uathentification utilisée pour les appels API
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 

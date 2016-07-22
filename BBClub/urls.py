@@ -5,7 +5,6 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.i18n import set_language
 from league_manager.views.home import tous_les_utilisateurs
-from league_manager.views import rest_page
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import verify_jwt_token
 
@@ -44,8 +43,9 @@ urlpatterns += [
     url("^$", tous_les_utilisateurs, name="home"),
     url(r'^', include('league_manager.urls')),
     # authentification api
-    url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^api-token-verify/', verify_jwt_token),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

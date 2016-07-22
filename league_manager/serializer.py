@@ -10,6 +10,6 @@ class PageSerializer(serializers.ModelSerializer):
         model = GeneralPage
 
 class GeneralPostSerializer(serializers.ModelSerializer):
-    class Meta :
+    class Meta:
         model = GeneralPost
 

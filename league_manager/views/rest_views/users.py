@@ -80,7 +80,27 @@ def check_username(request,username):
        try:
             user = User.objects.get(username=username)
        except ObjectDoesNotExist:
-          return Response(status=status.HTTP_202_ACCEPTED)
+          return Response(status=status.HTTP_200_OK)
+
+       return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+    else:
+       return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+    ####################################
+#
+# check if user exists
+#
+####################################
+@api_view(['GET'])
+@permission_classes((AllowAny,))
+def check_email(request,email):
+
+    if email :
+       try:
+            user = User.objects.get(email=email)
+       except ObjectDoesNotExist:
+          return Response(status=status.HTTP_200_OK)
 
        return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
     else:
