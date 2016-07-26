@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -446,7 +447,7 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
                                         <tr>
                                             <td valign="top" class="headerContent">
-                                            	<img src="http://lorempixel.com/600/200/" style="max-width:600px;" id="headerImage" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                                            	<img src="{% static "img/MailHeader2.jpg" %}" style="max-width:600px;" id="headerImage" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
                                             </td>
                                         </tr>
                                     </table>
@@ -458,13 +459,13 @@
                                 	<!-- BEGIN BODY // -->
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
                                         <tr>
-                                            <td valign="top" class="bodyContent" mc:edit="body_content">
+                                            <td valign="top" class="bodyContent">
                                                 <h2>Activer mon compte ! </h2>
                                                 <br />
                                                 Allez vous y êtes presque ! il vous suffit de cliquer sur le lien ci-dessous pour activer votre compte. 
                                                 <br />
                                                 <br />
-                                                <a style="text-align:center" href="http://" target="_blank">Activer mon compte</a>
+                                                {{ activate_url }}
                                                 <br />
                                                 <br />
                                                 Vous pourrez ensuite accèder à l'ensemble du contenu offert par le site, saisir des comptes rendus de match, poster et commenter des articles,

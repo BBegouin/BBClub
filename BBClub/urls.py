@@ -42,6 +42,7 @@ urlpatterns += [
    # url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     url("^$", tous_les_utilisateurs, name="home"),
     url(r'^', include('league_manager.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     # authentification api
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),

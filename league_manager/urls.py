@@ -9,6 +9,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 from django.views.decorators.csrf import csrf_exempt
 from league_manager.views.rest_views.lm_password_reset_view import LMPasswordResetView
 from league_manager.views.rest_views.facebook_login import FacebookLogin
+from allauth.account.views import ConfirmEmailView
 
 urlpatterns = [
 
@@ -32,8 +33,7 @@ urlpatterns = [
     url(r'^api/password/reset/$', csrf_exempt(LMPasswordResetView.as_view())),
 
     #
-    url(r'^rest-auth/facebook/$', FacebookLogin.as_view(), name='fb_login')
-
+    url(r'^rest-auth/facebook/$', FacebookLogin.as_view(), name='fb_login'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
