@@ -15,6 +15,7 @@ FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.MemoryFileUploadHandler
 
 CORS_ORIGIN_WHITELIST = (
         'localhost:5555',
+        'localhost',
     )
 
 
@@ -278,6 +279,8 @@ if DJANGO_VERSION < (1, 9):
 
 INSTALLED_APPS = (
     "league_manager",
+    'bbc_auth',
+    'bbc_user',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

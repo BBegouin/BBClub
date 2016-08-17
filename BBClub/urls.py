@@ -5,10 +5,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.i18n import set_language
 from league_manager.views.home import tous_les_utilisateurs
-from rest_framework_jwt.views import obtain_jwt_token
-from rest_framework_jwt.views import verify_jwt_token
 
-from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 
 admin.autodiscover()
@@ -38,14 +35,19 @@ urlpatterns += [
     # commented out like the others, so it's the default. You only need
     # one homepage pattern, so if you use a different one, comment this
     # one out.
-
-   # url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     url("^$", tous_les_utilisateurs, name="home"),
+
+    # authentication api
+    url(r'^', include('bbc_auth.urls')),
+
+    # user management api
+
+    # content management api
+
+    # league management api
     url(r'^', include('league_manager.urls')),
-    url(r'^accounts/', include('allauth.urls')),
-    # authentification api
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+
+
 
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE

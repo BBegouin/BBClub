@@ -31,6 +31,7 @@ from django.core.mail import send_mail
 # Create user
 #
 ####################################
+"""
 @api_view(['POST'])
 @permission_classes((AllowAny,))
 def create_user(request):
@@ -65,7 +66,7 @@ def create_user(request):
         return Response(status=status.HTTP_201_CREATED)
 
     return Response(status=status.HTTP_204_NO_CONTENT)
-
+"""
 
 ####################################
 #
