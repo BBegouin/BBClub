@@ -3,7 +3,7 @@ __author__ = 'Bertrand'
 from django.conf.urls import include, url
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
-from bbc_auth.views.lm_password_reset_view import LMPasswordResetView
+from bbc_auth.views.bbc_password_reset_view import BBCPasswordResetView
 from bbc_auth.views import check_token
 from bbc_auth.views.facebook_login import FacebookLogin
 
@@ -19,18 +19,21 @@ urlpatterns = [
     url(r'^auth/check-token/', csrf_exempt(check_token.CheckToken)),
 
     # Endpoint to connect using facebook Oauth
-    #TODO : implement facebook login
+    #TODO : implement facebook login - postponed due to deployment
     url(r'^auth/facebook/$', FacebookLogin.as_view(), name='fb_login'),
 
     # password reset : customisation for sending html emails
     #TODO implement a child of the register view and lost login view, in order to don't let the back end depend on the backend
-    url(r'^auth/password/reset/$', csrf_exempt(LMPasswordResetView.as_view())),
+    url(r'^auth/password/reset/$', BBCPasswordResetView.as_view(),name='bbc_password_reset'),
 
     # include unmodified code from rest_auth and allauth
     url(r'^auth/', include('rest_auth.urls')),
     url(r'^auth/registration/', include('rest_auth.registration.urls')),
 
-    #TODO : implement a service to send again the email confirmation
+    url(r'^allauth/', include('allauth.urls')),
+    url(r'^allauth/account/', include('allauth.account.urls')),
+
+    #TODO : implement a service to send on demand the email for account confirmation
 
 ]
 

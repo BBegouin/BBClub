@@ -34,9 +34,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 FRONT_URLS= {"pwd_reset:/"}
 
-ACCOUNT_ADAPTER = "league_manager.account.adapters.lm_adapter.LM_Adapter"
-
-
+ACCOUNT_ADAPTER = "bbc_auth.views.adapters.bbc_account_adapter.BBCAccountAdapter"
 
 ######################
 ######################

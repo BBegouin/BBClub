@@ -8,6 +8,7 @@ from rest_framework.test import APITestCase
 from allauth.account.adapter import get_adapter
 from allauth.account.models import EmailAddress
 from allauth.account.utils import user_username, user_email
+from django.core import mail
 
 # liste des catégories de test
 #       - tests d'authentification
@@ -54,13 +55,21 @@ class AuthenticationTests(APITestCase):
         data = {'username': 'test2',
                 'password1': 'testtest2',
                 'password2': 'testtest2',
-                'email':'bertrand.begouin@gmail.com'}
+                'email':'bertrand.begouin@gmail.com',
+                'registrationUrl':'http://kikinou.fr/reset/pwd'}
 
         # on interroge l'api de connexion
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        from django.core import mail
         print(mail.outbox[0].body)
 
+    # on teste notre mécanisme de reset de mot de mot de passe
+    def test_password_reset(self):
+        url = reverse('bbc_password_reset')
 
+        data = {'resetUrl': "http://kikinou.fr/reset/pwd",
+                'email': 'bertrand.begouin@gmail.com'}
 
+        # on interroge l'api de connexion
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
