@@ -1,5 +1,6 @@
 __author__ = 'Bertrand'
 
+import re
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -14,6 +15,8 @@ from django.utils.decorators import method_decorator
 
 from django.conf import settings
 
+from django.core.files.storage import FileSystemStorage
+
 @method_decorator(csrf_exempt, name='post')
 class FileUploadView(APIView):
     parser_classes = (MultiPartParser,FileUploadParser,FormParser,)
@@ -25,16 +28,21 @@ class FileUploadView(APIView):
 
     def post(self, request, format='jpg'):
         up_file = request.FILES['file']
-        dest = getattr(settings, "MEDIA_ROOT", None)
-        print(dest)
+        dest = getattr(settings, "MEDIA_ROOT", None)+"/uploads/"
 
-        destination = open(dest +"/uploads/" + up_file.name, 'wb+')
+        # on supprime les espaces, les caractéres spéciaux etc. via une regexp
+        striped_name = re.sub('[^A-Za-z0-9.]+', '', up_file.name)
+
+        fs = FileSystemStorage(location=dest)
+        available_name = fs.get_available_name(striped_name)
+        print(available_name)
+
+        destination = open(dest + available_name, 'wb+')
         for chunk in up_file.chunks():
             destination.write(chunk)
 
         destination.close()
 
-        # ...
-        # do some stuff with uploaded file
-        # ...
-        return Response(up_file.name, status.HTTP_201_CREATED)
+        static_url = getattr(settings, "STATIC_URL", None)
+        dest = getattr(settings, "MEDIA_ROOT", None)
+        return Response(static_url+"media/uploads/"+available_name, status.HTTP_201_CREATED)
