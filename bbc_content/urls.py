@@ -17,12 +17,20 @@ urlpatterns = [
     # upload services
     url(r'^upload/', csrf_exempt(FileUploadView.as_view())),
 
-    # List imgs assets
-    url(r'^assets/images', csrf_exempt(AssetsManagerView.as_view())),
+    # List imgs assets :
+    # optionnal params :
+    #    - full : full size images, no need to use size param, may be paginated :
+    #       http://localhost:8000/assets/images/?page=1
+    #    - thumbs :
+    #        - size: medium : medium sized thumbs
+    #        - size: small : smal sized thumbs
+    #       http://localhost:8000/assets/images/?type=thumbs;size=medium
+    #    - cropped :
+    #        - size: <number> : cropped of corresponding size
+    #
+    url(r'^assets/images', csrf_exempt(AssetsManagerView.as_view()),name='list_assets'),
 
     # List vidéos assets
-
-
 
 ]
 

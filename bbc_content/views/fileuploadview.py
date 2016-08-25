@@ -24,17 +24,16 @@ class FileUploadView(APIView):
     def dispatch(self, *args, **kwargs):
         return super(FileUploadView, self).dispatch(*args, **kwargs)
 
+    """
+    Create a thumbnail of a given file
+    """
     def create_thumbnail(self,filepath,filename,target_width):
         # une fois que le fichier est présent, on crée une miniature
 
         dest = getattr(settings, "MEDIA_ROOT", None)+"/uploads/thumbnails/medium/"
 
-        # on trouve un nom disponible pour éviter les collisions
-        fs = FileSystemStorage(location=dest)
-        available_name = fs.get_available_name(filename)
-
-        # on construit le nom de sortie
-        outfile = dest + available_name
+        # on garde le nom original afin d'avoir une correspondance avec l'image originale
+        outfile = dest + filename
         try:
             im = Image.open(filepath)
             im.thumbnail(target_width, Image.ANTIALIAS)
@@ -42,6 +41,9 @@ class FileUploadView(APIView):
         except IOError:
             print("cannot create thumbnail for '%s'" % filename)
 
+    """
+    Upload a given file, mainly used for image files
+    """
     def post(self, request, format='jpg'):
         up_file = request.FILES['file']
         dest = getattr(settings, "MEDIA_ROOT", None)+"/uploads/"
@@ -60,7 +62,7 @@ class FileUploadView(APIView):
 
         destination.close()
         max_size = (250,250)
-        self.create_thumbnail(filePath,striped_name,max_size)
+        self.create_thumbnail(filePath,available_name,max_size)
 
         static_url = getattr(settings, "STATIC_URL", None)
         return Response(static_url+"media/uploads/"+available_name, status.HTTP_201_CREATED)
