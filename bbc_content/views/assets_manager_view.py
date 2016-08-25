@@ -16,7 +16,7 @@ from django.conf import settings
 
 import math
 
-PAGE_SIZE = 10
+PAGE_SIZE = 8
 
  # list all assets
 @api_view(['GET'])
