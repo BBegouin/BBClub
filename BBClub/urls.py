@@ -43,7 +43,7 @@ urlpatterns += [
     # user management api
 
     # content management api
-    #url(r'^', include('bbc_content.urls')),
+    url(r'^', include('bbc_content.urls')),
 
     # league management api
     url(r'^', include('league_manager.urls')),

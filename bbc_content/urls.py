@@ -2,10 +2,11 @@ __author__ = 'Bertrand'
 
 from django.conf.urls import url
 from league_manager.views import rest_page
-from league_manager.views.rest_views import users
-from league_manager.views.fileuploadview import FileUploadView
+
+from bbc_content.views.fileuploadview import FileUploadView
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
+from bbc_content.views.assets_manager_view import AssetsManagerView
 
 urlpatterns = [
 
@@ -15,6 +16,13 @@ urlpatterns = [
 
     # upload services
     url(r'^upload/', csrf_exempt(FileUploadView.as_view())),
+
+    # List imgs assets
+    url(r'^assets/images', csrf_exempt(AssetsManagerView.as_view())),
+
+    # List vidéos assets
+
+
 
 ]
 

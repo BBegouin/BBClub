@@ -4,7 +4,6 @@ import re
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
 from rest_framework.parsers import FileUploadParser
 from rest_framework.parsers import MultiPartParser
 from rest_framework.parsers import FormParser
@@ -12,10 +11,9 @@ from rest_framework.permissions import AllowAny
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-
 from django.conf import settings
-
 from django.core.files.storage import FileSystemStorage
+from PIL import Image
 
 @method_decorator(csrf_exempt, name='post')
 class FileUploadView(APIView):
@@ -26,6 +24,24 @@ class FileUploadView(APIView):
     def dispatch(self, *args, **kwargs):
         return super(FileUploadView, self).dispatch(*args, **kwargs)
 
+    def create_thumbnail(self,filepath,filename,target_width):
+        # une fois que le fichier est présent, on crée une miniature
+
+        dest = getattr(settings, "MEDIA_ROOT", None)+"/uploads/thumbnails/medium/"
+
+        # on trouve un nom disponible pour éviter les collisions
+        fs = FileSystemStorage(location=dest)
+        available_name = fs.get_available_name(filename)
+
+        # on construit le nom de sortie
+        outfile = dest + available_name
+        try:
+            im = Image.open(filepath)
+            im.thumbnail(target_width, Image.ANTIALIAS)
+            im.save(outfile)
+        except IOError:
+            print("cannot create thumbnail for '%s'" % filename)
+
     def post(self, request, format='jpg'):
         up_file = request.FILES['file']
         dest = getattr(settings, "MEDIA_ROOT", None)+"/uploads/"
@@ -33,16 +49,18 @@ class FileUploadView(APIView):
         # on supprime les espaces, les caractéres spéciaux etc. via une regexp
         striped_name = re.sub('[^A-Za-z0-9.]+', '', up_file.name)
 
+        # on trouve un nom disponible pour éviter les collisions
         fs = FileSystemStorage(location=dest)
         available_name = fs.get_available_name(striped_name)
-        print(available_name)
 
-        destination = open(dest + available_name, 'wb+')
+        filePath = dest + available_name;
+        destination = open(filePath, 'wb+')
         for chunk in up_file.chunks():
             destination.write(chunk)
 
         destination.close()
+        max_size = (250,250)
+        self.create_thumbnail(filePath,striped_name,max_size)
 
         static_url = getattr(settings, "STATIC_URL", None)
-        dest = getattr(settings, "MEDIA_ROOT", None)
         return Response(static_url+"media/uploads/"+available_name, status.HTTP_201_CREATED)
