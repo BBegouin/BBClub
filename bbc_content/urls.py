@@ -6,7 +6,7 @@ from league_manager.views import rest_page
 from bbc_content.views.fileuploadview import FileUploadView
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
-from bbc_content.views.assets_manager_view import list_image_assets
+from bbc_content.views.assets_manager_view import list_image_assets,crop_image
 
 urlpatterns = [
 
@@ -31,10 +31,11 @@ urlpatterns = [
     #    - cropped :
     #        - size: <number> : cropped of corresponding size
     #
-    url(r'^assets/images', list_image_assets,name='list_assets'),
+    url(r'^assets/images/$', list_image_assets,name='list_assets'),
 
 
-    # List vidéos assets
+    # crop_image
+     url(r'^assets/images/crop/$', crop_image,name='crop_image'),
 
 ]
 
