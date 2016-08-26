@@ -105,4 +105,6 @@ def crop_image(request):
     img2 = img.crop((top, left, width, height))
     img2.save(dest_file)
 
-    return Response("file cropped",status.HTTP_200_OK)
+    static_url = getattr(settings, "STATIC_URL", None)
+    cropped_file_url = static_url +"media/uploads/cropped/"+ file_to_crop;
+    return Response(cropped_file_url,status.HTTP_200_OK)
