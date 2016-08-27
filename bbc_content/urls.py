@@ -6,7 +6,7 @@ from league_manager.views import rest_page
 from bbc_content.views.fileuploadview import FileUploadView
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
-from bbc_content.views.assets_manager_view import list_image_assets,crop_image
+from bbc_content.views.assets_manager_view import list_image_assets,crop_image,binary_upload
 
 urlpatterns = [
 
@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^api/post/(?P<slug>.+)/$', rest_page.post_content),
 
     # upload services
-    url(r'^upload/', csrf_exempt(FileUploadView.as_view())),
+    url(r'^upload/$', csrf_exempt(FileUploadView.as_view())),
+    url(r'^upload/binary/$', binary_upload),
 
     # get number of page of corresponding assets type
     #url(r'^assets/images/pages', list_image_assets,name='list_assets'),

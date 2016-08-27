@@ -64,5 +64,9 @@ class FileUploadView(APIView):
         max_size = (250,250)
         self.create_thumbnail(filePath,available_name,max_size)
 
+
         static_url = getattr(settings, "STATIC_URL", None)
-        return Response(static_url+"media/uploads/"+available_name, status.HTTP_201_CREATED)
+        domain = request.build_absolute_uri('/')[:-1]
+        file_url = domain+static_url+"media/uploads/"+available_name
+        img_data = {"url":file_url,"name":available_name}
+        return Response(img_data, status.HTTP_201_CREATED)
