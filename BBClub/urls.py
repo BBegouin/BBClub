@@ -41,6 +41,7 @@ urlpatterns += [
     url(r'^', include('bbc_auth.urls')),
 
     # user management api
+    url(r'^', include('bbc_user.urls')),
 
     # content management api
     url(r'^', include('bbc_content.urls')),

@@ -1,25 +1,32 @@
 __author__ = 'Bertrand'
 
 from django.conf.urls import url
-from league_manager.views import rest_page
 
 from bbc_content.views.fileuploadview import FileUploadView
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
 from bbc_content.views.assets_manager_view import list_image_assets,crop_image,binary_upload
+from bbc_content.views.post_view import PostList,PostDetail,PostCreate
 
 urlpatterns = [
 
     # blog services
-    url(r'^api/post/$', rest_page.post),
-    url(r'^api/post/(?P<slug>.+)/$', rest_page.post_content),
 
-    # upload services
+    # List all the blogs post
+    url(r'^post/$', PostList.as_view()),
+
+    # Create or update a post
+    url(r'^post/create/$', PostCreate.as_view()),
+
+    # Get a post detail
+    url(r'^post/(?P<pk>.+)/$', PostDetail.as_view()),
+
+
+    # upload services : upload a file
     url(r'^upload/$', csrf_exempt(FileUploadView.as_view())),
-    url(r'^upload/binary/$', binary_upload),
 
-    # get number of page of corresponding assets type
-    #url(r'^assets/images/pages', list_image_assets,name='list_assets'),
+    # upload services : upload a binary string from an html img.src tag
+    url(r'^upload/binary/$', binary_upload),
 
     # List imgs assets :
     # optionnal params :

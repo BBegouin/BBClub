@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^allauth/', include('allauth.urls')),
     url(r'^allauth/account/', include('allauth.account.urls')),
 
+
+
     #TODO : implement a service to send on demand the email for account confirmation
 
 ]
