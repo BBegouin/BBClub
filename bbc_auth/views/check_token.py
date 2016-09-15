@@ -14,4 +14,4 @@ from rest_framework import status
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
 def CheckToken(request):
-    return Response(status=status.HTTP_200_OK)
+    return Response("ok",status=status.HTTP_200_OK)

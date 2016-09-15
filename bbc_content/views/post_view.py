@@ -1,7 +1,7 @@
 __author__ = 'Bertrand'
 
 from mezzanine.blog.models import BlogPost
-from bbc_content.views.serializers.content_serializers import BlogPostDescriptionSerializer,BlogPostDetailSerializer
+from bbc_content.views.serializers.content_serializers import BlogPostDescriptionSerializer,BlogPostDetailSerializer,BlogPostCreateSerializer
 from rest_framework.generics import RetrieveUpdateDestroyAPIView,ListAPIView,CreateAPIView
 from rest_framework.permissions import AllowAny,IsAuthenticatedOrReadOnly
 
@@ -10,9 +10,20 @@ class PostList(ListAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostDescriptionSerializer
 
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = BlogPost.objects.all()
+        status = self.request.query_params.get('status', None)
+        if status is not None:
+            queryset = queryset.filter(status=status)
+        return queryset
+
 class PostCreate(CreateAPIView):
     permission_classes = (AllowAny,)
-    serializer_class = BlogPostDetailSerializer
+    serializer_class = BlogPostCreateSerializer
 
     #def perform_create(self, serializer):
     #    serializer.save(user=self.request.user)
