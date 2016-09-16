@@ -1,0 +1,105 @@
+amazones;16;Trois-quarts;50;6;3;3;7;Esquive;G;AFP
+amazones;2;Lanceuses;70;6;3;3;7;Esquive, Passe;GP;AF
+amazones;2;Receveuses;70;6;3;3;7;Esquive, Réception;AG;FP
+amazones;4;Blitzeuses;90;6;3;3;7;Esquive, Blocage;FG;AP
+Bas-Fond;12;Gobelins des Bas-Fonds;40;6;2;3;7;Poids Plume, Esquive, Minus;AM;FGP
+Bas-Fond;2;Trois-Quarts Skaven;50;7;3;3;7;Animosité;GM;AFP
+Bas-Fond;2;Lanceurs Skaven;70;7;3;3;7;Animosité, Passe, Dextérité;GMP;AF
+Bas-Fond;2;Blitzers Skaven;90;7;3;3;8;Animosité, Blocage;FGM;AP
+Bas-Fond;1;Troll de Malepierre;110;4;5;1;9;Solitaire, Toujours Affamé, Gros Débile, Régénération, Lancer un Coéquipier, Châtaigne;FM;AGP
+Chaos;16;Hommes Bêtes;60;6;3;3;8;Cornes;FGM;AP
+Chaos;4;Guerriers du Chaos;100;5;4;3;9;;FGM;AP
+Chaos;1;Minotaure;150;5;5;2;8;Solitaire,Animal Sauvage, Châtaigne, Cornes, Crâne Épais, Frénésie;FM;AGP
+Elfes Pros;16;Trois-quarts;60;6;3;4;7;;AG;FP
+Elfes Pros;2;Lanceurs;70;6;3;4;7;Passe;AGP;F
+Elfes Pros;4;Receveurs;100;8;3;4;7;Nerfs dAcier, Réception;AG;FP
+Elfes Pros;2;Blitzeurs;110;7;3;4;8;Blocage, Glissade contrôlée;AG;FP
+Elfes Noirs;16;Trois-quarts;70;6;3;4;8;;AG;FP
+Elfes Noirs;2;Coureurs;80;7;3;4;7;Passe Rapide;AGP;F
+Elfes Noirs;2;Assassins;90;6;3;4;7;Poignard, Poursuite;AG;FP
+Elfes Noirs;4;Blitzeurs;100;7;3;4;8;Blocage;AG;FP
+Elfes Noirs;2;Furies;110;7;3;4;7;Bond, Esquive, Frénésie;AG;FP
+Elfes Sylvains;16;Trois-quarts;70;7;3;4;7;;AG;FP
+Elfes Sylvains;4;Receveurs;90;8;2;4;7;Réception, Esquive, Sprint;AG;FP
+Elfes Sylvains;2;Lanceurs;90;7;3;4;7;Passe;AGP;F
+Elfes Sylvains;2;Danseurs de Guerre;120;8;3;4;7;Blocage, Esquive, Saut;AG;FP
+Elfes Sylvains;1;HommeArbre;120;2;6;1;10;Solitaire, Châtaigne, Costaud, Crâne Épais, Lancer un Coéquipier, Prendre Racine, Stabilité;F;AGP
+Gobelins;16;Gobelins;40;6;2;3;7;Esquive, Minus, Poids Plume;A;FGP
+Gobelins;1;Bombardier;40;6;2;3;7;Arme Secrète, Bombardier, Esquive, Minus;A;FGP
+Gobelins;1;Bâton à ressort;70;7;2;3;7;Esquive, Minus, Saut, Très Longues Jambes;A;FGP
+Gobelins;1;Barjot;40;6;2;3;7;Arme Secrète, Minus, Tronçonneuse;A;FGP
+Gobelins;1;Fanatique;70;3;7;3;7;Arme Secrète, Chaîne & Boulet, Manchot, Minus;F;AGP
+Gobelins;2;Trolls;110;4;5;1;9;Solitaire, Châtaigne, Gros débile, Lancer un Coéquipier, Régénération, Toujours Affamé;F;AGP
+Halflings;16;Halflings;30;5;2;3;6;Esquive, Minus, Poids Plume;A;FGP
+Halflings;2;HommesArbres;120;2;6;1;10;Châtaigne, Costaud, Crâne Épais, Lancer un Coéquipier, Prendre Racine, Stabilité;F;AGP
+Haut Elfes;16;Trois-quarts;70;6;3;4;8;;AG;FP
+Haut Elfes;2;Lanceurs;90;6;3;4;8;Lancer Précis, Passe;AGP;F
+Haut Elfes;4;Receveurs;90;8;3;4;7;Réception;AG;FP
+Haut Elfes;2;Blitzeurs;100;7;3;4;8;Blocage;AG;FP
+Hommes Lézards;16;Skinks;60;8;2;3;7;Esquive, Minus;A;FGP
+Hommes Lézards;6;Saurus;80;6;4;1;9;;FG;AP
+Hommes Lézards;1;Kroxigor;140;6;5;1;9;Solitaire, Cerveau Lent, Châtaigne, Crâne Épais, Queue préhensile;F;AGP
+Humains;16;Trois-quarts;50;6;3;3;8;;G;AFP
+Humains;4;Receveurs;70;8;2;3;7;Esquive,Réception;AG;FP
+Humains;2;Lanceurs;70;6;3;3;8;Dextérité, Passe;GP;AF
+Humains;4;Blitzeurs;90;7;3;3;8;Blocage;FG;AP
+Humains;1;Ogre;140;5;5;2;9;Solitaire, Cerveau Lent, Châtaigne, Crâne Épais, Lancer un Coéquipier;F;AGP
+Kehmris;16;Squelettes;40;5;3;2;7;Régénération, Crâne Épais;G;AFP
+Kehmris;2;Thro-Ras;70;6;3;2;7;Dextérité, Passe, Régénération;GP;AF;
+Kehmris;2;Blitz-Ras;90;6;3;2;8;Blocage, Régénération;FG;AP
+Kehmris;4;Gardien des Tombes;100;4;5;1;9;Décomposition, Régénération;F;AGP
+Morts Vivants;16;Squelettes;40;5;3;2;7;Régénération, Crâne Épais;G;AFP
+Morts Vivants;16;Zombies;40;4;3;2;8;Régénération;G;AFP
+Morts Vivants;4;Goules;70;7;3;3;7;Esquive;AG;FP
+Morts Vivants;2;Revenants;90;6;3;3;8;Blocage, Régénération;FG;AP
+Morts Vivants;2;Momies;120;3;5;1;9;Châtaigne, Régénération;F;AGP
+Nains;16;Bloqueurs;70;4;3;2;9;Blocage, Tacle, Crâne Épais;FG;AP
+Nains;2;Coureurs;80;6;3;3;8;Dextérité, Crâne Épais;GP;AF
+Nains;2;Blitzeurs;80;5;3;3;9;Blocage, Crâne Épais;FG;AP
+Nains;2;Tueurs de Trolls;90;5;3;2;8;Blocage, Intrépidité, Frénésie, Crâne Épais;FG;AP
+Nains;1;Roule-mort;160;4;7;1;10;Solitaire, Arme Secrète, Châtaigne, Esquive en Force, Joueur Vicieux, Juggernaut, Manchot, Stabilité;F;AGP
+Nains du chaos;16;Hobgobelins;40;6;3;3;7;;G;AFP
+Nains du chaos;6;Bloqueurs Nains du Chaos;70;4;3;2;9;Blocage, Crâne Épais, Tacle;FG;AMP
+Nains du chaos;2;Centaures Taureaux;130;6;4;2;9;Crâne Épais, Équilibre, Sprint;FG;AP
+Nains du chaos;1;Minotaure;150;5;5;2;8;Solitaire, Animal Sauvage, Châtaigne, Cornes, Crâne Épais, Frénésie;F;AGMP
+Nécromantiques;16;Zombies;40;4;3;2;8;Régénération;G;AFP
+Nécromantiques;2;Goules;70;7;3;3;7;Esquive;AG;FP
+Nécromantiques;2;Revenants;90;6;3;3;8;Blocage, Régénération;FG;AP
+Nécromantiques;2;Golems de Chair;110;4;4;2;9;Crâne Épais, Régénération, Stabilité;FG;AP
+Nécromantiques;2;Loups-garous nécromantiques;120;8;3;3;8;Frénésie, Griffes, Régénération;AG;FP
+Nordiques;16;Trois-quarts;50;6;3;3;7;Blocage;G;AFP
+Nordiques;2;Lanceurs;70;6;3;3;7;Blocage, Passe;GP;AF
+Nordiques;2;Coureurs;90;7;3;3;7;Blocage, Intrépidité;AG;FP
+Nordiques;2;Berserkers;90;6;3;3;7;Blocage, Bond, Frénésie;FG;AP
+Nordiques;2;Ulfwereners;110;6;4;2;8;Frénésie;FG;AP
+Nordiques;1;Troll des neiges;140;5;5;1;8;Solitaire, Animal Sauvage, Frénésie, Griffes, Présence Perturbante;F;AGP
+Nurgle;16;Pourris;40;5;3;3;8;Décomposition, Pourriture de Nurgle;GM;AFP
+Nurgle;4;Pestigors;80;6;3;3;8;Cornes, Pourriture de Nurgle, Régénération;FGM;AP
+Nurgle;4;Guerriers de Nurgle;110;4;4;2;9;Pourriture de Nurgle, Présence Perturbante, Régénération, Répulsion;FGM;AP
+Nurgle;1;Bête de Nurgle;140;4;5;1;9;Solitaire, Châtaigne, Gros Débile, Pourriture de Nurgle, Présence Perturbante, Répulsion, Régénération, Tentacules;F;AGMP
+Ogres;16;Snotlings;20;5;1;3;5;Esquive, Glissade Contrôlée, Microbe, Minus, Poids Plume;A;FGP
+Ogres;6;Ogres;140;5;5;2;9;Cerveau Lent, Châtaigne, Crâne Épais, Lancer un Coéquipier;F;AGP
+Orcs;16;Trois-quarts;50;5;3;3;9;;G;AFP
+Orcs;4;Gobelins;40;6;2;3;7;Esquive, Minus, Poids Plume;A;FGP
+Orcs;2;Lanceurs;70;5;3;3;8;Dextérité, Passe;GP;AF
+Orcs;4;Bloqueurs Orques Noirs;80;4;4;2;9;;FG;AP
+Orcs;4;Blitzeurs;80;6;3;3;9;Blocage;FG;AP
+Orcs;1;Troll;110;4;5;1;9;Solitaire, Châtaigne, Gros débile, Lancer un Coéquipier, Régénération, Toujours Affamé;F;AGP
+Pacte du Chaos;12;Maraudeurs;50;6;3;3;8;;FGMP;A
+Pacte du Chaos;1;Renégat Gobelin;40;6;2;3;7;Animosité, Esquive, Minus, Poids Plume;AM;FGP
+Pacte du Chaos;1;Renégat Skaven;50;7;3;3;7;Animosité;GM;AFP
+Pacte du Chaos;1;Renégat Elfe Noir;70;6;3;4;8;Animosité;AGM;FP
+Pacte du Chaos;1;Troll du Chaos;110;4;5;1;9;Solitaire, Toujours Affamé, Châtaigne, Gros Débile, Régénération, Lancer un Coéquipier;F;AGMP
+Pacte du Chaos;1;Ogre du Chaos;140;5;5;2;9;Solitaire, Cerveau Lent, Châtaigne, Crâne Épais, Lancer un Coéquipier;F;AGMP
+Pacte du Chaos;1;Minotaure;150;5;5;2;8;Solitaire, Frénésie, Cornes, Châtaigne, Crâne Épais, Animal Sauvage;F;AGMP
+Skavens;16;Trois-quarts;50;7;3;3;7;;G;AFMP
+Skavens;2;Lanceurs;70;7;3;3;7;Dextérité, Passe;GP;AFM
+Skavens;4;Coureurs dÉgout;80;9;2;4;7;Esquive;AG;FMP
+Skavens;2;Blitzeurs;90;7;3;3;8;Blocage;FG;AMP
+Skavens;1;Rat Ogre;150;6;5;2;8;Solitaire, Animal Sauvage, Châtaigne, Frénésie, Queue Préhensile;F;AGMP
+Slanns;16;Trois-Quarts;60;6;3;3;8;Saut, Très Longues Jambes;G;AFP
+Slanns;4;Receveurs;80;7;2;4;7;Plongeon, Saut, Très Longues Jambes;AG;FP
+Slanns;4;Blitzers;110;7;3;3;8;Tacle Plongeant, Bond, Saut, Très Longues Jambes;AGF;P
+Slanns;1;Krogxigor;140;6;5;1;9;Solitaire, Cerveau Lent, Châtaigne, Queue Préhensile, Crâne Épais;F;AGP
+Vampires;16;Serviteurs;40;6;3;3;7;;G;AFP
+Vampires;6;Vampires;110;6;4;4;8;Regard Hypnotique, Régénération, Soif de Sang;AFG;P
