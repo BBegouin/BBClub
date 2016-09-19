@@ -32,7 +32,8 @@ def init_ref_rosters(apps, schema_editor):
         for row in spamreader:
             new_roster = Ref_Roster(
                 name = row[0].strip(),
-                reroll_price=row[1].strip()
+                reroll_price=row[1].strip(),
+                apo_available=row[2]
             )
             new_roster.save();
             print(row[0] + " inserted !")

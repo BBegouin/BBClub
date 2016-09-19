@@ -9,7 +9,6 @@ from league_manager.models import ref_skills
 from league_manager.models import xp_rolls
 from league_manager.models import team
 from league_manager.models import league
-from league_manager.models.coach import Coach
 from league_manager.models.club import Club
 from league_manager.models.match_report import Match_Report
 from league_manager.models.team_report import Team_Report
@@ -24,7 +23,6 @@ class MyModelAdmin(ImageCroppingMixin, admin.ModelAdmin):
     pass
 
 admin.site.register(league.League)
-admin.site.register(Coach)
 admin.site.register(Club)
 admin.site.register(Ref_Roster)
 admin.site.register(Ref_Roster_Line)
