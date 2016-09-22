@@ -6,7 +6,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
 
 from league_manager.views.roster import RosterList
-from league_manager.views.team import TeamCreate,TeamList
+from league_manager.views.team import TeamCreate,TeamList,TeamDetail
 
 urlpatterns = [
 
@@ -23,6 +23,7 @@ urlpatterns = [
     # create a team
     url(r'^team/create/$', csrf_exempt(TeamCreate.as_view())),
     url(r'^team/$', TeamList.as_view()),
+    url(r'^team/(?P<pk>.+)/$', TeamDetail.as_view()),
 
 ]
 

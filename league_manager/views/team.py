@@ -11,4 +11,9 @@ class TeamCreate(CreateAPIView):
 class TeamList(ListAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Team.objects.all()
-    serializer_class = CreateTeamSerializer
+    serializer_class = TeamSerializer
+
+class TeamDetail(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
