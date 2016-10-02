@@ -16,6 +16,7 @@ from league_manager.models.player_report import Player_Report
 from league_manager.models.ref_skills import Ref_Skills
 from league_manager.models.ref_roster import Ref_Roster
 from league_manager.models.ref_roster_line import Ref_Roster_Line
+from league_manager.models.player_evolution import PlayerEvolution
 
 from image_cropping import ImageCroppingMixin
 
@@ -30,3 +31,4 @@ admin.site.register(Match_Report)
 admin.site.register(Team_Report)
 admin.site.register(Player_Report)
 admin.site.register(Ref_Skills)
+admin.site.register(PlayerEvolution)

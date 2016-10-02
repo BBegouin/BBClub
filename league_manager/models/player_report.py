@@ -13,6 +13,5 @@ class Player_Report(models.Model):
     nb_blocks = models.PositiveSmallIntegerField()
     is_wounded = models.BooleanField()
     serious_casualty = models.PositiveSmallIntegerField()
-    serious_casualty = models.PositiveSmallIntegerField()
 
 

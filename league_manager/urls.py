@@ -7,6 +7,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from league_manager.views.roster import RosterList
 from league_manager.views.team import TeamCreate,TeamList,TeamDetail
+from league_manager.views.skills import SkillList
+from league_manager.views.player_evolution import PlayerEvolutionView, PlayerEvolutionListView
+from league_manager.views.players import PlayerList,PlayerDetail, PlayerTeam
 
 urlpatterns = [
 
@@ -25,6 +28,17 @@ urlpatterns = [
     url(r'^team/$', TeamList.as_view()),
     url(r'^team/(?P<pk>.+)/$', TeamDetail.as_view()),
 
+    # skills
+    url(r'^skills/(?P<skill_cat>.+)/$', csrf_exempt(SkillList.as_view())),
+
+    # player evolution
+    url(r'^evolution/create/$', csrf_exempt(PlayerEvolutionView.as_view())),
+    url(r'^evolution/', csrf_exempt(PlayerEvolutionListView.as_view())),
+
+    # player
+    url(r'^player/$', csrf_exempt(PlayerList.as_view())),
+    url(r'^player/(?P<pk>.+)/$', csrf_exempt(PlayerDetail.as_view())),
+    url(r'^player/(?P<pk>.+)/team$', csrf_exempt(PlayerTeam.as_view())),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
