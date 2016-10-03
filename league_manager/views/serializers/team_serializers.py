@@ -5,12 +5,7 @@ from league_manager.models.team import Team
 from league_manager.models.player import Player
 from league_manager.views.serializers.roster_list_serializers import RosterListSerializer,RosterLineSerializer
 from bbc_user.views.serializers.user_serializer import UserSerializer
-
-class PlayerSerializer(serializers.ModelSerializer):
-    ref_roster_line = RosterLineSerializer(many=False,read_only=True);
-    class Meta:
-        model = Player
-
+from league_manager.views.serializers.player_serializer import PlayerSerializer,CreatePlayerSerializer
 
 class TeamSerializer(serializers.ModelSerializer):
     players = PlayerSerializer(many=True,read_only=True);
@@ -19,11 +14,6 @@ class TeamSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Team
-
-class CreatePlayerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Player
-        fields=('name','ref_roster_line','miss_next_game','num')
 
 class CreateTeamSerializer(serializers.ModelSerializer):
     players = CreatePlayerSerializer(many=True);

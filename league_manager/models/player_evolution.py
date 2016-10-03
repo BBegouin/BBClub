@@ -13,8 +13,8 @@ class PlayerEvolution(models.Model):
     # 8 : stat decrease Ag
     # 9 : stat decrease Ar
     value = models.PositiveSmallIntegerField(null=True)
-    player_id = models.ForeignKey("player")
-    new_skill = models.ManyToManyField("ref_skills", blank=True, null=True)
+    player = models.ForeignKey("player",related_name='evolution')
+    skill = models.ForeignKey("ref_skills", blank=True, null=True)
     # 0 : to be done
     # 1 : done
     status = models.PositiveSmallIntegerField(null=True)
