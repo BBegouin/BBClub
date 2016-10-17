@@ -2,20 +2,18 @@ __author__ = 'Bertrand'
 
 
 import os
-from rest_framework.decorators import api_view, permission_classes
-
-from rest_framework.response import Response
-from rest_framework import status
-
-from rest_framework.permissions import AllowAny
-from django.core.files.storage import FileSystemStorage
-from django.conf import settings
-
 import math
 import base64
 import re
-
 from PIL import Image
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+
 
 PAGE_SIZE = 8
 
@@ -86,9 +84,8 @@ def list_image_assets(request):
     return Response(data, status.HTTP_200_OK)
 
 @api_view(['POST'])
-@permission_classes((AllowAny,))
+@permission_classes((IsAuthenticated,))
 def crop_image(request):
-
     try:
         # variable definition
         file_to_crop = request.data['filename']
@@ -124,19 +121,18 @@ def crop_image(request):
     return Response(domain+cropped_file_url,status.HTTP_200_OK)
 
 @api_view(['POST'])
-@permission_classes((AllowAny,))
+@permission_classes((IsAuthenticated,))
 def binary_upload(request):
 
     try:
         filename = request.data['filename']
         binary_img = request.data['payload']
     except KeyError as e:
-         return Response("filename, top,left,width,height shall be set",status.HTTP_400_BAD_REQUEST)
+         return Response("filename, and payload shall be set",status.HTTP_400_BAD_REQUEST)
 
     dest = getattr(settings, "MEDIA_ROOT", None)+"/uploads/cropped/"
 
     # on trouve un nom disponible pour éviter les collisions
-
     fs = FileSystemStorage(location=dest)
     filename = fs.get_available_name(filename)
     filePath = dest + filename;

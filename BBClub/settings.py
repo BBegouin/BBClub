@@ -378,6 +378,8 @@ REST_FRAMEWORK = {
     ),
 }
 
+REST_FRAMEWORK['TEST_REQUEST_DEFAULT_FORMAT'] = 'json'
+
 # Allow any settings to be defined in local_settings.py which should be
 # ignored in your version control system allowing for settings to be
 # defined per machine.

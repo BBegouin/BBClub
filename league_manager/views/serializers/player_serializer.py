@@ -15,3 +15,8 @@ class CreatePlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
         fields=('name','ref_roster_line','miss_next_game','num')
+
+class UpdatePlayerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Player
+        fields=('name','miss_next_game','num')

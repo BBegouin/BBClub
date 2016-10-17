@@ -18,8 +18,6 @@ class TeamList(ListAPIView):
 
 class TeamDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    #queryset = Team.objects.all()
-    #serializer_class = TeamSerializer
 
     def get_object(self, pk):
         try:
