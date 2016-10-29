@@ -1,9 +1,7 @@
 __author__ = 'Bertrand'
-from rest_framework.generics import RetrieveUpdateDestroyAPIView,ListAPIView,CreateAPIView, RetrieveAPIView
-from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly,AllowAny
+from rest_framework.generics import RetrieveUpdateDestroyAPIView,ListAPIView, RetrieveAPIView
+from rest_framework.permissions import AllowAny
 from league_manager.models.player import Player
-from league_manager.models.player_evolution import PlayerEvolution
-from league_manager.models.ref_skills import Ref_Skills
 from django.http import Http404
 from league_manager.views.serializers.team_serializers import TeamSerializer
 
@@ -54,6 +52,6 @@ class PlayerAdditionalSkills(ListAPIView):
 
     def get_queryset(self):
         player_pk = self.kwargs['pk']
-        skills = Ref_Skills.objects.filter(playerevolution__player = player_pk)
+        #skills = PlayerUpgrade.objects.filter(player = player_pk)
 
-        return skills
+        return None

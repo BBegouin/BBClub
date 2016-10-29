@@ -32,10 +32,10 @@ Gobelins;1;Fanatique;70;3;7;3;7;Arme Secrète, Chaîne & Boulet, Manchot, Minus;
 Gobelins;2;Trolls;110;4;5;1;9;Solitaire, Châtaigne, Gros débile, Lancer un Coéquipier, Régénération, Toujours Affamé;F;AGP
 Halflings;16;Halflings;30;5;2;3;6;Esquive, Minus, Poids Plume;A;FGP
 Halflings;2;HommesArbres;120;2;6;1;10;Châtaigne, Costaud, Crâne Épais, Lancer un Coéquipier, Prendre Racine, Stabilité;F;AGP
-Haut Elfes;16;Trois-quarts;70;6;3;4;8;;AG;FP
-Haut Elfes;2;Lanceurs;90;6;3;4;8;Lancer Précis, Passe;AGP;F
-Haut Elfes;4;Receveurs;90;8;3;4;7;Réception;AG;FP
-Haut Elfes;2;Blitzeurs;100;7;3;4;8;Blocage;AG;FP
+Hauts Elfes;16;Trois-quarts;70;6;3;4;8;;AG;FP
+Hauts Elfes;2;Lanceurs;90;6;3;4;8;Lancer Précis, Passe;AGP;F
+Hauts Elfes;4;Receveurs;90;8;3;4;7;Réception;AG;FP
+Hauts Elfes;2;Blitzeurs;100;7;3;4;8;Blocage;AG;FP
 Hommes Lézards;16;Skinks;60;8;2;3;7;Esquive, Minus;A;FGP
 Hommes Lézards;6;Saurus;80;6;4;1;9;;FG;AP
 Hommes Lézards;1;Kroxigor;140;6;5;1;9;Solitaire, Cerveau Lent, Châtaigne, Crâne Épais, Queue préhensile;F;AGP

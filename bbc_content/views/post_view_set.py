@@ -1,6 +1,5 @@
 __author__ = 'Bertrand'
 from rest_framework import viewsets
-from rest_framework.permissions import DjangoObjectPermissions
 from core.permissions.owner_or_admin import IsOwnerOrAdminReadOnly
 from mezzanine.blog.models import BlogPost
 from bbc_content.views.serializers.content_serializers import BlogPostDescriptionSerializer,BlogPostDetailSerializer,BlogPostCreateSerializer

@@ -6,10 +6,21 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
 
 from league_manager.views.roster import RosterList
-from league_manager.views.team import TeamCreate,TeamList,TeamDetail
+from league_manager.views.team_view_set import TeamViewSet
+from league_manager.views.player_upgrade_view_set import PlayerUpgradeViewSet
+from league_manager.views.match_report_view_set import MatchReportViewSet
+from league_manager.views.team_report_view_set import TeamReportViewSet
 from league_manager.views.skills import SkillList
 from league_manager.views.player_evolution import AddBaseEvolutionView, PlayerEvolutionListView
 from league_manager.views.players import PlayerList,PlayerDetail, PlayerTeam, PlayerAdditionalSkills
+from rest_framework import routers
+from django.conf.urls import url
+
+router = routers.DefaultRouter()
+router.register(r'team', TeamViewSet)
+router.register(r'player/upgrade', PlayerUpgradeViewSet)
+router.register(r'match_report', MatchReportViewSet)
+router.register(r'team_report', TeamReportViewSet)
 
 urlpatterns = [
 
@@ -22,11 +33,6 @@ urlpatterns = [
 
     # show all rosters
     url(r'^rosters/$', RosterList.as_view()),
-
-    # create a team
-    url(r'^team/create/$', csrf_exempt(TeamCreate.as_view())),
-    url(r'^team/$', TeamList.as_view()),
-    url(r'^team/(?P<pk>.+)/$', TeamDetail.as_view()),
 
     # skills
     url(r'^skills/(?P<skill_cat>.+)/$', csrf_exempt(SkillList.as_view())),
@@ -45,3 +51,4 @@ urlpatterns = [
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
+urlpatterns += router.urls

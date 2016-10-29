@@ -2,13 +2,31 @@ __author__ = 'Bertrand'
 from rest_framework.generics import ListAPIView,CreateAPIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly,AllowAny
 from league_manager.views.serializers.player_upgrade_serializer import UpgradeSerializer,CreateUpgradeSerializer
-from league_manager.models.player_upgrade import PlayerUpgrade
+from league_manager.models.xp_roll import Xp_Roll
 from league_manager.models.team import Team
 from django.http import HttpResponseForbidden
+from core.permissions.owner_or_admin import IsOwnerOrAdminReadOnly
+from rest_framework import viewsets
+
+
+class XpRollViewSet(viewsets.ModelViewSet):
+  #  permission_classes = (IsOwnerOrAdminReadOnly,)
+    queryset = Xp_Roll.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'list'\
+            or self.action == 'retrieve' :
+                return UpgradeSerializer
+        elif self.action == 'create':
+            return CreateUpgradeSerializer
+        elif  self.action == 'destroy'\
+            or self.action == 'update'\
+            or self.action == 'partial_update':
+            return None
 
 class AddBaseEvolutionView(CreateAPIView):
     permission_classes = (IsAuthenticated,)
-    serializer_class = CreateUpgradeSerializer
+    serializer_class = CreateEvolutionSerializer
 
     def get_serializer(self, *args, **kwargs):
         if "data" in kwargs:
@@ -38,5 +56,5 @@ class AddBaseEvolutionView(CreateAPIView):
 
 class PlayerEvolutionListView(ListAPIView):
     permission_classes = (AllowAny,)
-    serializer_class = UpgradeSerializer
+    serializer_class = EvolutionSerializer
     queryset = PlayerUpgrade.objects.all()

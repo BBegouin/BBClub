@@ -86,7 +86,11 @@ class TestPost(APITestCase):
         #on sauvegarde le nombre d'article avant la création
         Post_num = BlogPost.objects.count()
 
-        # on lance la création d'un post
+        # création d'un post interdit pour l'utilisateur anonyme
+        response = self.client.post(urls["post_list"],data=create_datas)
+        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
+
+        self.client.force_authenticate(user=User.objects.get(username="john_doe"))
         response = self.client.post(urls["post_list"],data=create_datas)
         self.assertEqual(response.status_code,status.HTTP_201_CREATED)
 
