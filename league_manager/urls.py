@@ -13,6 +13,10 @@ from league_manager.views.team_report_view_set import TeamReportViewSet
 from league_manager.views.skills import SkillList
 from league_manager.views.player_evolution import AddBaseEvolutionView, PlayerEvolutionListView
 from league_manager.views.players import PlayerList,PlayerDetail, PlayerTeam, PlayerAdditionalSkills
+from league_manager.views.team_publish_view import TeamPublishView
+from league_manager.views.team_unpublish_view import TeamUnPublishView
+from league_manager.views.match_report_publish_view import MatchReportPublishView
+from league_manager.views.match_report_unpublish_view import MatchReportUnPublishView
 from rest_framework import routers
 from django.conf.urls import url
 
@@ -46,6 +50,17 @@ urlpatterns = [
     url(r'^player/(?P<pk>.+)/team/$', csrf_exempt(PlayerTeam.as_view())),
     url(r'^player/(?P<pk>.+)/skills/$', csrf_exempt(PlayerAdditionalSkills.as_view())),
     url(r'^player/(?P<pk>.+)/$', csrf_exempt(PlayerDetail.as_view())),
+
+    # Rankings
+    url(r'^ranking/$', csrf_exempt(PlayerList.as_view())),
+
+    # Publish a team
+    url(r'^team/(?P<pk>.+)/publish/$', csrf_exempt(TeamPublishView.as_view())),
+    url(r'^team/(?P<pk>.+)/unpublish/$', csrf_exempt(TeamUnPublishView.as_view())),
+
+    # Publish a match report
+    url(r'^match_report/(?P<pk>.+)/publish/$', csrf_exempt(MatchReportPublishView.as_view())),
+    url(r'^match_report/(?P<pk>.+)/unpublish/$', csrf_exempt(MatchReportUnPublishView.as_view())),
 
 
 ]

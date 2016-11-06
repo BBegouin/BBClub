@@ -37,8 +37,8 @@ class CreateMatchReportSerializer(serializers.ModelSerializer):
                 raise NotAcceptable("le statut d'une des deux équipes n'est pas compatible")
 
         mr = MatchReport.objects.create(**validated_data)
-        TeamReport.objects.create(match=mr,**tr1)
-        TeamReport.objects.create(match=mr,**tr2)
+        otr1 = TeamReport.objects.create(match=mr,**tr1)
+        otr2 = TeamReport.objects.create(match=mr,**tr2)
 
         return mr
 
@@ -128,12 +128,13 @@ class UpdateMatchReportSerializer(serializers.ModelSerializer):
         target.save()
 
     """
-    On met a jour l'ensemble des rapports de joueurs
+     on crée les rapport
     """
     def UpdatePlayerReports(self,target,source):
         for player_report in source:
             pr = PlayerReport.objects.create(team_report=target,**player_report)
             pr.save()
+
 
 
 

@@ -8,6 +8,7 @@ from bbc_user.tests.factories.user_factory import UserFactory
 from datetime import datetime,timedelta
 from league_manager.tests.factories.league_factories import LeagueFactory
 from factory.django import DjangoModelFactory
+from league_manager.tests.factories.player_factories import PlayerFactory
 
 class FakeTeamFactory(DjangoModelFactory):
     class Meta:

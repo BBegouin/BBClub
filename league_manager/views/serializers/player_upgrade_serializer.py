@@ -16,12 +16,7 @@ class UpgradeSerializer(serializers.ModelSerializer):
 Serializer de création :
 si un upgrade est crée sur un joueur dont la team à pour status :
  - est 0 : la création doit être considéré comme un ajout de base et donc vérifier les règles de création
- - est 1 : la création est refusée
- - est 2 : création considérée comme une montée de niveau,
- il faut vérifier que le joueur est susceptible de monter de niveau
- après la création il faut également vérifier si il reste d'autre upgrade à faire,
- sinon il faut passer le status de l'équipe à 3
- - est 3 : création refusée
+ - est 1 : la création est refusée, elle doit passer par le endpoint d'achat
 """
 class CreateUpgradeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,7 +29,7 @@ class CreateUpgradeSerializer(serializers.ModelSerializer):
         for player_data in players_data:
             Player.objects.create(team=new_team, **player_data)
 
-        if new_team.check_team_price() is False:
+        if new_team.check_team_cost() is False:
             raise NotAcceptable("L'équipe ne respecte pas le budget")
 
         return new_team

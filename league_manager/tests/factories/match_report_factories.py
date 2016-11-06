@@ -13,14 +13,13 @@ class PlayerReportFactory(DjangoModelFactory):
     class Meta:
         model = PlayerReport
 
-    nb_pass = 1
-    nb_td = 1
-    nb_int = 1
-    nb_cas = 1
-    nb_mvp = 1
-    nb_foul = 1
+    nb_pass = 0
+    nb_td = 0
+    nb_int = 0
+    nb_cas = 0
+    mvp = False
+    nb_foul = 0
     nb_blocks = 21
-    is_wounded = False
 
 class TeamReportFacory(DjangoModelFactory):
     class Meta:

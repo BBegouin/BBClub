@@ -161,4 +161,9 @@ class Migration(migrations.Migration):
             name='team',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='players', to='league_manager.Team'),
         ),
+        migrations.AddField(
+            model_name='ref_roster',
+            name='journeyman',
+            field=models.ForeignKey(null=True,on_delete=django.db.models.deletion.CASCADE, to='league_manager.Ref_Roster_Line'),
+        ),
     ]

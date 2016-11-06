@@ -6,6 +6,7 @@ from league_manager.models.team import Team,Player
 from league_manager.models.match_report import MatchReport
 from league_manager.models.team_report import TeamReport
 from league_manager.models.player_report import PlayerReport
+from league_manager.models.ref_roster_line import Ref_Roster_Line
 from bbc_user.tests.factories.user_factory import UserFactory,AdminFactory
 from league_manager.tests.factories.team_factories import TeamFactory
 from league_manager.tests.factories.match_report_factories import MatchReportFactory
@@ -17,6 +18,7 @@ from django.contrib.auth.models import User
 import pytest
 
 mr_root="/match_report/"
+mr_publish_root="/match_report/%i/publish/"
 
 """
 On teste :
@@ -41,21 +43,12 @@ class TestMatchReport(APITestCase):
         mr2 = MatchReportFactory.create()
 
         team1 = TeamFactory.create(user=myuser,status=1)
-        team2 = TeamFactory.create(user=user2,status=1)
-        team3 = TeamFactory.create(user=user2,status=3)
-        team4 = TeamFactory.create(user=user2,status=1)
-        team5 = TeamFactory.create(user=user2,status=0)
-
-
-        tr = TeamReportFacory.create(match=mr,team=team1)
-        tr2 = TeamReportFacory.create(match=mr,team=team2)
-        tr3 = TeamReportFacory.create(match=mr2,team=team1)
-        tr4 = TeamReportFacory.create(match=mr2,team=team4)
 
         pl1 = PlayerFactory.create(team=team1)
         pl2 = PlayerFactory.create(team=team1)
         pl3 = PlayerFactory.create(team=team1)
-        pl4 = PlayerFactory.create(team=team1)
+        pl4 = PlayerFactory.create(team=team1,
+                                   ref_roster_line=Ref_Roster_Line.objects.get(pk=16))
         pl5 = PlayerFactory.create(team=team1)
         pl6 = PlayerFactory.create(team=team1)
         pl7 = PlayerFactory.create(team=team1)
@@ -63,6 +56,8 @@ class TestMatchReport(APITestCase):
         pl9 = PlayerFactory.create(team=team1)
         pl10 = PlayerFactory.create(team=team1)
         pl11 = PlayerFactory.create(team=team1)
+
+        team2 = TeamFactory.create(user=user2,status=1)
 
         pl12 = PlayerFactory.create(team=team2)
         pl13 = PlayerFactory.create(team=team2)
@@ -76,37 +71,55 @@ class TestMatchReport(APITestCase):
         pl21 = PlayerFactory.create(team=team2)
         pl22 = PlayerFactory.create(team=team2)
 
+        team3 = TeamFactory.create(user=user2,status=3)
+        team4 = TeamFactory.create(user=user2,status=1)
+
         pl23 = PlayerFactory.create(team=team4)
         pl24 = PlayerFactory.create(team=team4)
         pl25 = PlayerFactory.create(team=team4)
-        pl45 = PlayerFactory.create(team=team4)
-        pl46 = PlayerFactory.create(team=team4)
-        pl47 = PlayerFactory.create(team=team4)
-        pl48 = PlayerFactory.create(team=team4)
-        pl49 = PlayerFactory.create(team=team4)
-        pl50 = PlayerFactory.create(team=team4)
-        pl51 = PlayerFactory.create(team=team4)
-        pl52 = PlayerFactory.create(team=team4)
+        pl26 = PlayerFactory.create(team=team4)
+        pl27 = PlayerFactory.create(team=team4)
+        pl28 = PlayerFactory.create(team=team4)
+        pl29 = PlayerFactory.create(team=team4)
+        pl30 = PlayerFactory.create(team=team4)
+        pl31 = PlayerFactory.create(team=team4)
+        pl32 = PlayerFactory.create(team=team4)
+        pl33 = PlayerFactory.create(team=team4)
+
+        team5 = TeamFactory.create(user=user2,status=0)
+
+
+        tr = TeamReportFacory.create(match=mr,team=team1)
 
         pr = PlayerReportFactory.create(team_report=tr,player=pl1)
         pr2 = PlayerReportFactory.create(team_report=tr,player=pl2)
         pr3 = PlayerReportFactory.create(team_report=tr,player=pl3)
         pr4 = PlayerReportFactory.create(team_report=tr,player=pl4)
 
+        tr2 = TeamReportFacory.create(match=mr,team=team2)
+
         pr = PlayerReportFactory.create(team_report=tr2,player=pl12)
         pr2 = PlayerReportFactory.create(team_report=tr2,player=pl13)
         pr3 = PlayerReportFactory.create(team_report=tr2,player=pl14)
         pr4 = PlayerReportFactory.create(team_report=tr2,player=pl15)
 
+        tr3 = TeamReportFacory.create(match=mr2,team=team1,fan_factor=-1,winnings=20)
 
-        PlayerReportFactory.create(team_report=tr3,player=pl3)
-        PlayerReportFactory.create(team_report=tr3,player=pl4)
-        PlayerReportFactory.create(team_report=tr3,player=pl5)
+        PlayerReportFactory.create(team_report=tr3,
+                                   player=pl3,
+                                   injury_type = 0,
+                                   mvp = True)
+        PlayerReportFactory.create(team_report=tr3,
+                                   player=pl4,
+                                   injury_type = 2)
+        PlayerReportFactory.create(team_report=tr3,player=pl5,injury_type = 7)
+
+        tr4 = TeamReportFacory.create(match=mr2,team=team4,fan_factor=1,winnings=60)
 
         PlayerReportFactory.create(team_report=tr4,player=pl23)
         PlayerReportFactory.create(team_report=tr4,player=pl24)
         PlayerReportFactory.create(team_report=tr4,player=pl25)
-
+        PlayerReportFactory.create(team_report=tr4,player=pl26)
 
     """
         Test de récupération de la liste des rapports de match
@@ -115,12 +128,7 @@ class TestMatchReport(APITestCase):
         mr_count = MatchReport.objects.all().count()
         response = self.client.get(mr_root)
         self.assertEqual(response.status_code,status.HTTP_200_OK)
-        self.assertEqual(len(response.data),mr_count)
-
-        cpt = 0;
-        for mr in response.data:
-            self.assertEqual(mr,list_datas[cpt])
-            cpt +=1
+        self.assertEqual(list_datas,response.data)
 
     """
         Test de récupération d'un rapport de match
@@ -131,7 +139,7 @@ class TestMatchReport(APITestCase):
         response = self.client.get(mr_root+"%i/"%mr_id)
         self.assertEqual(response.status_code,status.HTTP_200_OK)
 
-        assert response.data == detail_datas
+        self.assertEqual(response.data, detail_datas)
 
     """
         Test de récupération de la liste des rapports de match, pour une équipe
@@ -300,3 +308,27 @@ class TestMatchReport(APITestCase):
         # on vérifie qu'un utilisateur non identifé n'a pas le droit de faire une suppression
         response = self.client.delete(mr_root+"%d/"%mr_id)
         self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
+
+    """
+     test de finalisation d'un rapport de match :
+        - on détermine les statut gagnant / nul / perdants de chaque rapport d'équipe
+        - on calcule les xp de chaque rapport de joueur
+        - on détermine les joueurs qui doivent passer au niveau supérieur
+    """
+    def test_publish_match_report(self):
+        # attention cette ligne est surpuissante....
+        mr_id = MatchReport.objects.get(pk=2).id
+
+        self.client.force_authenticate(user=User.objects.get(username="admin"))
+
+        response = self.client.patch(mr_publish_root%mr_id)
+        self.assertEqual(response.status_code,status.HTTP_200_OK)
+
+        #on vérifie que le statut des rapport d'équipes ont été mis à jour
+        self.assertEqual(response.data,published_data)
+
+        # on vérifie que les données des équipes ont été mises à jour
+        response = self.client.get("/team/1/")
+        self.assertEqual(response.data,team_1_after_match)
+        response = self.client.get("/team/4/")
+        self.assertEqual(response.data,team_4_after_match)

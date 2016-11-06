@@ -3,7 +3,14 @@ __author__ = 'Bertrand'
 from rest_framework import serializers
 from league_manager.models.player import Player
 from league_manager.views.serializers.roster_list_serializers import RosterLineSerializer
+from league_manager.views.serializers.skill_serializer import SkillSerializer
 from league_manager.views.serializers.player_upgrade_serializer import UpgradeSerializer
+
+class PlayerForTeamSerializer(serializers.ModelSerializer):
+    skills = SkillSerializer(many=True, read_only=True)
+    class Meta:
+        model = Player
+        fields=('id','name','num','ref_roster_line','M','F','Ag','Ar','num','miss_next_game','need_upgrade','total_xp','is_journeyman','skills')
 
 class PlayerSerializer(serializers.ModelSerializer):
     ref_roster_line = RosterLineSerializer(many=False,read_only=True)

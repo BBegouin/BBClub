@@ -30,10 +30,6 @@ class AddBaseEvolutionView(CreateAPIView):
         # si c'est le cas on fait le job
         response = self.create(request, *args, **kwargs)
 
-        # et on change les états de la team afin de la finaliser
-        team.status = 1;
-        team.save()
-
         return response
 
 class PlayerEvolutionListView(ListAPIView):

@@ -9,5 +9,7 @@ class TeamReport(models.Model):
     winnings = models.PositiveSmallIntegerField(null=True)
     fan_factor = models.SmallIntegerField(null=True)
     other_casualties = models.SmallIntegerField(null=True)
-
-
+    # 0 : win
+    # 1 : draw
+    # 2 : Lose
+    result = models.SmallIntegerField(null=True)

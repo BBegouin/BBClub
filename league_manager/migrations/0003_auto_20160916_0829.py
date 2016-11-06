@@ -84,6 +84,17 @@ def init_rosters_lines(apps, schema_editor):
     # vérifier que tous les rosters du fichiers, sont bien dans la table roster ref
     # vérifier que toutes les compétences du fichier sont bien dans la table ref_skill
 
+
+def init_rosters_journeymens(apps, schema_editor):
+
+    with open(data_dir+'/rosters.csv', newline='') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
+        for row in spamreader:
+            roster = Ref_Roster.objects.get(name=row[0])
+            roster.journeyman = Ref_Roster_Line.objects.get(pk=row[3])
+            roster.save();
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -94,4 +105,5 @@ class Migration(migrations.Migration):
         migrations.RunPython(init_ref_skills),
         migrations.RunPython(init_ref_rosters),
         migrations.RunPython(init_rosters_lines),
+        migrations.RunPython(init_rosters_journeymens),
     ]

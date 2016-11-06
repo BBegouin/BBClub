@@ -2,12 +2,12 @@ __author__ = 'Bertrand'
 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import viewsets
-from core.permissions.admin_delete import AdminDeleteOnly
+from core.permissions.delete_forbidden import DeleteForbidden
 from league_manager.models.team_report import TeamReport
-from league_manager.views.serializers.team_report_serializer import TeamReportSerializer,CreateTeamReportSerializer,UpdateTeamReportSerializer
+from league_manager.views.serializers.team_report_serializer import TeamReportSerializer,CreateStandaloneTeamReportSerializer,UpdateTeamReportSerializer
 
 class TeamReportViewSet(viewsets.ModelViewSet):
-    permission_classes = (AdminDeleteOnly,)
+    permission_classes = (DeleteForbidden,)
     queryset = TeamReport.objects.all()
 
     def get_queryset(self):
@@ -23,11 +23,12 @@ class TeamReportViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list'\
-            or self.action == 'retrieve' \
-            or self.action == 'destroy':
+            or self.action == 'retrieve':
                 return TeamReportSerializer
         elif self.action == 'update'\
             or self.action == 'partial_update':
             return UpdateTeamReportSerializer
         elif self.action == 'create':
-            return CreateTeamReportSerializer
+            return CreateStandaloneTeamReportSerializer
+        elif self.action == 'destroy':
+            return None
