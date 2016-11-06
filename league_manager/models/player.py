@@ -8,6 +8,7 @@ from league_manager.models.player_report import PlayerReport
 from league_manager.models.ref_skills import Ref_Skills
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
+from rest_framework.exceptions import NotAcceptable
 
 # table associatif xp : nombre d'upgrade
 upgrade_table = [
@@ -32,7 +33,7 @@ class Player(models.Model):
     F = models.PositiveSmallIntegerField(null=True,)
     Ag = models.PositiveSmallIntegerField(null=True,)
     Ar = models.PositiveSmallIntegerField(null=True,)
-    skills = models.ManyToManyField("ref_skills",null=True,)
+    skills = models.ManyToManyField("ref_skills",null=True,related_name="player")
     niggling_injuries = models.PositiveSmallIntegerField(default=0)
 
     def init_datas(self):
@@ -78,13 +79,13 @@ class Player(models.Model):
         upgrade_M = PlayerUpgrade.objects.filter(status=1,value=2,player=self).count()
         if upgrade_M > 2:
             upgrade_M = 2
-        upgrade_F = PlayerUpgrade.objects.filter(status=1,value=3,player=self).count()
+        upgrade_F = PlayerUpgrade.objects.filter(status=1,value=5,player=self).count()
         if upgrade_F > 2:
             upgrade_F = 2
         upgrade_Ag = PlayerUpgrade.objects.filter(status=1,value=4,player=self).count()
         if upgrade_Ag > 2:
             upgrade_Ag = 2
-        upgrade_Ar = PlayerUpgrade.objects.filter(status=1,value=5,player=self).count()
+        upgrade_Ar = PlayerUpgrade.objects.filter(status=1,value=3,player=self).count()
         if upgrade_Ar > 2:
             upgrade_Ar = 2
 
@@ -126,6 +127,8 @@ class Player(models.Model):
         for skill in upgrade_skill:
             try:
                 self.skills.get(id=skill.id)
+                # si la compétence est déjà présente on lève une exception
+                raise NotAcceptable("Skill en doublon")
             except ObjectDoesNotExist:
                 # on ne fait l'ajout que si la compétence n'est pas déjà présente
                 self.skills.add(skill)

@@ -96,6 +96,11 @@ De même la mise à jour d'un rapport d'équipe doit influer sur l'équipe en qu
 La suppression d'un rapport d'équipe doit également déclencher la mise à jour de l'équipe.
 
 
+Publcation d'un upgrade de joueur :
+-----------------------------------
+
+Permet de gérér l'avancement en Xp des joueurs
+
 Cycle de vie d'un rapport de match :
 ====================================
 
@@ -136,7 +141,12 @@ cas de test de mise à jour des joueurs :
  =======================================
 
  - gestion de la publication d'un upgrade de joueur
+
+ - division par 10 du TV
  - gestion des achats
  - recrutement des loners
+
+ - gestion de la dépublication d'un rapport de match
+ - upgrade en masse
 
 

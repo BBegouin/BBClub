@@ -17,6 +17,7 @@ from league_manager.views.team_publish_view import TeamPublishView
 from league_manager.views.team_unpublish_view import TeamUnPublishView
 from league_manager.views.match_report_publish_view import MatchReportPublishView
 from league_manager.views.match_report_unpublish_view import MatchReportUnPublishView
+from league_manager.views.player_upgrade_publish_view import PlayerUpgradePublishView
 from rest_framework import routers
 from django.conf.urls import url
 
@@ -61,6 +62,9 @@ urlpatterns = [
     # Publish a match report
     url(r'^match_report/(?P<pk>.+)/publish/$', csrf_exempt(MatchReportPublishView.as_view())),
     url(r'^match_report/(?P<pk>.+)/unpublish/$', csrf_exempt(MatchReportUnPublishView.as_view())),
+
+    # Publish player upgrade : bulk publish
+    url(r'^player_upgrade/(?P<pk>.+)/publish/$', csrf_exempt(PlayerUpgradePublishView.as_view())),
 
 
 ]

@@ -17,9 +17,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 """
-On teste :
-- la création d'un rapport de match
-- la création des rapports d'équipes liés
 """
 class TestPlayers(APITestCase):
 
@@ -220,11 +217,7 @@ class TestPlayers(APITestCase):
         # on vérifie que les la liste des skill corrspond à la iste des skills de base
         self.assertEqual(list(Ref_Roster_Line.objects.get(pk=16).base_skills.values_list()),list(p.skills.values_list()))
 
-        # on crée 3 upgrades de skills, une simple, un doublon et une double
-        PlayerUpgradeFactory.create(value = 0,
-                                    player = pl1,
-                                    skill = Ref_Skills.objects.get(name='Blocage'),
-                                    status = 1)
+        # on crée 2 upgrades de skills, une simple, et une double
         PlayerUpgradeFactory.create(value = 1,
                                     player = pl1,
                                     skill = Ref_Skills.objects.get(name='Garde'),
@@ -237,7 +230,7 @@ class TestPlayers(APITestCase):
         pl1.update_skills()
 
         p = Player.objects.get(pk=pl1.id)
-        # on vérifie que le doublon n'est pas présent deux fois, on vérifie que les upgrades sont bien present
+        # on vérifie que les upgrades sont bien present
         self.assertCountEqual(list(p.skills.values_list('id','name')),upgrade_skill_list)
 
     """
@@ -394,6 +387,8 @@ class TestPlayers(APITestCase):
 
         p = Player.objects.get(pk=pl1.id)
         self.assertEqual(p.niggling_injuries,1)
+
+
 
 
 

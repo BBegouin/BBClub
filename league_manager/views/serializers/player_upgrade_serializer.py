@@ -3,11 +3,11 @@ from rest_framework import serializers
 from league_manager.models.player_upgrade import PlayerUpgrade
 from league_manager.models.team import Team
 from league_manager.models.player import Player
-from league_manager.views.serializers.skill_serializer import DetailedSkillSerializer
+from league_manager.views.serializers.skill_serializer import SkillSerializer
 from rest_framework.exceptions import NotAcceptable
 
 class UpgradeSerializer(serializers.ModelSerializer):
-    skill = DetailedSkillSerializer(many=False,read_only=True)
+    skill = SkillSerializer(many=False,read_only=True)
     class Meta:
         model = PlayerUpgrade
         fields=("id","skill","value","type","status")
