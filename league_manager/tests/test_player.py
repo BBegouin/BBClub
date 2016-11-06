@@ -374,6 +374,27 @@ class TestPlayers(APITestCase):
         # on vérifie que le joueur a bien été supprimé
         self.assertEqual(pl1.id,None)
 
+    """
+     On vérifie que le compteur de blessure persistante est bien mis à jour
+    """
+    def test_niggling_update(self):
+         # création du contexte
+        myuser = UserFactory.create()
+        team1 = TeamFactory.create(user=myuser,status=1)
+        pl1 = PlayerFactory.create(team=team1,
+                                    ref_roster_line = Ref_Roster_Line.objects.get(pk=16))
+
+
+        # on crée un rapport de match avec une blessure afin de vérifier la maj du compteur de niggling
+        mr2 = MatchReportFactory.create()
+        tr = TeamReportFacory.create(match=mr2,team=team1)
+        PlayerReportFactory.create(player=pl1, team_report=tr, injury_type=2,)
+
+        pl1.update_mng()
+
+        p = Player.objects.get(pk=pl1.id)
+        self.assertEqual(p.niggling_injuries,1)
+
 
 
 

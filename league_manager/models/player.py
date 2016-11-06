@@ -33,6 +33,7 @@ class Player(models.Model):
     Ag = models.PositiveSmallIntegerField(null=True,)
     Ar = models.PositiveSmallIntegerField(null=True,)
     skills = models.ManyToManyField("ref_skills",null=True,)
+    niggling_injuries = models.PositiveSmallIntegerField(default=0)
 
     def init_datas(self):
         # on met à jour les caracs
@@ -134,6 +135,7 @@ class Player(models.Model):
     """
      On prend le dernier rapport de match de l'équipe de ce joueur,
      et si le joueur a été blessé, alors il manquera le match.
+     Au passage on met à jour le compteur de blessures persistantes, si besoin.
      Sinon, il jouera.
     """
     def update_mng(self):
@@ -156,6 +158,9 @@ class Player(models.Model):
 
         elif pr.injury_type > 0:
                 self.miss_next_game = True
+                #on met à jour les blessures persistantes
+                if pr.injury_type == 2:
+                    self.niggling_injuries = self.niggling_injuries + 1
         elif pr.injury_type == 0:
                 self.miss_next_game = False
 
