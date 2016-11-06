@@ -135,9 +135,8 @@ En conséquence une team peut être dans deux états :
 cas de test de mise à jour des joueurs :
  =======================================
 
- - gestion des nigglings
- - gestion des loner
- - recrutement des loners
- - gestion des achats
  - gestion de la publication d'un upgrade de joueur
+ - gestion des achats
+ - recrutement des loners
+
 

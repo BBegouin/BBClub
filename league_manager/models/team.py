@@ -1,14 +1,12 @@
 __author__ = 'Bertrand'
 from django.db import models
-from django.db.models import FileField
 from django.contrib.auth.models import User
-from mezzanine.utils.models import AdminThumbMixin, upload_to
-from league_manager.models.league import League
 from league_manager.models.ref_roster_line import Ref_Roster_Line
 from league_manager.models.team_report import TeamReport
 from league_manager.models.player_report import PlayerReport
 from league_manager.models.player_upgrade import PlayerUpgrade
 from league_manager.models.player import Player
+from league_manager.models.ref_skills import Ref_Skills
 from django.db.models import Sum
 from django.db.models import Max
 
@@ -160,7 +158,7 @@ class Team(models.Model):
         # si on a besoin de journeymens, on en crée autant que nécessaire
         if theorical_journeymens > 0:
 
-            # on choppe le numero du dernier joueur, pour affecter le numéro de joueur automatiquement...
+            # on choppe le numero du dernier joueur, pour affecter le numéro de joueur automatiquement
             ag = Player.objects.filter(team=self).aggregate(Max('num'))
             current_max_num = ag['num__max']
             for i in  range(0,theorical_journeymens):
@@ -171,7 +169,9 @@ class Team(models.Model):
                             num = current_max_num,
                             is_journeyman = True
                             )
+                s = Ref_Skills.objects.get(name="Solitaire")
                 jm.init_datas()
+                jm.skills.add(s)
                 jm.save()
 
         # si on a trop de journeymens, on en supprime
