@@ -34,7 +34,7 @@ A la suite d'un achat, la trésorerie doit diminuer en conséquence.
 4.3 / Séquence d'avant match
 4.4 / Rapport d'équipe
 4.5 / Séquence d'après match
-4.6 / Validation d'un rapport d'équipe
+4.6 / Publication d'un rapport de match
 
 L'équipe n'est modifié que lorsque le rapport de match est validé.
 
@@ -43,6 +43,8 @@ L'équipe n'est modifié que lorsque le rapport de match est validé.
 
 A la suite de la validation d'un rapport de match, les joueurs de l'équipe, la pop ainsi que la trésorerie
 peuvent être amenés à évoluer.
+
+Publication d'un upgrade de joueur.
 
 
 pré-conditions :
@@ -140,18 +142,18 @@ En conséquence une team peut être dans deux états :
 cas de test de mise à jour des joueurs :
  =======================================
 
- - gestion des achats :
+ - gestion des upgrades en masse
+ - gestion des upgradesd de base : refactoring
 
-
- - recrutement des loners
  - gestion de la récupération du classement... ?
+ - gestion de la publication des upgrades de base
 
- - gestion des renvoi des joueurs, de personnel ou de rr
-
- - reprendre les TU Team, MatchReport et TeamReport pour les rendre isolés
-
-
- - gestion de la dépublication d'un rapport de match
+V2 :
+----
  - gestion des inducements
+ - gestion des renvoi des joueurs, de personnel ou de rr
+ - reprendre les TU Team, MatchReport et TeamReport pour les rendre isolés
+ - gestion de la dépublication d'un rapport de match
+
 
 

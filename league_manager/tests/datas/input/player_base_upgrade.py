@@ -7,24 +7,28 @@ publish_upgrade_doublon={
 
 publish_upgrade_simple={
     "value": 0,
+    "status": 1,
     # Esquive
     "skill" : 17
 }
 
 publish_upgrade_simple_refused={
     "value":0,
+    "status":1,
     # Passe
     "skill" : 73
 }
 
 publish_upgrade_double={
     "value":1,
+    "status":1,
     # Passe
     "skill" : 73
 }
 
 publish_upgrade_double_refused={
     "value":1,
+    "status":1,
     # Solitaire
     "skill" : 66
 }

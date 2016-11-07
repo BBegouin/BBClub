@@ -9,16 +9,14 @@ from django.contrib.auth.models import AnonymousUser
 from rest_framework.exceptions import NotAuthenticated,NotAcceptable
 from league_manager.views.serializers.player_upgrade_serializer import UpgradeSerializer
 
-class PlayerUpgradePublishView(UpdateAPIView):
+class PlayerUpgradeBulkPublishView(UpdateAPIView):
     permission_classes = (IsOwnerOrAdminReadOnly,)
     serializer_class = UpgradeSerializer
 
     """
-     un appel patch sur l'id d'un rapport de match draft permet de le publier.
+     Permet de publier plusieurs upgrade de joueurs
     """
     def patch(self, request, *args, **kwargs):
-
-        up = PlayerUpgrade.objects.get(pk=kwargs['pk'])
 
         user = request.user
         if type(user) is AnonymousUser:
@@ -26,12 +24,17 @@ class PlayerUpgradePublishView(UpdateAPIView):
 
         # un admin peut publier n'importe quel upgrade de joueur
         if  user.is_superuser is False :
-            # un utilisateur ne peut publier qu'un upgrade sur l'un de ses joueur
-            if up.player.team.user != user:
-                raise NotAcceptable("Il est interdit de publier une upgrade sur les joueurs d'un autre coach !")
+            # on vérifie que les upgrade portent tous sur des joueurs appartenant à l'utilisateur connecté
+            for up_data in request.data:
+                if 'id' not in up_data:
+                    raise NotAcceptable("L'id d'un des upgrades est manquant")
 
-        #
-        up.publish(request.data)
+                up = PlayerUpgrade.objects.get(pk=up_data['id'])
+                if up.player.team.user != user:
+                    raise NotAcceptable("Il est interdit de publier une upgrade sur les joueurs d'un autre coach !")
+
+                up.publish(up_data)
+
 
         serializer = UpgradeSerializer(up)
 
