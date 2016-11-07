@@ -140,13 +140,18 @@ En conséquence une team peut être dans deux états :
 cas de test de mise à jour des joueurs :
  =======================================
 
- - gestion de la publication d'un upgrade de joueur
+ - gestion des achats :
 
- - division par 10 du TV
- - gestion des achats
+
  - recrutement des loners
+ - gestion de la récupération du classement... ?
+
+ - gestion des renvoi des joueurs, de personnel ou de rr
+
+ - reprendre les TU Team, MatchReport et TeamReport pour les rendre isolés
+
 
  - gestion de la dépublication d'un rapport de match
- - upgrade en masse
+ - gestion des inducements
 
 

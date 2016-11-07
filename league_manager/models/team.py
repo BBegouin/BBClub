@@ -9,6 +9,9 @@ from league_manager.models.player import Player
 from league_manager.models.ref_skills import Ref_Skills
 from django.db.models import Sum
 from django.db.models import Max
+from django.db.models import Q
+from functools import reduce
+from rest_framework.exceptions import NotAcceptable
 
 class Team(models.Model):
     name = models.CharField(max_length=50)
@@ -147,7 +150,7 @@ class Team(models.Model):
             return
 
         # on compte le nombre théorique de journeymens
-        theorical_journeymens = 11 - (regular_valid_players_cpt + journeymens_cpt)
+        theorical_journeymens = max(regular_valid_players_cpt,11) - (regular_valid_players_cpt + journeymens_cpt)
 
         # si on a 11 joueurs, avec les journaliers, impeccable, on sort, car on a juste le compte
         if theorical_journeymens == 0:
@@ -188,7 +191,168 @@ class Team(models.Model):
                 if delete_cpt == theorical_journeymens:
                     break
 
+    """
+     permet de vérifier si les achats sont valides :
+      - si ils respectent la trésorerie
+      - si les joueurs sont dans le roster
+      - si il n'y a pas plus de 16 joueurs après achats
+    """
+    def check_purchases(self, purchases):
 
+        #on vérifie que les journaliers appartiennent bien à l'équipe
+        if 'journeymens' in purchases:
+            self.check_journeymens(purchases)
+
+        # On vérifie que les achats sont compatibles de la trésorerie
+        cost = self.check_purchases_price(purchases)
+
+        # On vérifie que les joueurs que l'on veut acheter sont compatibles de cette équipe
+        if 'players' in purchases:
+            self.check_player_compatibility(purchases)
+            #on vérifie que les achats ne vont pas nous amener à dépasser 16 joueurs, sinon on refuse
+            self.check_players_count(purchases)
+
+        return cost
+
+    """
+     On vérifie le prix des achats
+    """
+    def check_purchases_price(self, purchases):
+
+        total_cost = 0
+        # on va vérifier la somme des prix des joueurs
+        if 'players' in purchases:
+            player_cost = 0
+            # on choppe toutes les lignes de roster et on calcule le cost associé
+            for player in purchases['players']:
+                player_cost += Ref_Roster_Line.objects.get(pk=player['ref_roster_line']).cost
+
+            total_cost += player_cost
+
+        # on ajoute le coût d'un apo
+        if 'apo' in purchases and purchases['apo'] == True:
+            total_cost += 50
+
+        # on ajoute le coût des rerolls
+        if 'reroll' in purchases:
+            reroll_price = self.ref_roster.reroll_price * 2
+            total_cost += purchases['reroll'] * reroll_price
+
+        if 'assistants' in purchases:
+            total_cost += purchases['assistants'] * 10
+
+        if 'cheerleaders' in purchases:
+            total_cost += purchases['cheerleaders'] * 10
+
+        if 'journeymens' in purchases:
+            jm_cost = Ref_Roster_Line.objects.filter(reduce(lambda x, y: x | y, [Q(players=jm['player_id']) for jm in purchases['journeymens']])
+                                           ).aggregate(cost=Sum('cost'))
+            if jm_cost == None:
+                raise NotAcceptable("Journaliers inconus, impossible de les recruter")
+
+            total_cost += jm_cost['cost']
+
+        # si c'est trop cher, on raise un exception
+        if total_cost > self.treasury:
+                raise NotAcceptable("trop cher, mon fils")
+
+        return total_cost
+
+    """
+     On vérifie que les joueurs que l'on veut acheter sont bien dans le roster
+    """
+    def check_player_compatibility(self, purchases):
+        if 'players' in purchases:
+            # on choppe tous les types de ligne de roster présent dans la demande d'achat
+            found_lines = self.ref_roster.roster_lines.filter(reduce(lambda x, y: x | y, [Q(pk=player['ref_roster_line']) for player in purchases['players']])
+                                           ).count()
+
+        if found_lines != len(set( val for dic in purchases['players'] for val in dic.values())):
+            raise NotAcceptable("Un ou plusieurs joueurs à acheter ne font pas partie de ce roster")
+
+    """
+     On vérifie que les journeymens appartiennent tous bien à cette équipe
+    """
+    def check_journeymens(self,purchases):
+        found_jm_in_team = self.players.filter(reduce(lambda x, y: x | y, [Q(pk=jm['player_id']) for jm in purchases['journeymens']])).count()
+
+        if found_jm_in_team != len(purchases['journeymens']):
+            raise NotAcceptable("Un ou plusieurs journaliers ne font pas partie de cette équipe. Achat impossible.")
+
+
+    """
+     On vérifie que les achats ne vont pas nous amener à dépasser 16 joueurs
+    """
+    def check_players_count(self,purchases):
+        if len(purchases['players']) + self.players.count() > 16:
+            raise NotAcceptable("Les achats contiennent trop de nouveau joueurs, on dépasse 16.")
+
+
+    """
+     Méthode de publication des achats. Doit être appelée après check_purchases de ce modèle
+    """
+    def perform_purchases(self,purchases,cost):
+
+        # on ajoute les joueurs achetés
+        if 'players' in purchases:
+            # on crée les joueurs de la demande d'achat
+            ag = Player.objects.filter(team=self).aggregate(Max('num'))
+            current_max_num = ag['num__max']
+            for player in purchases['players']:
+                jm = Player(team=self,
+                            ref_roster_line=Ref_Roster_Line.objects.get(pk=player['ref_roster_line']),
+                            num = current_max_num+1)
+                jm.init_datas()
+                jm.save()
+
+            #si on a acheté des joueurs, on doit mettre à jour le compte des journaliers
+            self.update_Journeymen()
+
+        # on ajoute le coût d'un apo
+        if 'apo' in purchases and purchases['apo'] == True:
+            self.apo = True
+
+        # on ajoute le coût des rerolls
+        if 'reroll' in purchases:
+            self.nb_rerolls = self.nb_rerolls + purchases['reroll']
+
+        if 'assistants' in purchases:
+            self.assistants = self.assistants + purchases['assistants']
+
+        if 'cheerleaders' in purchases:
+            self.cheerleaders = self.cheerleaders + purchases['cheerleaders']
+
+        if 'journeymens' in purchases:
+            # si on doit recruter les journeymens, alors :
+            # pour chaque jm à recruter
+            for jm in purchases['journeymens']:
+                #on choppe l'objet
+                p = Player.objects.get(pk=jm['player_id'])
+                # on vire ce statut de journalier
+                p.is_journeyman = False
+                # on vire la compétence solitaire
+                p.skills.remove(name="Solitaire")
+                #on save
+                p.save()
+
+        #on met à jour la trésorerie
+        self.treasury = self.treasury - cost
+        #lorsque tous les achats sont ok, on sauve l'instance, et on met à jour ses données
+        self.save()
+        #on met à jour la valeur d'équipe
+        self.update_TV()
+
+    """
+     Méthode de publication des achats :
+     - d'abord on vérifie les achats
+     - ensuite on les publie, si tout est OK
+    """
+    def publish_purchases(self,purchases):
+         # si on est arrivé là, on peut évaluer la validité des achats
+        purchases_cost = self.check_purchases(purchases)
+
+        # si tout marche bien navette, on publie les achats
+        self.perform_purchases(purchases,purchases_cost)
 
     # on retourne un dictionnaire :
     # {'win' : 2,

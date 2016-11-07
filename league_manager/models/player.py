@@ -33,7 +33,7 @@ class Player(models.Model):
     F = models.PositiveSmallIntegerField(null=True,)
     Ag = models.PositiveSmallIntegerField(null=True,)
     Ar = models.PositiveSmallIntegerField(null=True,)
-    skills = models.ManyToManyField("ref_skills",null=True,related_name="player")
+    skills = models.ManyToManyField("ref_skills",related_name="player")
     niggling_injuries = models.PositiveSmallIntegerField(default=0)
 
     def init_datas(self):
