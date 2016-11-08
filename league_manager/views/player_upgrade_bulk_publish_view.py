@@ -22,19 +22,23 @@ class PlayerUpgradeBulkPublishView(UpdateAPIView):
         if type(user) is AnonymousUser:
             raise NotAuthenticated("un utilisateur anonyme ne peut pas publier d'upgrade de joueur")
 
+        self.check_datas(request.data)
+
         # un admin peut publier n'importe quel upgrade de joueur
         if  user.is_superuser is False :
             # on vérifie que les upgrade portent tous sur des joueurs appartenant à l'utilisateur connecté
             for up_data in request.data:
-                if 'id' not in up_data:
-                    raise NotAcceptable("L'id d'un des upgrades est manquant")
 
                 up = PlayerUpgrade.objects.get(pk=up_data['id'])
                 if up.player.team.user != user:
                     raise NotAcceptable("Il est interdit de publier une upgrade sur les joueurs d'un autre coach !")
 
                 up.publish(up_data)
+        else :
+            for up_data in request.data:
 
+                up = PlayerUpgrade.objects.get(pk=up_data['id'])
+                up.publish(up_data)
 
         serializer = UpgradeSerializer(up)
 
@@ -45,3 +49,12 @@ class PlayerUpgradeBulkPublishView(UpdateAPIView):
     """
     def put(self, request, *args, **kwargs):
         raise NotAcceptable("méthode non supportée")
+
+    """
+     On vérifie que les données sont bien formées
+    """
+    def check_datas(self,upgrade_datas):
+
+        for up_data in upgrade_datas:
+            if 'id' not in up_data or 'value' not in up_data:
+                raise NotAcceptable("Données incohérentes")

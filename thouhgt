@@ -101,7 +101,8 @@ La suppression d'un rapport d'équipe doit également déclencher la mise à jou
 Publcation d'un upgrade de joueur :
 -----------------------------------
 
-Permet de gérér l'avancement en Xp des joueurs
+Permet de gérér l'avancement en Xp des joueurs.
+
 
 Cycle de vie d'un rapport de match :
 ====================================
@@ -142,9 +143,13 @@ En conséquence une team peut être dans deux états :
 cas de test de mise à jour des joueurs :
  =======================================
 
- - gestion des upgrades en masse
+
  - gestion des upgradesd de base : refactoring
 
+
+V1.1 :
+----
+ - gestion du retour de publication des upgrades
  - gestion de la récupération du classement... ?
  - gestion de la publication des upgrades de base
 

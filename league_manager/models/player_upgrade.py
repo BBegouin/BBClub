@@ -24,6 +24,7 @@ class PlayerUpgrade(models.Model):
     type = models.PositiveSmallIntegerField()
     cost = models.PositiveIntegerField(default=0)
 
+
     """
      On publie la mise à jour d'un joueur, en conséquence :
      - on vérifie la cohérence des données envoyées

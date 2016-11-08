@@ -19,6 +19,7 @@ from league_manager.views.match_report_publish_view import MatchReportPublishVie
 from league_manager.views.match_report_unpublish_view import MatchReportUnPublishView
 from league_manager.views.player_upgrade_publish_view import PlayerUpgradePublishView
 from league_manager.views.player_upgrade_bulk_publish_view import PlayerUpgradeBulkPublishView
+from league_manager.views.player_base_upgrade_bulk_publish_view import PlayerBaseUpgradeBulkPublishView
 
 from league_manager.views.team_purchase_view import TeamPurchaseView
 from rest_framework import routers
@@ -72,10 +73,8 @@ urlpatterns = [
     url(r'^player_upgrade/(?P<pk>.+)/publish/$', csrf_exempt(PlayerUpgradePublishView.as_view())),
     # Publish player upgrade : bulk
     url(r'^player_upgrade/publish/$', csrf_exempt(PlayerUpgradeBulkPublishView.as_view())),
-
-
-
-
+    # Publish player base upgrade : bulk
+    url(r'^player_base_upgrade/publish/$', csrf_exempt(PlayerBaseUpgradeBulkPublishView.as_view())),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

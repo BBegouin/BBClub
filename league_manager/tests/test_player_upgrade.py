@@ -371,14 +371,6 @@ class TestPlayerUpgrade(APITestCase):
      et ajoute 5 au TV de l'équipe concernée
     """
     def test_bulk_publish_(self):
-
-        publish_mass_upgrade_refused=[
-            {'id':2,'value':5},
-            {'id':3,'value':3},
-            {'id':4,'value': 1,'skill' : 66},
-            {'id':1,'value': 0,'skill' : 17}
-        ]
-
         # on crée le contexte
         myuser = UserFactory.create()
         team1 = TeamFactory.create(user=myuser,status=1)
@@ -419,6 +411,75 @@ class TestPlayerUpgrade(APITestCase):
         ]
 
         self.client.force_authenticate(user=myuser)
+
+        # On vérifie que le proprio peut publier l'upgrade
+        response = self.client.patch(up_bulk_publish_root,data=publish_mass_upgrade_valid)
+
+        self.assertEqual(response.status_code,status.HTTP_200_OK)
+
+        #on vérifie que les stats des joueurs ont bien été mises à jour
+        self.assertEqual(Player.objects.get(pk=pl1.id).F,pl1_F+1)
+        self.assertEqual(Player.objects.get(pk=pl2.id).Ar,pl2_Ar+1)
+
+        # on vérifie que le nombre de compétences à augmenté chez les joueurs en question
+        self.assertEqual(pl3_skill_cpt+1,Player.objects.get(pk=pl3.id).skills.count())
+        self.assertEqual(pl4_skill_cpt+1,Player.objects.get(pk=pl4.id).skills.count())
+
+        # On vérifie que les compétences ont été ajoutées aux joueurs
+        self.assertIsNotNone(Player.objects.get(pk=pl3.id).skills.get(pk=72))
+        self.assertIsNotNone(Player.objects.get(pk=pl4.id).skills.get(pk=17))
+
+        # on vérifie que le TV a bien été mis à jour
+        tv2 = Team.objects.get(pk=team1.id).TV
+
+        self.assertEqual(tv1+130,tv2)
+
+        """
+     On vérifie que l'ajout d'un point de F est ajoutée au joueur
+     et ajoute 5 au TV de l'équipe concernée
+    """
+    def test_admin_bulk_publish_(self):
+        # on crée le contexte
+        myuser = UserFactory.create()
+        myadmin = AdminFactory.create()
+        team1 = TeamFactory.create(user=myuser,status=1)
+        #on crée 6 joueurs
+        pl1 = PlayerFactory.create(team=team1, ref_roster_line = Ref_Roster_Line.objects.get(pk=16))
+        pl1.init_datas()
+        pl1_F = pl1.F
+        pl2 = PlayerFactory.create(team=team1, ref_roster_line = Ref_Roster_Line.objects.get(pk=13))
+        pl2.init_datas()
+        pl2_Ar = pl2.Ar
+        pl3 = PlayerFactory.create(team=team1, ref_roster_line = Ref_Roster_Line.objects.get(pk=14))
+        pl3.init_datas()
+        pl3_skill_cpt = pl3.skills.count()
+        pl4 = PlayerFactory.create(team=team1, ref_roster_line = Ref_Roster_Line.objects.get(pk=15))
+        pl4.init_datas()
+        pl4_skill_cpt = pl4.skills.count()
+        pl5 = PlayerFactory.create(team=team1, ref_roster_line = Ref_Roster_Line.objects.get(pk=15))
+        pl5.init_datas()
+        pl6 = PlayerFactory.create(team=team1, ref_roster_line = Ref_Roster_Line.objects.get(pk=13))
+        pl6.init_datas()
+
+        # on crée 4 upgrades qui restent à être publiés
+        up1 = PlayerUpgradeFactory.create(player=pl1)
+        up2 = PlayerUpgradeFactory.create(player=pl2)
+        up3 = PlayerUpgradeFactory.create(player=pl3)
+        up4 = PlayerUpgradeFactory.create(player=pl4)
+
+        #on initialise les données de l'équipe
+        team1.update_TV()
+        tv1 = team1.TV
+
+        #on crée les données d'upgrade en masse
+        publish_mass_upgrade_valid=[
+            {'id':up1.id,'value':5},
+            {'id':up2.id,'value':3},
+            {'id':up3.id,'value': 1,'skill' : 72},
+            {'id':up4.id,'value': 0,'skill' : 17}
+        ]
+
+        self.client.force_authenticate(user=myadmin)
 
         # On vérifie que le proprio peut publier l'upgrade
         response = self.client.patch(up_bulk_publish_root,data=publish_mass_upgrade_valid)
