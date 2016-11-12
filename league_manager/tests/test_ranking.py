@@ -1,349 +1,311 @@
 __author__ = 'Bertrand'
 
 from rest_framework import status
-from rest_framework.test import APITestCase,APITransactionTestCase
-from league_manager.models.team import Team,Player
+from rest_framework.test import APITestCase
+
 from bbc_user.tests.factories.user_factory import UserFactory,AdminFactory
+from league_manager.tests.factories.match_report_factories import MatchReportFactory,TeamReportFacory,PlayerReportFactory
+from league_manager.tests.factories.player_factories import PlayerFactory
 from league_manager.tests.factories.team_factories import TeamFactory
-from rest_framework.authtoken.models import Token
-from league_manager.tests.datas.team_datas import *
+
+from league_manager.tests.datas.output import *
 from django.contrib.auth.models import User
 
-team_root="/team/"
+ranking_root="/ranking/"
 
 """
 il faut tester :
 - la stabilité des urls
 - la stabilités des modèles
-
+"""
 class TestTeam(APITestCase):
 
     created_team_id = 0
 
+    #on crée 6 équipes A,B,C,D,E,F de 5 joueurs chacune A1...A5
+    #on crée 7 matchs
+    # A vs B : TD 1-0 ; SOR 2-0 ; AGRO 1-0 ; REU 1-0
+    # C vs D : TD 3-0 ; SOR 0-1 ; AGRO 3-0 ; REU 0-1
+    # E vs F : TD 1-1 ; SOR 2-3 ; AGRO 1-0 ; REU 0-1
+    # B vs C : TD 0-1 ; SOR 5-0 ; AGRO 1-0 ; REU 1-0
+    # D vs E : TD 0-1 ; SOR 0-1 ; AGRO 1-0 ; REU 1-0
+    # F vs A : TD 1-1 ; SOR 1-0 ; AGRO 1-0 ; REU 0-1
+
+    # ce qui doit nous donner le classement suivant
+    # A : 1v 1n 0d : 6pts : 4pts bonus
+    # B : 0v 0n 2d : 2pts : 5pts bonus
+    # C : 2v 0n 0d : 8pts : 2pts bonus
+    # D : 0v 0n 2d : 2pts : 1pts bonus
+    # E : 1v 1n 0d : 6pts : 5pts bonus
+    # F : 0v 2n 0d : 4pts : 6pts bonus
+
+    #                         J G N P   TD+ TD-  SOR+ SOR-   reu   agro
+    # C : 8pts : 4pts bonus : 2 2 0 0 :  4   0 : 0   6     :  0  :  3
+    # E : 6pts : 5pts bonus : 2 1 1 0 :  2   1 : 3   3     :  0  :  1
+    # A : 6pts : 4pts bonus : 2 1 1 0 :  2   1 : 2   1     :  2  :  1
+    # F : 4pts : 6pts bonus : 2 0 2 0 :  2   2 : 4   2     :  1  :  1
+    # B : 2pts : 5pts bonus : 2 0 0 2 :  0   2 : 5   2     :  1  :  1
+    # D : 2pts : 1pts bonus : 2 0 0 2 :  0   4 : 1   1     :  2  :  1
 
     def createData(self):
-        #on crée les utilisateurs de test
         myuser = UserFactory.create()
-        user2 = UserFactory.create(username="user2",password="user2")
-        myadmin = AdminFactory.create()
+        userB = UserFactory.create(username="userB",password="userB")
+        userC = UserFactory.create(username="userC",password="userC")
+        userD = UserFactory.create(username="userD",password="userD")
+        userE = UserFactory.create(username="userE",password="userE")
+        userF = UserFactory.create(username="userF",password="userF")
 
-        TeamFactory.create(user=myuser,status=0)
-        TeamFactory.create(user=myuser,status=1)
-        TeamFactory.create(user=myuser,status=2)
-        TeamFactory.create(user=myuser,status=3)
-        TeamFactory.create(user=user2)
-        TeamFactory.create(user=user2)
-        TeamFactory.create(user=user2,status=3)
-        TeamFactory.create(user=myadmin,status=3)
-        TeamFactory.create(user=myadmin,status=0)
-        #on crée les équipes de test
+        teamA = TeamFactory.create(user=myuser,status=1,name="teamA")
+        plA1 = PlayerFactory.create(team=teamA)
+        plA2 = PlayerFactory.create(team=teamA)
+        plA3 = PlayerFactory.create(team=teamA)
+        plA4 = PlayerFactory.create(team=teamA)
+        plA5 = PlayerFactory.create(team=teamA)
 
+        teamB = TeamFactory.create(user=userB,status=1,name="teamB")
+        plB1 = PlayerFactory.create(team=teamB)
+        plB2 = PlayerFactory.create(team=teamB)
+        plB3 = PlayerFactory.create(team=teamB)
+        plB4 = PlayerFactory.create(team=teamB)
+        plB5 = PlayerFactory.create(team=teamB)
 
+        teamC = TeamFactory.create(user=userC,status=1,name="teamC")
+        plC1 = PlayerFactory.create(team=teamC)
+        plC2 = PlayerFactory.create(team=teamC)
+        plC3 = PlayerFactory.create(team=teamC)
+        plC4 = PlayerFactory.create(team=teamC)
+        plC5 = PlayerFactory.create(team=teamC)
 
+        teamD = TeamFactory.create(user=userD,status=1,name="teamD")
+        plD1 = PlayerFactory.create(team=teamD)
+        plD2 = PlayerFactory.create(team=teamD)
+        plD3 = PlayerFactory.create(team=teamD)
+        plD4 = PlayerFactory.create(team=teamD)
+        plD5 = PlayerFactory.create(team=teamD)
 
-     Test de récupération d'une équipe
+        teamE = TeamFactory.create(user=userE,status=1,name="teamE")
+        plE1 = PlayerFactory.create(team=teamE)
+        plE2 = PlayerFactory.create(team=teamE)
+        plE3 = PlayerFactory.create(team=teamE)
+        plE4 = PlayerFactory.create(team=teamE)
+        plE5 = PlayerFactory.create(team=teamE)
 
-    def test_team_detail_success(self):
+        teamF = TeamFactory.create(user=userF,status=1,name="teamF")
+        plF1 = PlayerFactory.create(team=teamF)
+        plF2 = PlayerFactory.create(team=teamF)
+        plF3 = PlayerFactory.create(team=teamF)
+        plF4 = PlayerFactory.create(team=teamF)
+        plF5 = PlayerFactory.create(team=teamF)
 
+        # -------------  Match A - B
+        # A vs B : TD 1-0 ; SOR 2-0 ; AGRO 1-0 ; REU 1-0
+        mrAB = MatchReportFactory.create(status=0)
+        mrAB_trA = TeamReportFacory.create(match=mrAB,team=teamA)
+
+        prA1 = PlayerReportFactory.create(team_report=mrAB_trA,
+                                        player=plA1,
+                                        nb_td=1,
+                                        nb_pass=1)
+        prA2 = PlayerReportFactory.create(team_report=mrAB_trA,
+                                        player=plA2,
+                                        nb_cas=1,
+                                        nb_foul=1)
+        prA3 = PlayerReportFactory.create(team_report=mrAB_trA,
+                                        player=plA3,
+                                        nb_cas=1)
+
+        mrAB_trB = TeamReportFacory.create(match=mrAB,team=teamB)
+
+        mrAB.publish()
+
+        # -------------  Match C - D
+        # C vs D : TD 3-0 ; SOR 0-1 ; AGRO 3-0 ; REU 0-1
+        mrCD = MatchReportFactory.create(status=0)
+        mrCD_trC = TeamReportFacory.create(match=mrCD,team=teamC)
+
+        prCD_trC_C1 = PlayerReportFactory.create(team_report=mrCD_trC,
+                                        player=plC1,
+                                        nb_td=2,
+                                        nb_pass=0)
+        prCD_trC_C2 = PlayerReportFactory.create(team_report=mrCD_trC,
+                                        player=plC2,
+                                        nb_td=1,
+                                        nb_cas=0,
+                                        nb_foul=1)
+        prCD_trC_C3 = PlayerReportFactory.create(team_report=mrCD_trC,
+                                        player=plC3,
+                                        nb_td=0,
+                                        nb_cas=0,
+                                        nb_foul=2)
+
+        mrCD_trD = TeamReportFacory.create(match=mrCD,team=teamD)
+
+        prCD_trC_D1 = PlayerReportFactory.create(team_report=mrCD_trD,
+                                        player=plD1,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_pass=0)
+        prCD_trC_D2 = PlayerReportFactory.create(team_report=mrCD_trD,
+                                        player=plD2,
+                                        nb_td=0,
+                                        nb_pass=1)
+
+        mrCD.publish()
+
+        # -------------  Match E - F
+        # E vs F : TD 1-1 ; SOR 2-3 ; AGRO 1-0 ; REU 0-1
+        mrEF = MatchReportFactory.create(status=0)
+        mrEF_trE = TeamReportFacory.create(match=mrEF,team=teamE)
+
+        mrEF_trE_E1 = PlayerReportFactory.create(team_report=mrEF_trE,
+                                        player=plE1,
+                                        nb_td=1,
+                                        nb_pass=0)
+        mrEF_trE_E2 = PlayerReportFactory.create(team_report=mrEF_trE,
+                                        player=plE2,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_foul=1)
+        mrEF_trE_E3 = PlayerReportFactory.create(team_report=mrEF_trE,
+                                        player=plE3,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_foul=0)
+
+        mrEF_trF = TeamReportFacory.create(match=mrEF,team=teamF)
+        mrEF_trF_F1 = PlayerReportFactory.create(team_report=mrEF_trF,
+                                        player=plF1,
+                                        nb_td=1,
+                                        nb_pass=1)
+        mrEF_trF_F2 = PlayerReportFactory.create(team_report=mrEF_trF,
+                                        player=plF2,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_foul=0)
+        mrEF_trF_F3 = PlayerReportFactory.create(team_report=mrEF_trF,
+                                        player=plF3,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_foul=0)
+        mrEF_trF_F4 = PlayerReportFactory.create(team_report=mrEF_trF,
+                                        player=plF4,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_foul=0)
+
+        mrEF.publish()
+
+        # -------------  Match B - C
+        # B vs C : TD 0-1 ; SOR 5-0 ; AGRO 1-0 ; REU 1-0
+        mrBC = MatchReportFactory.create(status=0)
+        mrBC_trB = TeamReportFacory.create(match=mrBC,team=teamB)
+
+        mrBC_trB_B1 = PlayerReportFactory.create(team_report=mrBC_trB,
+                                        player=plB5,
+                                        nb_td=0,
+                                        nb_cas=2,
+                                        nb_pass=1)
+        mrEF_trE_B2 = PlayerReportFactory.create(team_report=mrBC_trB,
+                                        player=plB4,
+                                        nb_td=0,
+                                        nb_cas=2,
+                                        nb_foul=1)
+        mrEF_trE_B3 = PlayerReportFactory.create(team_report=mrBC_trB,
+                                        player=plB3,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_foul=0)
+
+        mrBC_trC = TeamReportFacory.create(match=mrBC,team=teamC)
+
+        mrBC_trC_C5 = PlayerReportFactory.create(team_report=mrBC_trC,
+                                        player=plC5,
+                                        nb_td=1,
+                                        nb_cas=0,
+                                        nb_pass=0)
+
+        mrBC.publish()
+
+        # -------------  Match D - E
+        # D vs E : TD 0-1 ; SOR 0-1 ; AGRO 1-0 ; REU 1-0
+        mrDE = MatchReportFactory.create(status=0)
+        mrDE_trD = TeamReportFacory.create(match=mrDE,team=teamD)
+
+        mrDE_trD_D5 = PlayerReportFactory.create(team_report=mrDE_trD,
+                                        player=plD5,
+                                        nb_td=0,
+                                        nb_cas=0,
+                                        nb_pass=1)
+        mrDE_trD_D4 = PlayerReportFactory.create(team_report=mrDE_trD,
+                                        player=plD4,
+                                        nb_td=0,
+                                        nb_cas=0,
+                                        nb_foul=1)
+
+        mrDE_trE = TeamReportFacory.create(match=mrDE,team=teamE)
+
+        mrDE_trE_E5 = PlayerReportFactory.create(team_report=mrDE_trE,
+                                        player=plE5,
+                                        nb_td=1,
+                                        nb_cas=0,
+                                        nb_pass=0)
+
+        mrDE_trE_E4 = PlayerReportFactory.create(team_report=mrDE_trE,
+                                        player=plE4,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_pass=0)
+        mrDE.publish()
+
+        # -------------- Match F - A
+        # F vs A : TD 1-1 ; SOR 1-0 ; AGRO 1-0 ; REU 0-1
+        mrFA = MatchReportFactory.create(status=0)
+        mrFA_trF = TeamReportFacory.create(match=mrFA,team=teamF)
+
+        mrFA_trF_F5 = PlayerReportFactory.create(team_report=mrFA_trF,
+                                        player=plF5,
+                                        nb_td=1,
+                                        nb_cas=0,
+                                        nb_pass=0)
+        mrFA_trF_F4 = PlayerReportFactory.create(team_report=mrFA_trF,
+                                        player=plF4,
+                                        nb_td=0,
+                                        nb_cas=1,
+                                        nb_foul=1)
+
+        mrFA_trA = TeamReportFacory.create(match=mrFA,team=teamA)
+
+        mrFA_trA_A5 = PlayerReportFactory.create(team_report=mrFA_trA,
+                                        player=plA5,
+                                        nb_td=1,
+                                        nb_cas=0,
+                                        nb_pass=1)
+        mrFA.publish()
+
+    """
+     Test de récupération d'un classement
+    """
+    def test_get_ranking_success(self):
+
+        self.createData()
         #création des données de base
-        TeamFactory.create()
 
-        team_id = Team.objects.all().first().id
-        response = self.client.get(team_root+"%i/"%team_id)
+        response = self.client.get(ranking_root)
         self.assertEqual(response.status_code,status.HTTP_200_OK)
 
+        ranking_datas = [
+        { "team_name":"teamC", "team_id":3, "ranking_point":8, "played":2, "won": 2, "drew":0, "lost":0, "bonus":4, "coach":"userC", "td_for":4,"td_against":0,"cas_for":0,"cas_against":6,"aggro":3,"passes":0,"dungeon":False,},
+        { "team_name":"teamE", "team_id":5, "ranking_point":6, "played":2, "won": 1, "drew":1, "lost":0, "bonus":5, "coach":"userE", "td_for":2,"td_against":1,"cas_for":3,"cas_against":3,"aggro":1,"passes":0,"dungeon":False,},
+        { "team_name":"teamA", "team_id":1, "ranking_point":6, "played":2, "won": 1, "drew":1, "lost":0, "bonus":4, "coach":"john_doe", "td_for":2,"td_against":1,"cas_for":2,"cas_against":1,"aggro":1,"passes":2,"dungeon":False,},
+        { "team_name":"teamF", "team_id":6, "ranking_point":4, "played":2, "won": 0, "drew":2, "lost":0, "bonus":6, "coach":"userF", "td_for":2,"td_against":2,"cas_for":4,"cas_against":2,"aggro":1,"passes":1,"dungeon":False,},
+        { "team_name":"teamB", "team_id":2, "ranking_point":2, "played":2, "won": 0, "drew":0, "lost":2, "bonus":5, "coach":"userB", "td_for":0,"td_against":2,"cas_for":5,"cas_against":2,"aggro":1,"passes":1,"dungeon":False,},
+        { "team_name":"teamD", "team_id":4, "ranking_point":2, "played":2, "won": 0, "drew":0, "lost":2, "bonus":1, "coach":"userD", "td_for":0,"td_against":4,"cas_for":1,"cas_against":1,"aggro":1,"passes":2,"dungeon":False,},
+        ]
 
-     Test de récupération de la liste des team
+        self.assertEqual(response.data,ranking_datas)
 
-    def test_team_list_success(self):
-        self.createData()
 
-        # on test la récupération simple
-        response = self.client.get(team_root)
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
 
-        team_cpt = Team.objects.count()
-        self.assertEqual(len(response.data),team_cpt)
 
 
-        on récupère les équipes d'un coach
-
-    def test_team_list_for_coach_success(self):
-        self.createData()
-
-        # si on fait une requête avec le param coach, on doit avoir les équipes du coach
-        admin_id = User.objects.get(username="admin").id
-        response = self.client.get(team_root+"?coach=%i"%admin_id)
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
-
-        # on compte le nombre d'équipe en BDD
-        admin_team_cpt = Team.objects.filter(user__username="admin").count()
-        # on vérifie que le nombre d'équipe récupéré correspond a celui en BDD
-        self.assertEqual(len(response.data),admin_team_cpt)
-
-
-     Test de création d'une équipe : création anonyme interdite
-
-    def test_create_team_anonymous_forbidden(self):
-        self.createData()
-
-        response = self.client.post(team_root,data=create_datas)
-        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
-
-
-     Test de création d'une équipe : création autorisée et correct
-
-    def test_create_team_success(self):
-        self.createData()
-
-        #on sauvegarde le nombre d'article avant la création
-        Team_num = Team.objects.count()
-
-        self.client.force_authenticate(user=User.objects.get(username="john_doe"))
-
-        # on lance la création d'une équipe
-        response = self.client.post(team_root,data=create_datas)
-        self.assertEqual(response.status_code,status.HTTP_201_CREATED)
-
-        # on vérifie que la team est bien crée
-        created_team_id = response.data["id"]
-        created_team = Team.objects.get(pk=created_team_id)
-        # on vérifie que le nombre de team a augmenté
-        self.assertEqual(Team.objects.all().count(),Team_num+1)
-        self.assertEqual(created_team.name,create_datas["name"])
-        self.assertEqual(created_team.ref_roster.id,create_datas["ref_roster"])
-        self.assertEqual(created_team.league.id,create_datas["league"])
-        self.assertEqual(created_team.treasury,create_datas["treasury"])
-        self.assertEqual(created_team.nb_rerolls,create_datas["nb_rerolls"])
-        self.assertEqual(created_team.pop,create_datas["pop"])
-        self.assertEqual(created_team.assistants,create_datas["assistants"])
-        self.assertEqual(created_team.cheerleaders,create_datas["cheerleaders"])
-        self.assertEqual(created_team.apo,create_datas["apo"])
-        self.assertEqual(created_team.user.id,create_datas["user"])
-        self.assertEqual(created_team.icon_file_path,create_datas["icon_file_path"])
-        self.assertEqual(created_team.DungeonBowl,create_datas["DungeonBowl"])
-
-        # on vérifie que le nombre de joueurs crées dans l'équipe est le bon
-        player_number = Player.objects.filter(team=created_team_id).count()
-        self.assertEqual(player_number,len(create_datas["players"]))
-
-
-
-     Test de création d'une équipe : création d'une équipe trop chère interdite
-
-    #il faut également vérifier que seule une team qui respecte les starting rules peut être crée
-    def test_create_team_too_expensive_forbidden(self):
-        self.createData()
-
-        self.client.force_authenticate(user=User.objects.get(username="john_doe"))
-
-        # on lance la création d'une équipe
-        response = self.client.post(team_root,data=create_datas_too_expensive)
-        self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
-
-
-     Test de création d'une équipe : création d'une équipe trop chère interdite
-
-    #il faut également vérifier que seule une team qui contient des joueurs de son roster puisse être crée
-    def test_create_team_with_wrong_players_forbidden(self):
-        self.createData()
-        #TBD
-        self.assertTrue(True)
-
-     Test de suppression : suppression en masse interdite
-
-    def test_delete_all_team_forbidden(self):
-        self.createData()
-
-        # on vérifie qu'on ne peut pas faire de suppression en masse
-        response = self.client.delete(team_root)
-        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
-
-        self.client.force_authenticate(user=User.objects.get(username="admin"))
-        # on vérifie qu'on ne peut pas faire de suppression en masse, même loggué en admin
-        response = self.client.delete(team_root)
-        self.assertEqual(response.status_code,status.HTTP_405_METHOD_NOT_ALLOWED)
-
-
-
-     Test de suppression d'une équipe : suppression anonyme interdite
-
-    def test_delete_team_anonymous_forbidden(self):
-        self.createData()
-
-        # On sauvegarde le nombre de post avant la suppression
-        team_num = Team.objects.count()
-
-        # on vérifie qu'un utilisateur non identifé n'a pas le droit de faire une suppression
-        first_team_id = Team.objects.first().id
-        response = self.client.delete(team_root+"%i/"%first_team_id)
-        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
-
-
-     on vérifie que l'utilisateur connecté a bien le droit de supprimer une de ses propres team
-
-    def test_delete_team_success(self):
-        self.createData()
-
-        team_num = Team.objects.all().count()
-        # on se connecte avec un utilisateur normal
-        self.client.force_authenticate(user=User.objects.get(username="john_doe"))
-        # on vérifie qu'on a le droit de supprimer une de ses propres team
-        user1_team_id = Team.objects.filter(user__username="john_doe").last().id
-        response = self.client.delete(team_root+"%d/"%user1_team_id)
-        self.assertEqual(response.status_code,status.HTTP_204_NO_CONTENT)
-
-        # on vérifie la suppression du post : on vérifie que le comptage des team a diminiué
-        team_num_after_delete = Team.objects.all().count()
-        self.assertEqual(team_num_after_delete,team_num-1)
-
-        # On vérifie qu'on arrive pas à attraper la team supprimée
-        response = self.client.get("/post/%d/"%user1_team_id)
-        self.assertEqual(response.status_code,status.HTTP_404_NOT_FOUND)
-
-
-     on vérifie qu'on ne peut pas supprimer une team appartenant à un autre utilisateur
-
-    def test_delete_other_coach_team_forbidden(self):
-        self.createData()
-
-        user2_team_id = Team.objects.filter(user__username="admin").first().id
-        # on se connecte avec un utilisateur normal
-        self.client.force_authenticate(user=User.objects.get(username="john_doe"))
-        response = self.client.delete(team_root+"%d/"%user2_team_id)
-        self.assertEqual(response.status_code,status.HTTP_403_FORBIDDEN)
-
-
-     on vérifie qu'un admin peut supprimer n'importe quelle team
-
-    def test_delete_any_team_as_admin_success(self):
-        self.createData()
-
-        # on se connecte en tant qu'admin
-        self.client.force_authenticate(user=User.objects.get(username="admin"))
-        team_num = Team.objects.all().count()
-
-        # on vérifie que l'on peut supprimer n'importe quelle team lorsqu'on est admin
-        user2_team_id = Team.objects.filter(user__username="user2").first().id
-        response = self.client.delete(team_root+"%i/"%user2_team_id)
-        self.assertEqual(response.status_code,status.HTTP_204_NO_CONTENT)
-
-        # on vérifie la suppression du post : on vérifie que le comptage des team a diminiué
-        team_num_after_delete = Team.objects.all().count()
-        self.assertEqual(team_num_after_delete,team_num-1)
-
-        # enfin on vérifie que l'on arrive pas attraper la team détruite
-        response = self.client.get(team_root+"%i/"%user2_team_id)
-        self.assertEqual(response.status_code,status.HTTP_404_NOT_FOUND)
-
-
-    test de mise à jour de l'équipe
-
-    def test_team_update(self):
-        self.createData()
-
-        # on vérifie que l'utilisateur connecté a bien le droit de mettre a jour la team
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=3).first().id
-        user2_team_id = Team.objects.filter(user__username="user2",status=3).first().id
-        admin_team_id = Team.objects.filter(user__username="admin",status=3).first().id
-
-        # un appel anonyme ne doit pas pouvoir mettre à jour une team
-        response = self.client.put(team_root+"%d/"%user1_team_id,update_datas)
-        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
-
-        # on connecte un utilisateur
-        self.client.force_authenticate(user=User.objects.get(username="john_doe"))
-
-        # on vérifie qu'un utilisateur a bien le droit de mettre à jour ses données
-        response = self.client.put(team_root+"%d/"%user1_team_id,update_datas)
-        #on vérifie que la mise à jour est bien faite
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
-        self.assertEqual(response.data["nb_rerolls"],update_datas["nb_rerolls"])
-        self.assertEqual(response.data["pop"],update_datas["pop"])
-        self.assertEqual(response.data["assistants"],update_datas["assistants"])
-        self.assertEqual(response.data["cheerleaders"],update_datas["cheerleaders"])
-        self.assertEqual(response.data["apo"],update_datas["apo"])
-        self.assertEqual(response.data["DungeonBowl"],update_datas["DungeonBowl"])
-        # une team dont le status est à 3 doit passer à 1
-        self.assertEqual(response.data["status"],1)
-
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=0).first().id
-        response = self.client.put(team_root+"%d/"%user1_team_id,update_datas)
-        # une team dont le status est à 0 doit passer à 1
-        self.assertEqual(response.data["status"],1)
-
-        # on vérifie qu'on ne peut pas mettre à jour une team d'un autre utilisateur
-        response = self.client.put(team_root+"%d/"%admin_team_id,update_datas)
-        self.assertEqual(response.status_code,status.HTTP_403_FORBIDDEN)
-
-        # on vérifie qu'un admin peut mettre à jour n'importe quelle team
-        self.client.force_authenticate(user=User.objects.get(username="admin"))
-        response = self.client.put(team_root+"%d/"%user1_team_id,update_datas)
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
-        response = self.client.put(team_root+"%d/"%user2_team_id,update_datas)
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
-
-        # on vérifie qu'un admin ne peut pas mettre à jour une équipe dont le status est 1 ou 2
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=1).first().id
-        response = self.client.put(team_root+"%d/"%user1_team_id,update_datas)
-        self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
-
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=2).first().id
-        response = self.client.put(team_root+"%d/"%user1_team_id,update_datas)
-        self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
-
-
-
-     test de mis à jour partiel
-
-    def test_post_partial_update(self):
-        self.createData()
-
-         # on vérifie que l'utilisateur connecté a bien le droit de mettre a jour le post
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=3).first().id
-        admin_team_id = Team.objects.filter(user__username="admin",status=3).first().id
-
-        # on vérifie qu'une team ne peut pas être mise à jour par un utilisateur anonyme
-        response = self.client.patch(team_root+"%d/"%user1_team_id,{"nb_rerolls": 4})
-        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED)
-
-        # on vérifie qu'un utilisateur ne peut pas mettre à jour d'autre team que la sienne
-        self.client.force_authenticate(user=User.objects.get(username="john_doe"))
-        response = self.client.patch(team_root+"%d/"%admin_team_id,{"nb_rerolls": 4})
-        self.assertEqual(response.status_code,status.HTTP_403_FORBIDDEN)
-
-        # on vérifie que la mise à jour d'une équipe dont le status est 1 ou 2 ne peut pas être mise à jour
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=1).first().id
-        response = self.client.patch(team_root+"%d/"%user1_team_id,{"nb_rerolls": 4})
-        self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
-
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=2).first().id
-        response = self.client.patch(team_root+"%d/"%user1_team_id,{"nb_rerolls": 4})
-        self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
-
-        # on vérifie la bonne mise à jour de l'équipe
-        user1_team_id = Team.objects.filter(user__username="john_doe",status=3).first().id
-        team_user_1 = Team.objects.get(user__username="john_doe",status=3)
-        response = self.client.patch(team_root+"%d/"%user1_team_id,{"nb_rerolls": 4})
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
-        self.assertEqual(response.data["nb_rerolls"],4)
-        self.assertEqual(response.data["pop"],team_user_1.pop)
-        self.assertEqual(response.data["assistants"],team_user_1.assistants)
-        self.assertEqual(response.data["cheerleaders"],team_user_1.cheerleaders)
-        self.assertEqual(response.data["apo"],team_user_1.apo)
-        self.assertEqual(response.data["DungeonBowl"],team_user_1.DungeonBowl)
-
-        # on vérifie qu'un admin peut mettre à jour partiellement une équipe
-        self.client.force_authenticate(user=User.objects.get(username="admin"))
-        user1_team_id = Team.objects.filter(user__username="user2",status=3).first().id
-        team_user_2 = Team.objects.filter(user__username="user2",status=3).first()
-        response = self.client.patch(team_root+"%d/"%user1_team_id,{"apo": True})
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
-        self.assertEqual(response.data["nb_rerolls"],team_user_2.nb_rerolls)
-        self.assertEqual(response.data["pop"],team_user_1.pop)
-        self.assertEqual(response.data["assistants"],team_user_1.assistants)
-        self.assertEqual(response.data["cheerleaders"],team_user_1.cheerleaders)
-        self.assertEqual(response.data["apo"],True)
-        self.assertEqual(response.data["DungeonBowl"],team_user_1.DungeonBowl)
-"""
 

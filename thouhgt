@@ -144,21 +144,53 @@ cas de test de mise à jour des joueurs :
  =======================================
 
 
- - gestion des upgradesd de base : refactoring
+V0 :
+---
+ - inscription / création de compte
+
+ - publication d'une news
+    - ajout de titre
+    - ajout de contenu
+    - upload de photo / Gif
+    - gestion d'une bibliothèque de média
+
+ - création d'une équipe
+    - équipe brouillon
+    - ajout des compétences de base
+
+ - Saisie d'un rapport de match
+    - séquence d'avant match
+    - rapport d'équipe
+    - séquence d'après match
+        - gestion des journaliers
+        - gestion des blessure et des morts
+        - gestion des points d'expérience des joueurs
+
+ - achats de stuff et de joueurs
+
+ - calcul automatique du classement basé sur les données des rapports de match
 
 
 V1.1 :
 ----
+ - gestion des commentaires sur une news
+ - gestion des likes sur une news
+ - gestion des vidéos youtube sur les news
  - gestion du retour de publication des upgrades
  - gestion de la récupération du classement... ?
  - gestion de la publication des upgrades de base
+ - gestion de la tendance du classement : hausse / baisse / stable
+
 
 V2 :
 ----
+ - inscription a différentes ligues :
+    - règles de classement : mode de calcul des points de classement et des points bonus
  - gestion des inducements
  - gestion des renvoi des joueurs, de personnel ou de rr
  - reprendre les TU Team, MatchReport et TeamReport pour les rendre isolés
  - gestion de la dépublication d'un rapport de match
+ - gestion des dépenses exponentielles pour les équipe high power
 
 
 

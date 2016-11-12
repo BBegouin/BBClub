@@ -4,6 +4,7 @@ from league_manager.models.player_report import PlayerReport
 from league_manager.models.team_report import TeamReport
 from league_manager.models.player import Player
 from league_manager.models.team import Team
+from rest_framework.exceptions import NotAcceptable
 from django.db.models import Sum
 from django.db.models import F
 
@@ -49,16 +50,27 @@ class MatchReport(models.Model):
         # on met à jour les données des équipes
         self.update_team_datas()
 
+        self.status = 1
+        self.save()
+
     """
      On compare le nombre de TD inscrit par chacune des équipe afin de déterminer le gagnant et le perdant
     """
     def update_team_reports(self):
 
         team_reports = TeamReport.objects.filter(match=self)
+        if team_reports.count() != 2:
+            raise NotAcceptable("On doit avoir 2 rapport d'équipes par rapport de match, ni plus ni moins")
         td_team1 = team_reports[0].player_report.aggregate(td_count=Sum('nb_td'))
         td_team2 = team_reports[1].player_report.aggregate(td_count=Sum('nb_td'))
         tr1 = TeamReport.objects.get(pk=team_reports[0].id)
         tr2 = TeamReport.objects.get(pk=team_reports[1].id)
+
+        if td_team1["td_count"] is None :
+            td_team1["td_count"] = 0
+        if td_team2["td_count"] is None:
+            td_team2["td_count"] = 0
+
         if td_team1["td_count"] == td_team2["td_count"]:
             tr1.result = 1
             tr2.result = 1

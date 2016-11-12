@@ -53,6 +53,9 @@ class UpdateMatchReportSerializer(serializers.ModelSerializer):
         model = MatchReport
         fields=('id','team_reports','status','weather','date')
 
+    """
+     La récéption d'un rapport de match doit déclencher la mise à jour
+    """
     def update(self, instance, validated_data):
         team_reports = validated_data.pop('team_reports')
 

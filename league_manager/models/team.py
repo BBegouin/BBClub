@@ -110,6 +110,12 @@ class Team(models.Model):
     """
     def update_bonus_point(self):
         res = PlayerReport.objects.filter(team_report__team=self).aggregate(td=Sum('nb_td'),sor=Sum('nb_cas'))
+
+        if res['td'] is None:
+            res['td'] = 0
+        if res['sor'] is None:
+            res['sor'] = 0
+
         bonus_point = res['td'] + res['sor']
         self.bonus_point = bonus_point
         self.save()
