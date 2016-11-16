@@ -10,13 +10,20 @@ class PlayerForTeamSerializer(serializers.ModelSerializer):
     skills = SkillSerializer(many=True, read_only=True)
     class Meta:
         model = Player
-        fields=('id','name','num','ref_roster_line','M','F','Ag','Ar','num','miss_next_game','need_upgrade','total_xp','is_journeyman','skills')
-
-class PlayerSerializer(serializers.ModelSerializer):
-    ref_roster_line = RosterLineSerializer(many=False,read_only=True)
-    evolution = UpgradeSerializer(many=True,read_only=True)
-    class Meta:
-        model = Player
+        fields=('id',
+                'name',
+                'num',
+                'ref_roster_line',
+                'M',
+                'F',
+                'Ag',
+                'Ar',
+                'num',
+                'miss_next_game',
+                'need_upgrade',
+                'total_xp',
+                'is_journeyman',
+                'skills')
 
 class CreatePlayerSerializer(serializers.ModelSerializer):
     miss_next_game = serializers.BooleanField(default=False)
@@ -25,9 +32,74 @@ class CreatePlayerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Player
-        fields=('name','ref_roster_line','num','miss_next_game','need_upgrade','total_xp')
+        fields=('name',
+                'ref_roster_line',
+                'num',
+                'miss_next_game',
+                'need_upgrade',
+                'total_xp')
 
 class UpdatePlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields=('name','miss_next_game','num','total_xp')
+        fields=('name',
+                'miss_next_game',
+                'num',
+                'total_xp')
+
+class PlayerSerializer(serializers.ModelSerializer):
+    ref_roster_line = RosterLineSerializer(many=False,read_only=True)
+    evolution = UpgradeSerializer(many=True,read_only=True)
+    class Meta:
+        model = Player
+
+class PlayerDetailSerializer(serializers.ModelSerializer):
+    skills = SkillSerializer(many=True, read_only=True)
+    nb_passes = serializers.IntegerField()
+    nb_TD = serializers.IntegerField()
+    nb_int = serializers.IntegerField()
+    nb_cas = serializers.IntegerField()
+    nb_MVP = serializers.IntegerField()
+
+    class Meta:
+        model = Player
+        fields=('id',
+                'name',
+                'num',
+                'ref_roster_line',
+                'M',
+                'F',
+                'Ag',
+                'Ar',
+                'num',
+                'miss_next_game',
+                'need_upgrade',
+                'nb_passes',
+                'nb_TD',
+                'nb_int',
+                'nb_cas',
+                'nb_MVP',
+                'total_xp',
+                'is_journeyman',
+                'skills')
+        read_only_fields = (
+            'id',
+            'name',
+            'num',
+            'ref_roster_line',
+            'M',
+            'F',
+            'Ag',
+            'Ar',
+            'num',
+            'miss_next_game',
+            'need_upgrade',
+            'nb_passes',
+            'nb_TD',
+            'nb_int',
+            'nb_cas',
+            'nb_MVP',
+            'total_xp',
+            'is_journeyman',
+            'skills'
+        )

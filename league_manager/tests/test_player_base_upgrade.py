@@ -107,13 +107,14 @@ class TestPlayerBaseUpgrade(APITestCase):
         publish_valid_upgrade=[
             #blocage
             {'player_id':pl1.id,"value": 0,"skill" : 3},
+            {'player_id':pl3.id,"value": 0,"skill" : 3},
             {'player_id':pl2.id,"value": 1,"skill" : 74},
         ]
 
         myadmin = AdminFactory.create()
         self.client.force_authenticate(user=myuser)
 
-        # on vérifie qu'un utilisateur non identifié ne peut pas publier un upgrade
+        # on vérifie que la publication est OK
         response = self.client.post(upb_root,data=publish_valid_upgrade)
 
         #on vérifie que la réponse est OK
@@ -121,7 +122,8 @@ class TestPlayerBaseUpgrade(APITestCase):
 
         #on vérifie que les compétences ont été ajoutées au joueurs
         self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[0]['player_id'],pk=3).count(),1)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[1]['player_id'],pk=74).count(),1)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[1]['player_id'],pk=3).count(),1)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[2]['player_id'],pk=74).count(),1)
 
         # on ne fait pas davantage de vérifications, car les test d'upgrade couvrent la publication
 

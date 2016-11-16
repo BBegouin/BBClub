@@ -389,6 +389,73 @@ class TestPlayers(APITestCase):
         self.assertEqual(p.niggling_injuries,1)
 
 
+    """
+     On vérifie que la sérialization d'un player en mode détail se passe bien
+    """
+    def test_get_player_detail(self):
+        myuser = UserFactory.create()
+        team1 = TeamFactory.create(user=myuser,status=1)
+        pl1 = PlayerFactory.create(team=team1,
+                                   ref_roster_line = Ref_Roster_Line.objects.get(pk=16))
+
+        pl1.update_datas()
+
+        # on crée plusieurs rapports de match avec les actions
+        mr2 = MatchReportFactory.create(status=1)
+        tr = TeamReportFacory.create(match=mr2,team=team1)
+        pr = PlayerReportFactory.create( player=pl1,
+                                    team_report=tr,
+                                    nb_pass = 2,
+                                    nb_td = 1,
+                                    nb_int = 3,
+                                    nb_cas = 1,
+                                    mvp = True,)
+        pr2 = PlayerReportFactory.create( player=pl1,
+                                    team_report=tr,
+                                    nb_pass =1,
+                                    nb_td = 1,
+                                    nb_int = 1,
+                                    nb_cas = 1,
+                                    mvp = True,)
+        pr.update_earned_xps()
+        pr2.update_earned_xps()
+        pl1.update_Xp()
+        pl1.update_need_upgrade()
+
+        #on va chopper les infos détaillé de ce joueur et voir ce que ça donne
+        response = self.client.get("/player/%i/"%pl1.id)
+
+        self.assertEqual(response.status_code,status.HTTP_200_OK)
+
+        player_detail = {
+            'id' : 1,
+            'name': 'django',
+            'num': 2,
+            'ref_roster_line': 16,
+            'M': 7,
+            'F': 3,
+            'Ag': 4,
+            'Ar': 8,
+            'miss_next_game': False,
+            'need_upgrade': True,
+            'nb_passes': 3,
+            'nb_TD': 2,
+            'nb_int': 4,
+            'nb_cas': 2,
+            'nb_MVP': 2,
+            'total_xp': 31,
+            'is_journeyman': False,
+            'skills': {
+                0:{'id':3,'name':'Blocage',},
+                1:{'id':18,'name':'Glissade contrôlée',},
+            }
+        }
+
+        self.assertEqual(response.data,player_detail)
+
+
+
+
 
 
 

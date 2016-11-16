@@ -29,7 +29,7 @@ class PlayerUpgradeBulkPublishView(UpdateAPIView):
             # on vérifie que les upgrade portent tous sur des joueurs appartenant à l'utilisateur connecté
             for up_data in request.data:
 
-                up = PlayerUpgrade.objects.get(pk=up_data['id'])
+                up = PlayerUpgrade.objects.get(pk=up_data['player_id'])
                 if up.player.team.user != user:
                     raise NotAcceptable("Il est interdit de publier une upgrade sur les joueurs d'un autre coach !")
 
@@ -37,7 +37,7 @@ class PlayerUpgradeBulkPublishView(UpdateAPIView):
         else :
             for up_data in request.data:
 
-                up = PlayerUpgrade.objects.get(pk=up_data['id'])
+                up = PlayerUpgrade.objects.get(pk=up_data['player_id'])
                 up.publish(up_data)
 
         serializer = UpgradeSerializer(up)
@@ -56,5 +56,5 @@ class PlayerUpgradeBulkPublishView(UpdateAPIView):
     def check_datas(self,upgrade_datas):
 
         for up_data in upgrade_datas:
-            if 'id' not in up_data or 'value' not in up_data:
+            if 'player_id' not in up_data or 'value' not in up_data:
                 raise NotAcceptable("Données incohérentes")

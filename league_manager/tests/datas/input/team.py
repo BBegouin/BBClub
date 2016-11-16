@@ -12,46 +12,14 @@ create_datas = {
     "user": 1,
     "ref_roster": 4,
     "players": [
-        {
-            "ref_roster_line" : 13,
-            "name": "number ouane",
-            "num": 1,
-        },
-        {
-            "ref_roster_line": 13,
-            "name": "number tout",
-            "num": 2,
-        },
-        {
-            "ref_roster_line": 13,
-            "name": "number free",
-            "num": 3,
-        },
-        {
-            "ref_roster_line": 13,
-            "name": "number four",
-            "num": 4,
-        },
-        {
-            "ref_roster_line": 13,
-            "name": "Number faive",
-            "num": 5,
-        },
-        {
-            "ref_roster_line":14,
-            "name": "la rampe de lancement",
-            "num": 6,
-        },
-        {
-            "ref_roster_line": 15,
-            "name": "le casse couille",
-            "num": 7,
-        },
-        {
-            "ref_roster_line": 16,
-            "name": "Le violent",
-            "num": 8,
-        }
+        {"ref_roster_line": 13, "name": "number ouane","num": 1,},
+        {"ref_roster_line": 13, "name": "number tout","num": 2,},
+        {"ref_roster_line": 13, "name": "number free","num": 3,},
+        {"ref_roster_line": 13, "name": "number four","num": 4,},
+        {"ref_roster_line": 13, "name": "Number faive","num": 5,},
+        {"ref_roster_line": 14, "name": "la rampe de lancement","num": 6,},
+        {"ref_roster_line": 15, "name": "le casse couille","num": 7,},
+        {"ref_roster_line": 16, "name": "Le violent","num": 8,}
     ],
 }
 

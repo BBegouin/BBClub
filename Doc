@@ -16,7 +16,11 @@ TBD
 3 / Création d'équipe :
 =======================
 3.1 / Inscription à une ligue
+TBD
+
 3.2 / Choix des joueurs
+
+
 3.3 / Choix du stuff d'équipe
 3.4 / Choix des compétences de base
 3.5 / Finalisation d'une équipe
@@ -180,6 +184,7 @@ V1.1 :
  - gestion de la récupération du classement... ?
  - gestion de la publication des upgrades de base
  - gestion de la tendance du classement : hausse / baisse / stable
+ - séquence d'aprè match : gestion de l'ajout de joueurs gratuit (invoqués par un nécromant)
 
 
 V2 :

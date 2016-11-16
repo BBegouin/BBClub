@@ -36,12 +36,48 @@ class Player(models.Model):
     skills = models.ManyToManyField("ref_skills",related_name="player")
     niggling_injuries = models.PositiveSmallIntegerField(default=0)
 
+    def nb_passes(self):
+        all_reports = PlayerReport.objects.filter(player=self,team_report__match__status=1)
+        res = all_reports.aggregate(REU=Sum('nb_pass'))
+        if res['REU'] is None:
+            return 0
+        return  res['REU']
+
+    def nb_TD(self):
+        all_reports = PlayerReport.objects.filter(player=self,team_report__match__status=1)
+        res = all_reports.aggregate(TD=Sum('nb_td'))
+        if res['TD'] is None:
+            return 0
+        return res['TD']
+
+    def nb_int(self):
+        all_reports = PlayerReport.objects.filter(player=self,team_report__match__status=1)
+        res = all_reports.aggregate(INT=Sum('nb_int'))
+        if res['INT'] is None:
+            return 0
+        return res['INT']
+
+    def nb_cas(self):
+        all_reports = PlayerReport.objects.filter(player=self,team_report__match__status=1)
+        res = all_reports.aggregate(CAS=Sum('nb_cas'))
+        if res['CAS'] is None:
+            return 0
+        return res['CAS']
+
+    def nb_MVP(self):
+        nb_MVP = PlayerReport.objects.filter(player=self,team_report__match__status=1, mvp = True).count()
+        return nb_MVP
+
+
     def init_datas(self):
         # on met à jour les caracs
         self.update_stats()
 
         # on met à jour les skills
         self.update_skills()
+
+        # on met à jour les actions réalisées, uniquement en cache, pas de sauvegarde en BDD
+        self.update_actions()
 
         self.save()
     """
@@ -63,6 +99,9 @@ class Player(models.Model):
 
         # on met à jour le "miss_next_game"
         self.update_mng()
+
+        # on met à jour les actions réalisées
+        self.update_actions()
 
     """
      on met à jour les stats en fonction des upgrade et des stats de base
@@ -122,7 +161,7 @@ class Player(models.Model):
             self.skills.add(skill)
 
         # on prend toutes les competences qui sont référencés par un upgrade de ce joueur
-        upgrade_skill = Ref_Skills.objects.filter(upgrade__status=1,upgrade__player=self).filter(Q(upgrade__value=0)|Q(upgrade__value=1))
+        upgrade_skill = Ref_Skills.objects.filter(Q(upgrade__value=0)|Q(upgrade__value=1),upgrade__status=1,upgrade__player=self)
         # on ajoute les compétences d'upgrade
         for skill in upgrade_skill:
             try:
@@ -217,6 +256,27 @@ class Player(models.Model):
             self.need_upgrade = False
 
         self.save()
+
+    """
+     On met à jour les actions réalisées, sans les sauver en BDD
+    """
+    def update_actions(self):
+        all_reports = PlayerReport.objects.filter(player=self,team_report__match__status=1)
+
+        res = all_reports.aggregate(REU=Sum('nb_pass'))
+        self.nb_passes = res['REU']
+
+        res = all_reports.aggregate(TD=Sum('nb_td'))
+        self.nb_TD = res['TD']
+
+        res = all_reports.aggregate(INT=Sum('nb_int'))
+        self.nb_int = res['INT']
+
+        res = all_reports.aggregate(CAS=Sum('nb_cas'))
+        self.nb_cas =res['CAS']
+
+        nb_MVP = PlayerReport.objects.filter(player=self,team_report__match__status=1, mvp = True).count()
+        self.nb_MVP = nb_MVP
 
 
 

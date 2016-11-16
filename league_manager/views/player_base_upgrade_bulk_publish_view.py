@@ -9,12 +9,12 @@ from league_manager.models.ref_skills import Ref_Skills
 from league_manager.models.team import Team
 from django.contrib.auth.models import AnonymousUser
 from rest_framework.exceptions import NotAuthenticated,NotAcceptable
-from league_manager.views.serializers.player_upgrade_serializer import UpgradeSerializer
+from league_manager.views.serializers.team_serializers import TeamDetailSerializer
 from django.core.exceptions import ObjectDoesNotExist
 
 class PlayerBaseUpgradeBulkPublishView(CreateAPIView):
     permission_classes = (IsOwnerOrAdminReadOnly,)
-    serializer_class = UpgradeSerializer
+    serializer_class = TeamDetailSerializer
 
     """
      Permet de publier plusieurs upgrade de joueurs
@@ -35,7 +35,11 @@ class PlayerBaseUpgradeBulkPublishView(CreateAPIView):
                                 type=0, )
 
             up.publish(up_data)
-            serializer = UpgradeSerializer(up)
+            up.save()
+
+        #on choppe la team à laquelle appartient le premier
+        team = Team.objects.get(players__id = request.data[0]['player_id'])
+        serializer = TeamDetailSerializer(team)
 
         return Response(serializer.data)
 

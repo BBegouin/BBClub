@@ -2,7 +2,10 @@ __author__ = 'Bertrand'
 from core.permissions.owner_or_admin import IsOwnerOrAdminReadOnly
 from rest_framework import viewsets
 from league_manager.models.team import Team
-from league_manager.views.serializers.team_serializers import TeamSerializer,CreateTeamSerializer, TeamUpdateSerializer
+from league_manager.views.serializers.team_serializers import TeamSerializer,\
+                                                                CreateTeamSerializer, \
+                                                                TeamUpdateSerializer,\
+                                                                TeamDetailSerializer
 
 class TeamViewSet(viewsets.ModelViewSet):
     permission_classes = (IsOwnerOrAdminReadOnly,)
@@ -21,9 +24,10 @@ class TeamViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list'\
-            or self.action == 'retrieve' \
             or self.action == 'destroy':
                 return TeamSerializer
+        elif self.action == 'retrieve':
+            return TeamDetailSerializer
         elif self.action == 'update'\
             or self.action == 'partial_update':
             return TeamUpdateSerializer

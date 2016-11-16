@@ -5,11 +5,19 @@ from league_manager.models.team import Team
 from league_manager.models.player import Player
 from league_manager.views.serializers.roster_list_serializers import RosterListSerializer,RosterLineSerializer
 from bbc_user.views.serializers.user_serializer import UserSerializer
-from league_manager.views.serializers.player_serializer import PlayerForTeamSerializer,CreatePlayerSerializer
+from league_manager.views.serializers.player_serializer import PlayerForTeamSerializer,CreatePlayerSerializer, PlayerDetailSerializer
 from rest_framework.exceptions import NotAcceptable
 
 class TeamSerializer(serializers.ModelSerializer):
     players = PlayerForTeamSerializer(many=True,read_only=True)
+
+    class Meta:
+        model = Team
+
+
+
+class TeamDetailSerializer(serializers.ModelSerializer):
+    players = PlayerDetailSerializer(many=True,read_only=True)
 
     class Meta:
         model = Team
