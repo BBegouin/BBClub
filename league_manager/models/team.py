@@ -34,6 +34,14 @@ class Team(models.Model):
     ranking_points = models.PositiveIntegerField(blank=False,null=False,default=0)
     bonus_point = models.PositiveIntegerField(blank=False,null=False,default=0)
 
+    """
+     Méthode de publication de l'équipe, on ne fait que changer son statut
+     NB : certaines vérification pourraient être faites à ce moment là, comme la validité des joueurs
+     ou la validité des skills
+    """
+    def publish(self):
+        self.status = 1
+        self.save()
 
     """
      Renvoi le prix de l'équipe de base, hors Xp.

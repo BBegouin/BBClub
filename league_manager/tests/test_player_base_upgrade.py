@@ -125,6 +125,9 @@ class TestPlayerBaseUpgrade(APITestCase):
         self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[1]['player_id'],pk=3).count(),1)
         self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[2]['player_id'],pk=74).count(),1)
 
+        # il faut vérifier que l'équipe a été publiée
+        self.assertEqual(team1.status,1)
+
         # on ne fait pas davantage de vérifications, car les test d'upgrade couvrent la publication
 
     """

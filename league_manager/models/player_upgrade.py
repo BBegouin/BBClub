@@ -134,6 +134,11 @@ class PlayerUpgrade(models.Model):
 
         self.player.team.update_TV()
 
+        #on compte les upgrades liées à la team, à laquelle cet upgrade vient  si on en a 3, on publie la team
+        baseupgrade_cpt = PlayerUpgrade.objects.filter(player__team = self.player.team,type =0).count()
+
+        if baseupgrade_cpt == 3:
+            self.player.team.publish()
 
 
 
