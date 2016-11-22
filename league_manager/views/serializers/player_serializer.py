@@ -60,6 +60,8 @@ class PlayerDetailSerializer(serializers.ModelSerializer):
     nb_int = serializers.IntegerField()
     nb_cas = serializers.IntegerField()
     nb_MVP = serializers.IntegerField()
+    base_cost = serializers.IntegerField()
+    evolution_cost = serializers.IntegerField()
 
     class Meta:
         model = Player
@@ -81,7 +83,10 @@ class PlayerDetailSerializer(serializers.ModelSerializer):
                 'nb_MVP',
                 'total_xp',
                 'is_journeyman',
-                'skills')
+                'skills',
+                'base_cost',
+                'evolution_cost'
+                )
         read_only_fields = (
             'id',
             'name',

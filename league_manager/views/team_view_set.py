@@ -25,7 +25,7 @@ class TeamViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'list'\
             or self.action == 'destroy':
-                return TeamSerializer
+                return TeamDetailSerializer
         elif self.action == 'retrieve':
             return TeamDetailSerializer
         elif self.action == 'update'\

@@ -115,7 +115,7 @@ class PlayerUpgrade(models.Model):
 
         self.status = 1
 
-        # on met à jour le coût de l'upgrade
+        # on met à jour le coût de l'upgrade, et on répercute sur le le joueur
         if self.value == 0 :
             self.cost = 20
         elif self.value == 1 or self.value == 2 or self.value == 3:
@@ -137,7 +137,7 @@ class PlayerUpgrade(models.Model):
         #on compte les upgrades liées à la team, à laquelle cet upgrade vient  si on en a 3, on publie la team
         baseupgrade_cpt = PlayerUpgrade.objects.filter(player__team = self.player.team,type =0).count()
 
-        if baseupgrade_cpt == 3:
+        if baseupgrade_cpt == 3 and self.player.team.status == 0:
             self.player.team.publish()
 
 

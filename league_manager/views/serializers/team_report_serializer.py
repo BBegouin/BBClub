@@ -80,11 +80,12 @@ class UpdateTeamReportSerializer(serializers.ModelSerializer):
 
         instance.save()
 
+        # En plus de la création, il faut mettre à jour les rapports d'équipe le cas échéant
         if 'player_report' in validated_data:
             player_reports = validated_data.pop('player_report')
+            # si on a des players reports, passés en paramètres, il faut les mettre à jour
             if player_reports is not None:
                 for player_report in player_reports:
-                    pr = PlayerReport.objects.create(**player_report)
-                    pr.save()
+                    PlayerReport.objects.update_or_create(**player_report)
 
         return instance

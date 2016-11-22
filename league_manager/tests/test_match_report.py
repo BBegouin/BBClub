@@ -332,3 +332,13 @@ class TestMatchReport(APITestCase):
         self.assertEqual(response.data,team_1_after_match)
         response = self.client.get("/team/4/")
         self.assertEqual(response.data,team_4_after_match)
+
+
+    """
+     Il faut vérifier que si l'on a un rapport de match contenant des
+    def test_update_team_report(self):
+        pass
+
+    def test_update_player_report(self):
+        pass
+    """

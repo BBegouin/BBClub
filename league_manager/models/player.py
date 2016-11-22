@@ -68,6 +68,16 @@ class Player(models.Model):
         nb_MVP = PlayerReport.objects.filter(player=self,team_report__match__status=1, mvp = True).count()
         return nb_MVP
 
+    def base_cost(self):
+        return self.ref_roster_line.cost
+
+    def evolution_cost(self):
+        all_reports = PlayerUpgrade.objects.filter(player=self,status=1)
+        res = all_reports.aggregate(cost=Sum('cost'))
+        if res['cost'] is None:
+            return 0
+        return res['cost']
+
 
     def init_datas(self):
         # on met à jour les caracs

@@ -15,13 +15,11 @@ class TeamSerializer(serializers.ModelSerializer):
         model = Team
 
 
-
 class TeamDetailSerializer(serializers.ModelSerializer):
     players = PlayerDetailSerializer(many=True,read_only=True)
 
     class Meta:
         model = Team
-
 
 """
 Sérializer de mise à jour de l'équipe, uniquement

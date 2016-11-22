@@ -54,10 +54,13 @@ class UpdateMatchReportSerializer(serializers.ModelSerializer):
         fields=('id','team_reports','status','weather','date')
 
     """
-     La récéption d'un rapport de match doit déclencher la mise à jour
+     La récéption d'un rapport de match doit déclencher la mise à jour, sauf si le rapport de match est déjà publié
     """
     def update(self, instance, validated_data):
         team_reports = validated_data.pop('team_reports')
+
+        if instance.status == 1:
+            raise NotAcceptable("impossible de modifier un rapport de match publié")
 
         # on vérifie que le rapport concerne bien deux équipe
         if len(team_reports) > 2:
@@ -131,12 +134,11 @@ class UpdateMatchReportSerializer(serializers.ModelSerializer):
         target.save()
 
     """
-     on crée les rapport
+     on crée les rapport, si la cible ne contient pas déjà des rapports d'équipe
     """
     def UpdatePlayerReports(self,target,source):
         for player_report in source:
-            pr = PlayerReport.objects.create(team_report=target,**player_report)
-            pr.save()
+            PlayerReport.objects.update_or_create(**player_report)
 
 
 
