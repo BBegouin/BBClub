@@ -132,6 +132,8 @@ class PlayerUpgrade(models.Model):
         elif self.value >= 2 and self.value <= 5:
             self.player.update_stats()
 
+        # on met à jour le statut du joueur, concernant ses augmentations de stats
+        self.player.update_need_upgrade()
         self.player.team.update_TV()
 
         #on compte les upgrades liées à la team, à laquelle cet upgrade vient  si on en a 3, on publie la team

@@ -24,7 +24,7 @@ class MatchReportPublishView(UpdateAPIView):
         # un admin peut publier n'importe quel rapport de match
         if  user.is_superuser is False :
             # un utilisateur ne peut publier qu'un rapport de match qui concerne une de ses équipe
-            if match.team_reports.team[0].user != user and match.team_reports.team[1].user != user:
+            if match.team_reports.first().team.user != user and match.team_reports.last().team.user != user:
                 raise NotAcceptable("Il est interdit de publier un rapport externe")
 
         # si on est arrivé là, la publication peut se faire

@@ -8,9 +8,24 @@ from rest_framework.exceptions import NotAcceptable
 
 class UpgradeSerializer(serializers.ModelSerializer):
     skill = SkillSerializer(many=False,read_only=True)
+
     class Meta:
         model = PlayerUpgrade
-        fields=("id","skill","value","type","status")
+        fields=("id","value","type","skill","status","player","cost")
+
+    def update(self, instance, validated_data):
+        # il est interdit de modifier le statut d'un upgrade, on le dégage des données,
+        # ainsi que le player, le cost et l'id
+        validated_data.pop('status')
+        validated_data.pop('player')
+        validated_data.pop('cost')
+        validated_data.pop('id')
+
+        instance.update(validated_data);
+        instance .save()
+
+        return instance
+
 
 """
 Serializer de création :

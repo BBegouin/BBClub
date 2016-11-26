@@ -14,7 +14,7 @@ class TeamReportSerializer(serializers.ModelSerializer):
     player_report = PlayerReportSerializer(many=True)
     class Meta:
         model = TeamReport
-        fields=('id','match','team','supporters','fame','winnings','fan_factor','player_report','result')
+        fields=('id','match','team','supporters','fame','winnings','fan_factor','player_report','result','other_casualties')
 
 """
     Serializer de création conjointe à un rapport de match
@@ -54,7 +54,7 @@ class UpdateTeamReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TeamReport
-        fields=('id','match','team','supporters','fame','winnings','fan_factor','player_report','result')
+        fields=('id','match','team','supporters','fame','winnings','fan_factor','player_report','result','other_casualties')
 
     def update(self, instance, validated_data):
 

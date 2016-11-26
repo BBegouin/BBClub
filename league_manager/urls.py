@@ -28,7 +28,7 @@ from django.conf.urls import url
 
 router = routers.DefaultRouter()
 router.register(r'team', TeamViewSet)
-router.register(r'player/upgrade', PlayerUpgradeViewSet)
+router.register(r'player_upgrade', PlayerUpgradeViewSet)
 router.register(r'match_report', MatchReportViewSet)
 router.register(r'team_report', TeamReportViewSet)
 

@@ -7,6 +7,7 @@ class RankingLineSerializer(serializers.Serializer):
     #trend = serializers.IntegerField()
     team_id = serializers.IntegerField()
     team_name = serializers.CharField()
+    team_roster = serializers.CharField()
     ranking_point = serializers.IntegerField()
     played = serializers.IntegerField()
     won = serializers.IntegerField()

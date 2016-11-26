@@ -30,7 +30,7 @@ class PlayerBaseUpgradeBulkPublishView(CreateAPIView):
         for up_data in request.data:
 
             # on crée un upgrade qui reste à faire, et de type upgrade de base
-            up = PlayerUpgrade( player=Player.objects.get(pk=up_data['player_id']),
+            up = PlayerUpgrade( player=Player.objects.get(pk=up_data['player']),
                                 status=0,
                                 type=0, )
 
@@ -38,7 +38,7 @@ class PlayerBaseUpgradeBulkPublishView(CreateAPIView):
             up.save()
 
         #on choppe la team à laquelle appartient le premier
-        team = Team.objects.get(players__id = request.data[0]['player_id'])
+        team = Team.objects.get(players__id = request.data[0]['player'])
         serializer = TeamDetailSerializer(team)
 
         return Response(serializer.data)
@@ -71,14 +71,14 @@ class PlayerBaseUpgradeBulkPublishView(CreateAPIView):
         for up_data in base_upgrade_datas:
 
             #on vérifie que les datas sont bien formattées
-            if  'player_id' not in up_data or\
+            if  'player' not in up_data or\
                 'value' not in up_data or\
                 'skill' not in up_data:
                     raise NotAcceptable("Données incomplètes")
 
             #on choppe l'objet player associé à l'upgrade, pour vérifier qu'il existe
             try:
-                pl = Player.objects.get(pk=up_data['player_id'])
+                pl = Player.objects.get(pk=up_data['player'])
             except ObjectDoesNotExist:
                 # si l'utilisateur n'existe pas, on sort
                 raise NotAcceptable("Le joueur cible de l'upgrade de base est inconnu.")
@@ -89,7 +89,7 @@ class PlayerBaseUpgradeBulkPublishView(CreateAPIView):
                 raise NotAcceptable("Il est interdit de publier une upgrade sur les joueurs d'un autre coach.")
 
             # si le joueur à déjà une upgrade de base, on sort
-            if PlayerUpgrade.objects.filter(player = up_data['player_id'],type=0).count():
+            if PlayerUpgrade.objects.filter(player = up_data['player'],type=0).count():
                 raise NotAcceptable("Le joueur cible de l'upgrade de base a déjà une upgrade de base")
 
             baseupgrade_cpt = PlayerUpgrade.objects.filter(player__team = pl.team,type =0).count()

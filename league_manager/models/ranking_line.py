@@ -15,6 +15,7 @@ class RankingLine(object):
         all_reports = PlayerReport.objects.filter(team_report__team=team,team_report__match__status=1)
 
         self.team_name = team.name
+        self.team_roster = team.ref_roster.name
         self.team_id = team.pk
         self.ranking_point = team.ranking_points
         self.played = TeamReport.objects.filter(team=team,match__status=1).count()

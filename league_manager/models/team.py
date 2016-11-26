@@ -137,7 +137,7 @@ class Team(models.Model):
     """
     def update_TV(self):
         player_cost = self.get_player_cost()
-        upgrade_cost = PlayerUpgrade.objects.filter(player__team = self).aggregate(upgrade_cost=Sum('cost'))
+        upgrade_cost = PlayerUpgrade.objects.filter(player__team = self,status=1).aggregate(upgrade_cost=Sum('cost'))
         team_stuff_cost = self.get_team_stuff_cost()
         TV = player_cost + team_stuff_cost
         if upgrade_cost['upgrade_cost'] is not None:

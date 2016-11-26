@@ -36,8 +36,8 @@ class TestPlayerBaseUpgrade(APITestCase):
 
         publish_valid_upgrade=[
             #blocage
-            {'player_id':pl1.id,"value": 0,"skill" : 3},
-            {'player_id':pl2.id,"value": 1,"skill" : 74},
+            {'player':pl1.id,"value": 0,"skill" : 3},
+            {'player':pl2.id,"value": 1,"skill" : 74},
         ]
 
         return publish_valid_upgrade
@@ -87,8 +87,8 @@ class TestPlayerBaseUpgrade(APITestCase):
         self.assertEqual(response.status_code,status.HTTP_200_OK)
 
         #on vérifie que les compétences ont été ajoutées au joueurs
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[0]['player_id'],pk=3).count(),1)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[1]['player_id'],pk=74).count(),1)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[0]['player'],pk=3).count(),1)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[1]['player'],pk=74).count(),1)
 
         # on ne fait pas davantage de vérifications, car les test d'upgrade couvrent la publication
 
@@ -106,9 +106,9 @@ class TestPlayerBaseUpgrade(APITestCase):
 
         publish_valid_upgrade=[
             #blocage
-            {'player_id':pl1.id,"value": 0,"skill" : 3},
-            {'player_id':pl3.id,"value": 0,"skill" : 3},
-            {'player_id':pl2.id,"value": 1,"skill" : 74},
+            {'player':pl1.id,"value": 0,"skill" : 3},
+            {'player':pl3.id,"value": 0,"skill" : 3},
+            {'player':pl2.id,"value": 1,"skill" : 74},
         ]
 
         myadmin = AdminFactory.create()
@@ -121,9 +121,9 @@ class TestPlayerBaseUpgrade(APITestCase):
         self.assertEqual(response.status_code,status.HTTP_200_OK)
 
         #on vérifie que les compétences ont été ajoutées au joueurs
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[0]['player_id'],pk=3).count(),1)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[1]['player_id'],pk=3).count(),1)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[2]['player_id'],pk=74).count(),1)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[0]['player'],pk=3).count(),1)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[1]['player'],pk=3).count(),1)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_valid_upgrade[2]['player'],pk=74).count(),1)
 
         # il faut vérifier que l'équipe a été publiée
         self.assertEqual(team1.status,1)
@@ -144,10 +144,10 @@ class TestPlayerBaseUpgrade(APITestCase):
 
         publish_4_upgrade=[
             #blocage
-            {'player_id':pl1.id,"value": 0,"skill" : 3},
-            {'player_id':pl3.id,"value": 0,"skill" : 3},
-            {'player_id':pl4.id,"value": 1,"skill" : 74},
-            {'player_id':pl2.id,"value": 0,"skill" : 3},
+            {'player':pl1.id,"value": 0,"skill" : 3},
+            {'player':pl3.id,"value": 0,"skill" : 3},
+            {'player':pl4.id,"value": 1,"skill" : 74},
+            {'player':pl2.id,"value": 0,"skill" : 3},
         ]
 
         myadmin = AdminFactory.create()
@@ -160,8 +160,8 @@ class TestPlayerBaseUpgrade(APITestCase):
         self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
 
         #on vérifie que les compétences n'ont pas été ajoutées au joueurs
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[0]['player_id'],pk=3).count(),0)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[1]['player_id'],pk=74).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[0]['player'],pk=3).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[1]['player'],pk=74).count(),0)
 
         # on ne fait pas davantage de vérifications, car les test d'upgrade couvrent la publication
 
@@ -179,8 +179,8 @@ class TestPlayerBaseUpgrade(APITestCase):
 
         publish_2_upgrade=[
             #blocage
-            {'player_id':pl1.id,"value": 0,"skill" : 3},
-            {'player_id':pl1.id,"value": 0,"skill" : 5},
+            {'player':pl1.id,"value": 0,"skill" : 3},
+            {'player':pl1.id,"value": 0,"skill" : 5},
         ]
 
         myadmin = AdminFactory.create()
@@ -193,8 +193,8 @@ class TestPlayerBaseUpgrade(APITestCase):
         self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
 
         #on vérifie que les compétences n'ont pas été ajoutées au joueurs
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[0]['player_id'],pk=3).count(),0)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[1]['player_id'],pk=5).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[0]['player'],pk=3).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[1]['player'],pk=5).count(),0)
 
         # on ne fait pas davantage de vérifications, car les test d'upgrade couvrent la publication
 
@@ -212,8 +212,8 @@ class TestPlayerBaseUpgrade(APITestCase):
 
         publish_2_upgrade=[
             #blocage
-            {'player_id':pl1.id,"value": 0,"skill" : 3},
-            {'player_id':pl2.id,"value": 3,"skill" : 3},
+            {'player':pl1.id,"value": 0,"skill" : 3},
+            {'player':pl2.id,"value": 3,"skill" : 3},
         ]
 
         myadmin = AdminFactory.create()
@@ -226,8 +226,8 @@ class TestPlayerBaseUpgrade(APITestCase):
         self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
 
         #on vérifie que les compétences n'ont pas été ajoutées au joueurs
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[0]['player_id'],pk=3).count(),0)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[1]['player_id'],pk=5).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[0]['player'],pk=3).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_2_upgrade[1]['player'],pk=5).count(),0)
 
     """
      On vérifie qu'il est impossible de publier 2 doubles sur une même équipe
@@ -244,9 +244,9 @@ class TestPlayerBaseUpgrade(APITestCase):
 
         publish_4_upgrade=[
             #blocage
-            {'player_id':pl1.id,"value": 0,"skill" : 3},
-            {'player_id':pl4.id,"value": 1,"skill" : 74},
-            {'player_id':pl2.id,"value": 1,"skill" : 73},
+            {'player':pl1.id,"value": 0,"skill" : 3},
+            {'player':pl4.id,"value": 1,"skill" : 74},
+            {'player':pl2.id,"value": 1,"skill" : 73},
         ]
 
         myadmin = AdminFactory.create()
@@ -259,8 +259,8 @@ class TestPlayerBaseUpgrade(APITestCase):
         self.assertEqual(response.status_code,status.HTTP_406_NOT_ACCEPTABLE)
 
         #on vérifie que les compétences n'ont pas été ajoutées au joueurs
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[0]['player_id'],pk=3).count(),0)
-        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[1]['player_id'],pk=74).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[0]['player'],pk=3).count(),0)
+        self.assertEqual(Ref_Skills.objects.filter(player=publish_4_upgrade[1]['player'],pk=74).count(),0)
 
 
 

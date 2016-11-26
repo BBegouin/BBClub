@@ -15,7 +15,7 @@ class PlayerFactory(DjangoModelFactory):
     miss_next_game = False
     ref_roster_line = Ref_Roster_Line.objects.get(pk=13)
     num = 2
-    total_xp = 4
+    total_xp = 6
     need_upgrade = False
     M = 6
     F = 3

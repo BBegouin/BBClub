@@ -95,6 +95,10 @@ class Player(models.Model):
     """
     def update_datas(self):
 
+        #si le joueur est mort on le supprime, purement et simplement, sans faire les autres traitemens
+        if self.is_dead():
+            return
+
         # on met à jour les caracs
         self.update_stats()
 
@@ -112,6 +116,7 @@ class Player(models.Model):
 
         # on met à jour les actions réalisées
         self.update_actions()
+
 
     """
      on met à jour les stats en fonction des upgrade et des stats de base
@@ -239,7 +244,7 @@ class Player(models.Model):
     """
     def update_need_upgrade(self):
         # on compte le nombre d'upgrade, autre que ceux de base
-        upgrade_cpt = PlayerUpgrade.objects.filter(player=self.id).count()
+        upgrade_cpt = PlayerUpgrade.objects.filter(player=self.id,type=1).count()
 
         # en fonction des xp gagnés, on compte le nombre d'upgrade théorique
         needed_upgrade = 0
@@ -289,6 +294,17 @@ class Player(models.Model):
         self.nb_MVP = nb_MVP
 
 
+    def is_dead(self):
+        latest_tr = TeamReport.objects.filter(team = self.team).last()
+        try:
+            pr = PlayerReport.objects.get(team_report=latest_tr,player=self)
+        except ObjectDoesNotExist:
+            # le joueur n'a pas été concerné par le match, par conséquent, il n'est pas mort
+            return False
 
+        # si le joueur est mort, on le supprime
+        if pr.injury_type == 7 :
+            self.delete()
+        return True
 
 

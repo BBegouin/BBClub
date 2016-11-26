@@ -129,9 +129,10 @@ class TestPlayerUpgrade(APITestCase):
         pl1 = PlayerFactory.create(team=team1,
                                     ref_roster_line = Ref_Roster_Line.objects.get(pk=16))
 
+        pl1.init_datas()
         team1.update_TV()
         tv1 = team1.TV
-        pl1.init_datas()
+
 
         self.client.force_authenticate(user=myuser)
 
