@@ -4,7 +4,6 @@ from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.i18n import set_language
-from league_manager.views.home import tous_les_utilisateurs
 
 from mezzanine.conf import settings
 
@@ -35,7 +34,6 @@ urlpatterns += [
     # commented out like the others, so it's the default. You only need
     # one homepage pattern, so if you use a different one, comment this
     # one out.
-    url("^$", tous_les_utilisateurs, name="home"),
 
     # authentication api
     url(r'^', include('bbc_auth.urls')),
