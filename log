@@ -1,0 +1,481 @@
+*** Starting uWSGI 2.0.14 (64bit) on [Thu Dec  8 17:43:46 2016] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 7.0.2 (clang-700.1.81) on 07 December 2016 18:13:07
+os: Darwin-14.5.0 Darwin Kernel Version 14.5.0: Sun Sep 25 22:07:15 PDT 2016; root:xnu-2782.50.9~1/RELEASE_X86_64
+nodename: MacBook-Pro-n1.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+detected binary path: /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin/uwsgi
+chdir() to /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+your processes number limit is 2048
+your memory page size is 4096 bytes
+detected max file descriptor number: 65536
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /Users/Bertrand/back.bloodbowlclub.sock fd 3
+Python version: 3.5.0 (default, Sep 22 2015, 12:32:59)  [GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.0.72)]
+Set PythonHome to /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7ffbea4079e0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 436560 bytes (426 KB) for 5 cores
+*** Operational MODE: preforking ***
+===== sys.path / PYTHONPATH =====
+APPLICATION_ENV                dev
+Apple_PubSub_Socket_Render     /private/tmp/com.apple.launchd.SZwNgt8LiE/Render
+COLORFGBG                      7;0
+COMMAND_MODE                   unix2003
+DISPLAY                        /private/tmp/com.apple.launchd.yPywPfYr2T/org.macosforge.xquartz:0
+DJANGO_SETTINGS_MODULE         BBClub.settings
+ENVIRONNEMENT                  dev-mac
+EXEC_PROFILE                   prod
+HOME                           /Users/Bertrand
+ITERM_PROFILE                  Default
+ITERM_SESSION_ID               w0t2p0
+LANG                           fr_FR.UTF-8
+LOGNAME                        Bertrand
+MANPATH                        /Users/Bertrand/.npm-packages/share/man:/usr/local/git/share/man:/usr/local/share/man:/usr/share/man:/opt/X11/share/man:/Applications/Xcode.
+OLDPWD                         /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub/static
+PATH                           /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin:/Users/Bertrand/.npm-packages/bin:/usr/local/git/bin:/usr/l
+PS1                            (BB_venv)[\[\e[0;36m\]\u\[\e[0m\]:\W$(git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ \(\[\e[0;32m\]\1\[\e[0m\]\)/')]$ 
+PWD                            /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+SECURITYSESSIONID              186a5
+SHELL                          /bin/bash
+SHLVL                          1
+SSH_AUTH_SOCK                  /private/tmp/com.apple.launchd.BlQfSezOOj/Listeners
+TERM                           xterm
+TERM_PROGRAM                   iTerm.app
+TMPDIR                         /var/folders/zx/2vscdh091v3dgz532xjsbsmh0000gn/T/
+USER                           Bertrand
+UWSGI_ORIGINAL_PROC_NAME       uwsgi
+UWSGI_RELOADS                  0
+VIRTUAL_ENV                    /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv
+XPC_FLAGS                      0x0
+XPC_SERVICE_NAME               0
+_                              /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin/uwsgi
+__CF_USER_TEXT_ENCODING        0x1F5:0x0:0x1
+EXEC PROFILE : %s ===================================== prod
+================= PROOOOOOOOOOOOOOOD ====================
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x7ffbea4079e0 pid: 86754 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 86754)
+spawned uWSGI worker 1 (pid: 86759, cores: 1)
+spawned uWSGI worker 2 (pid: 86760, cores: 1)
+spawned uWSGI worker 3 (pid: 86761, cores: 1)
+spawned uWSGI worker 4 (pid: 86762, cores: 1)
+spawned uWSGI worker 5 (pid: 86763, cores: 1)
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'path': 'team', 'tried': [[<RegexURLResolver <RegexURLPattern list> (None:None) ^admin/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern None ^auth/check-token/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern None ^auth/check-token\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern fb_login ^auth/facebook/$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern fb_login ^auth/facebook\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern bbc_password_reset ^auth/password/reset/$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern bbc_password_reset ^auth/password/reset\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLPattern list> (None:None) ^auth/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLPattern list> (None:None) ^auth/registration/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLResolver list> (None:None) ^allauth/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLPattern list> (None:None) ^allauth/account/>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/(?P<pk>[0-9]+)/$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/(?P<pk>[0-9]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/token/$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/token\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload/binary/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload/binary\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern list_assets ^assets/images/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern list_assets ^assets/images\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern crop_image ^assets/images/crop/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern crop_image ^assets/images/crop\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-list ^post/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-list ^post\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-detail ^post/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-detail ^post/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/email/(?P<email>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/email/(?P<email>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/(?P<username>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/(?P<username>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^rosters/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^rosters\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^skills/(?P<skill_cat>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^skills/(?P<skill_cat>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution/addbaseskills/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution/addbaseskills\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution/>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/team/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/team\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/skills/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/skills\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/unpublish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/unpublish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/purchase/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/purchase\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/unpublish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/unpublish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/(?P<pk>.+)/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/(?P<pk>.+)/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_base_upgrade/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_base_upgrade/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^ranking/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^ranking\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-list ^team/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-list ^team\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-detail ^team/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-detail ^team/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-list ^player_upgrade/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-list ^player_upgrade\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-detail ^player_upgrade/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-detail ^player_upgrade/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-list ^match_report/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-list ^match_report\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-detail ^match_report/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-detail ^match_report/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-list ^team_report/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-list ^team_report\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-detail ^team_report/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-detail ^team_report/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLPattern None ^jsi18n/(?P<packages>\S+?)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLPattern None ^sitemap\.xml$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset ^password_reset/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_done ^password_reset/done/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_complete ^reset/done/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_confirm ^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern edit ^edit/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern search ^search/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern set_site ^set_site/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern set_device ^set_device/(?P<device>.*)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern static_proxy ^asset_proxy/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern displayable_links_js ^displayable_links.js$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.generic.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/generic/urls.py'> (None:None) ^>, <RegexURLPattern admin_keywords_submit ^admin_keywords_submit/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.generic.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/generic/urls.py'> (None:None) ^>, <RegexURLPattern rating ^rating/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.generic.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/generic/urls.py'> (None:None) ^>, <RegexURLPattern comment ^comment/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern login ^accounts/login/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern logout ^accounts/logout/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern signup ^accounts/signup/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern signup_verify ^accounts/verify/(?P<uidb36>[-\w]+)/(?P<token>[-\w]+)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern profile_update ^accounts/update/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern mezzanine_password_reset ^accounts/password/reset/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_verify ^accounts/password/verify/(?P<uidb36>[-\w]+)/(?P<token>[-\w]+)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern account_redirect ^accounts/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.blog.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/blog/urls.py'> (None:None) ^blog/>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.pages.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/urls.py'> (None:None) ^>, <RegexURLPattern admin_page_ordering ^admin_page_ordering/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.pages.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/urls.py'> (None:None) ^>, <RegexURLPattern page ^(?P<slug>.*)/$>]]}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 92, in get_exception_response
+    response = callback(request, **dict(param_dict, exception=exception))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+TypeError: page_not_found() got an unexpected keyword argument 'exception'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 99, in get_exception_response
+    response = callback(request, **param_dict)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/views.py", line 214, in page_not_found
+    return HttpResponseNotFound(t.render(context))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 173, in render
+    return compiled_parent._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 69, in render
+    result = block.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/template/__init__.py", line 61, in render
+    return tag_func(context, token)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/templatetags/pages_tags.py", line 72, in page_menu
+    home = home_slug()
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/utils/urls.py", line 39, in home_slug
+    slug = reverse("home")
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 600, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 508, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'home' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/wsgi.py", line 177, in __call__
+    response = self.get_response(request)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in get_response
+    response = self.get_exception_response(request, resolver, 404, exc)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 102, in get_exception_response
+    response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 296, in handle_uncaught_exception
+    return callback(request, **param_dict)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/views.py", line 225, in server_error
+    return HttpResponseServerError(t.render(context))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 173, in render
+    return compiled_parent._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 69, in render
+    result = block.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/template/__init__.py", line 61, in render
+    return tag_func(context, token)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/templatetags/pages_tags.py", line 72, in page_menu
+    home = home_slug()
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/utils/urls.py", line 39, in home_slug
+    slug = reverse("home")
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 600, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 508, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'home' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+[pid: 86763|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 866 bytes} [Thu Dec  8 16:43:56 2016] GET /team => generated 0 bytes in 920 msecs (HTTP/1.1 500) 0 headers in 0 bytes (0 switches on core 0)
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 134, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 404, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.core.urlresolvers.Resolver404: {'path': 'rosters', 'tried': [[<RegexURLResolver <RegexURLPattern list> (None:None) ^admin/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern None ^auth/check-token/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern None ^auth/check-token\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern fb_login ^auth/facebook/$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern fb_login ^auth/facebook\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern bbc_password_reset ^auth/password/reset/$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLPattern bbc_password_reset ^auth/password/reset\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLPattern list> (None:None) ^auth/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLPattern list> (None:None) ^auth/registration/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLResolver list> (None:None) ^allauth/>], [<RegexURLResolver <module 'bbc_auth.urls' from './bbc_auth/urls.py'> (None:None) ^>, <RegexURLResolver <RegexURLPattern list> (None:None) ^allauth/account/>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/(?P<pk>[0-9]+)/$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/(?P<pk>[0-9]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/token/$>], [<RegexURLResolver <module 'bbc_user.urls' from './bbc_user/urls.py'> (None:None) ^>, <RegexURLPattern None ^user/token\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload/binary/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern None ^upload/binary\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern list_assets ^assets/images/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern list_assets ^assets/images\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern crop_image ^assets/images/crop/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern crop_image ^assets/images/crop\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-list ^post/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-list ^post\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-detail ^post/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'bbc_content.urls' from './bbc_content/urls.py'> (None:None) ^>, <RegexURLPattern blogpost-detail ^post/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/email/(?P<email>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/email/(?P<email>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/(?P<username>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^api/user/check/(?P<username>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^rosters/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^rosters\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^skills/(?P<skill_cat>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^skills/(?P<skill_cat>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution/addbaseskills/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution/addbaseskills\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution/>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^evolution\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/team/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/team\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/skills/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/skills\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player/(?P<pk>.+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/unpublish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/unpublish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/purchase/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^team/(?P<pk>.+)/purchase\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/unpublish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^match_report/(?P<pk>.+)/unpublish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/(?P<pk>.+)/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/(?P<pk>.+)/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_upgrade/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_base_upgrade/publish/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^player_base_upgrade/publish\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^ranking/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern None ^ranking\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern api-root ^\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-list ^team/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-list ^team\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-detail ^team/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern team-detail ^team/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-list ^player_upgrade/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-list ^player_upgrade\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-detail ^player_upgrade/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern playerupgrade-detail ^player_upgrade/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-list ^match_report/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-list ^match_report\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-detail ^match_report/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern matchreport-detail ^match_report/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-list ^team_report/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-list ^team_report\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-detail ^team_report/(?P<pk>[^/.]+)/$>], [<RegexURLResolver <module 'league_manager.urls' from './league_manager/urls.py'> (None:None) ^>, <RegexURLPattern teamreport-detail ^team_report/(?P<pk>[^/.]+)\.(?P<format>[a-z0-9]+)/?$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLPattern None ^jsi18n/(?P<packages>\S+?)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLPattern None ^sitemap\.xml$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset ^password_reset/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_done ^password_reset/done/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_complete ^reset/done/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_confirm ^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern edit ^edit/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern search ^search/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern set_site ^set_site/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern set_device ^set_device/(?P<device>.*)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern static_proxy ^asset_proxy/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.core.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/urls.py'> (None:None) ^>, <RegexURLPattern displayable_links_js ^displayable_links.js$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.generic.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/generic/urls.py'> (None:None) ^>, <RegexURLPattern admin_keywords_submit ^admin_keywords_submit/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.generic.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/generic/urls.py'> (None:None) ^>, <RegexURLPattern rating ^rating/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.generic.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/generic/urls.py'> (None:None) ^>, <RegexURLPattern comment ^comment/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern login ^accounts/login/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern logout ^accounts/logout/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern signup ^accounts/signup/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern signup_verify ^accounts/verify/(?P<uidb36>[-\w]+)/(?P<token>[-\w]+)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern profile_update ^accounts/update/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern mezzanine_password_reset ^accounts/password/reset/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern password_reset_verify ^accounts/password/verify/(?P<uidb36>[-\w]+)/(?P<token>[-\w]+)/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.accounts.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/accounts/urls.py'> (None:None) ^>, <RegexURLPattern account_redirect ^accounts/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.blog.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/blog/urls.py'> (None:None) ^blog/>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.pages.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/urls.py'> (None:None) ^>, <RegexURLPattern admin_page_ordering ^admin_page_ordering/$>], [<RegexURLResolver <module 'mezzanine.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/urls.py'> (None:None) ^>, <RegexURLResolver <module 'mezzanine.pages.urls' from '/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/urls.py'> (None:None) ^>, <RegexURLPattern page ^(?P<slug>.*)/$>]]}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 92, in get_exception_response
+    response = callback(request, **dict(param_dict, exception=exception))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+TypeError: page_not_found() got an unexpected keyword argument 'exception'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 99, in get_exception_response
+    response = callback(request, **param_dict)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/views.py", line 214, in page_not_found
+    return HttpResponseNotFound(t.render(context))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 173, in render
+    return compiled_parent._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 69, in render
+    result = block.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/template/__init__.py", line 61, in render
+    return tag_func(context, token)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/templatetags/pages_tags.py", line 72, in page_menu
+    home = home_slug()
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/utils/urls.py", line 39, in home_slug
+    slug = reverse("home")
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 600, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 508, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'home' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/wsgi.py", line 177, in __call__
+    response = self.get_response(request)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in get_response
+    response = self.get_exception_response(request, resolver, 404, exc)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 102, in get_exception_response
+    response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/handlers/base.py", line 296, in handle_uncaught_exception
+    return callback(request, **param_dict)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/core/views.py", line 225, in server_error
+    return HttpResponseServerError(t.render(context))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 173, in render
+    return compiled_parent._render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/loader_tags.py", line 69, in render
+    result = block.nodelist.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 992, in render
+    bit = node.render_annotated(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/template/base.py", line 959, in render_annotated
+    return self.render(context)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/template/__init__.py", line 61, in render
+    return tag_func(context, token)
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/pages/templatetags/pages_tags.py", line 72, in page_menu
+    home = home_slug()
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/mezzanine/utils/urls.py", line 39, in home_slug
+    slug = reverse("home")
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 600, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/django/core/urlresolvers.py", line 508, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+django.core.urlresolvers.NoReverseMatch: Reverse for 'home' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+[pid: 86763|app: 0|req: 2/2] 127.0.0.1 () {42 vars in 841 bytes} [Thu Dec  8 16:44:02 2016] GET /rosters => generated 0 bytes in 114 msecs (HTTP/1.1 500) 0 headers in 0 bytes (0 switches on core 0)
+*** Starting uWSGI 2.0.14 (64bit) on [Thu Dec  8 17:44:47 2016] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 7.0.2 (clang-700.1.81) on 07 December 2016 18:13:07
+os: Darwin-14.5.0 Darwin Kernel Version 14.5.0: Sun Sep 25 22:07:15 PDT 2016; root:xnu-2782.50.9~1/RELEASE_X86_64
+nodename: MacBook-Pro-n1.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+detected binary path: /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin/uwsgi
+chdir() to /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+your processes number limit is 2048
+your memory page size is 4096 bytes
+detected max file descriptor number: 65536
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /Users/Bertrand/back.bloodbowlclub.sock fd 3
+Python version: 3.5.0 (default, Sep 22 2015, 12:32:59)  [GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.0.72)]
+Set PythonHome to /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fbc5bd00160
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 436560 bytes (426 KB) for 5 cores
+*** Operational MODE: preforking ***
+===== sys.path / PYTHONPATH =====
+APPLICATION_ENV                dev
+Apple_PubSub_Socket_Render     /private/tmp/com.apple.launchd.SZwNgt8LiE/Render
+COLORFGBG                      7;0
+COMMAND_MODE                   unix2003
+DISPLAY                        /private/tmp/com.apple.launchd.yPywPfYr2T/org.macosforge.xquartz:0
+DJANGO_SETTINGS_MODULE         BBClub.settings
+ENVIRONNEMENT                  dev-mac
+EXEC_PROFILE                   dev
+HOME                           /Users/Bertrand
+ITERM_PROFILE                  Default
+ITERM_SESSION_ID               w0t2p0
+LANG                           fr_FR.UTF-8
+LOGNAME                        Bertrand
+MANPATH                        /Users/Bertrand/.npm-packages/share/man:/usr/local/git/share/man:/usr/local/share/man:/usr/share/man:/opt/X11/share/man:/Applications/Xcode.
+OLDPWD                         /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub/static
+PATH                           /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin:/Users/Bertrand/.npm-packages/bin:/usr/local/git/bin:/usr/l
+PS1                            (BB_venv)[\[\e[0;36m\]\u\[\e[0m\]:\W$(git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ \(\[\e[0;32m\]\1\[\e[0m\]\)/')]$ 
+PWD                            /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+SECURITYSESSIONID              186a5
+SHELL                          /bin/bash
+SHLVL                          1
+SSH_AUTH_SOCK                  /private/tmp/com.apple.launchd.BlQfSezOOj/Listeners
+TERM                           xterm
+TERM_PROGRAM                   iTerm.app
+TMPDIR                         /var/folders/zx/2vscdh091v3dgz532xjsbsmh0000gn/T/
+USER                           Bertrand
+UWSGI_ORIGINAL_PROC_NAME       uwsgi
+UWSGI_RELOADS                  0
+VIRTUAL_ENV                    /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv
+XPC_FLAGS                      0x0
+XPC_SERVICE_NAME               0
+_                              /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin/uwsgi
+__CF_USER_TEXT_ENCODING        0x1F5:0x0:0x1
+EXEC PROFILE : %s ===================================== dev
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x7fbc5bd00160 pid: 86794 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 86794)
+spawned uWSGI worker 1 (pid: 86799, cores: 1)
+spawned uWSGI worker 2 (pid: 86800, cores: 1)
+spawned uWSGI worker 3 (pid: 86801, cores: 1)
+spawned uWSGI worker 4 (pid: 86802, cores: 1)
+spawned uWSGI worker 5 (pid: 86803, cores: 1)
+Not Found: /rosters
+[pid: 86803|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 872 bytes} [Thu Dec  8 16:44:50 2016] GET /rosters => generated 0 bytes in 106 msecs (HTTP/1.1 301) 3 headers in 124 bytes (1 switches on core 0)
+/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/rest_framework/utils/model_meta.py:130: RemovedInDjango110Warning: 'get_all_related_objects is an unofficial API that has been deprecated. You may be able to replace it with 'get_fields()'
+  for relation in opts.get_all_related_objects():
+
+/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/rest_framework/utils/model_meta.py:141: RemovedInDjango110Warning: 'get_all_related_many_to_many_objects is an unofficial API that has been deprecated. You may be able to replace it with 'get_fields()'
+  for relation in opts.get_all_related_many_to_many_objects():
+
+/Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/lib/python3.5/site-packages/rest_framework/renderers.py:671: RemovedInDjango110Warning: render() must be called with a dict, not a RequestContext.
+  ret = template.render(context)
+
+[pid: 86803|app: 0|req: 2/2] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:44:50 2016] GET /rosters/ => generated 1619796 bytes in 2207 msecs (HTTP/1.1 200) 4 headers in 137 bytes (199 switches on core 0)
+*** Starting uWSGI 2.0.14 (64bit) on [Thu Dec  8 17:45:01 2016] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 7.0.2 (clang-700.1.81) on 07 December 2016 18:13:07
+os: Darwin-14.5.0 Darwin Kernel Version 14.5.0: Sun Sep 25 22:07:15 PDT 2016; root:xnu-2782.50.9~1/RELEASE_X86_64
+nodename: MacBook-Pro-n1.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+detected binary path: /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin/uwsgi
+chdir() to /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+your processes number limit is 2048
+your memory page size is 4096 bytes
+detected max file descriptor number: 65536
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /Users/Bertrand/back.bloodbowlclub.sock fd 3
+Python version: 3.5.0 (default, Sep 22 2015, 12:32:59)  [GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.0.72)]
+Set PythonHome to /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fd918d00160
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 436560 bytes (426 KB) for 5 cores
+*** Operational MODE: preforking ***
+===== sys.path / PYTHONPATH =====
+APPLICATION_ENV                dev
+Apple_PubSub_Socket_Render     /private/tmp/com.apple.launchd.SZwNgt8LiE/Render
+COLORFGBG                      7;0
+COMMAND_MODE                   unix2003
+DISPLAY                        /private/tmp/com.apple.launchd.yPywPfYr2T/org.macosforge.xquartz:0
+DJANGO_SETTINGS_MODULE         BBClub.settings
+ENVIRONNEMENT                  dev-mac
+EXEC_PROFILE                   prod
+HOME                           /Users/Bertrand
+ITERM_PROFILE                  Default
+ITERM_SESSION_ID               w0t2p0
+LANG                           fr_FR.UTF-8
+LOGNAME                        Bertrand
+MANPATH                        /Users/Bertrand/.npm-packages/share/man:/usr/local/git/share/man:/usr/local/share/man:/usr/share/man:/opt/X11/share/man:/Applications/Xcode.
+OLDPWD                         /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub/static
+PATH                           /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin:/Users/Bertrand/.npm-packages/bin:/usr/local/git/bin:/usr/l
+PS1                            (BB_venv)[\[\e[0;36m\]\u\[\e[0m\]:\W$(git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ \(\[\e[0;32m\]\1\[\e[0m\]\)/')]$ 
+PWD                            /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BBClub
+SECURITYSESSIONID              186a5
+SHELL                          /bin/bash
+SHLVL                          1
+SSH_AUTH_SOCK                  /private/tmp/com.apple.launchd.BlQfSezOOj/Listeners
+TERM                           xterm
+TERM_PROGRAM                   iTerm.app
+TMPDIR                         /var/folders/zx/2vscdh091v3dgz532xjsbsmh0000gn/T/
+USER                           Bertrand
+UWSGI_ORIGINAL_PROC_NAME       uwsgi
+UWSGI_RELOADS                  0
+VIRTUAL_ENV                    /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv
+XPC_FLAGS                      0x0
+XPC_SERVICE_NAME               0
+_                              /Users/Dev/Repositories/01-CodeProjects/02-DJANGO-Projects/BloodBowl/BB_venv/bin/uwsgi
+__CF_USER_TEXT_ENCODING        0x1F5:0x0:0x1
+EXEC PROFILE : %s ===================================== prod
+================= PROOOOOOOOOOOOOOOD ====================
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x7fd918d00160 pid: 86817 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 86817)
+spawned uWSGI worker 1 (pid: 86822, cores: 1)
+spawned uWSGI worker 2 (pid: 86823, cores: 1)
+spawned uWSGI worker 3 (pid: 86824, cores: 1)
+spawned uWSGI worker 4 (pid: 86825, cores: 1)
+spawned uWSGI worker 5 (pid: 86826, cores: 1)
+[pid: 86823|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:05 2016] GET /rosters/ => generated 105249 bytes in 1173 msecs (HTTP/1.1 200) 4 headers in 137 bytes (14 switches on core 0)
+[pid: 86823|app: 0|req: 2/2] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:09 2016] GET /rosters/ => generated 105249 bytes in 315 msecs (HTTP/1.1 200) 4 headers in 137 bytes (14 switches on core 0)
+[pid: 86823|app: 0|req: 3/3] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:10 2016] GET /rosters/ => generated 105249 bytes in 288 msecs (HTTP/1.1 200) 4 headers in 137 bytes (13 switches on core 0)
+[pid: 86823|app: 0|req: 4/4] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:11 2016] GET /rosters/ => generated 105249 bytes in 364 msecs (HTTP/1.1 200) 4 headers in 137 bytes (14 switches on core 0)
+[pid: 86823|app: 0|req: 5/5] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:13 2016] GET /rosters/ => generated 105249 bytes in 320 msecs (HTTP/1.1 200) 4 headers in 137 bytes (14 switches on core 0)
+Thu Dec  8 16:45:14 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86823|app: 0|req: 6/6] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:14 2016] GET /rosters/ => generated 0 bytes in 528 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:15 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86823|app: 0|req: 7/7] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:14 2016] GET /rosters/ => generated 0 bytes in 655 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:16 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86823|app: 0|req: 8/8] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:15 2016] GET /rosters/ => generated 0 bytes in 864 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:16 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86824|app: 0|req: 1/9] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:14 2016] GET /rosters/ => generated 0 bytes in 2218 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:16 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86826|app: 0|req: 1/10] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:14 2016] GET /rosters/ => generated 0 bytes in 2083 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:16 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86822|app: 0|req: 1/11] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:15 2016] GET /rosters/ => generated 0 bytes in 1905 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:17 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86823|app: 0|req: 9/12] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:16 2016] GET /rosters/ => generated 0 bytes in 770 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:17 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86825|app: 0|req: 1/13] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:15 2016] GET /rosters/ => generated 0 bytes in 2003 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:17 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86824|app: 0|req: 2/14] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:16 2016] GET /rosters/ => generated 0 bytes in 670 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+Thu Dec  8 16:45:17 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET /rosters/ (127.0.0.1)
+OSError: write error
+[pid: 86826|app: 0|req: 2/15] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:16 2016] GET /rosters/ => generated 0 bytes in 681 msecs (HTTP/1.1 200) 4 headers in 0 bytes (0 switches on core 0)
+[pid: 86822|app: 0|req: 2/16] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:16 2016] GET /rosters/ => generated 105249 bytes in 573 msecs (HTTP/1.1 200) 4 headers in 137 bytes (11 switches on core 0)
+[pid: 86823|app: 0|req: 10/17] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:45:56 2016] GET /rosters/ => generated 105249 bytes in 259 msecs (HTTP/1.1 200) 4 headers in 137 bytes (13 switches on core 0)
+[pid: 86823|app: 0|req: 11/18] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 16:46:27 2016] GET /rosters/ => generated 105249 bytes in 260 msecs (HTTP/1.1 200) 4 headers in 137 bytes (13 switches on core 0)
+[pid: 86826|app: 0|req: 3/19] 127.0.0.1 () {44 vars in 874 bytes} [Thu Dec  8 21:19:58 2016] GET /rosters/ => generated 105249 bytes in 912 msecs (HTTP/1.1 200) 4 headers in 137 bytes (14 switches on core 0)

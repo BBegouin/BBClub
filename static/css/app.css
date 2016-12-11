@@ -1,0 +1,11 @@
+body{
+    background-color: #f0ad4e;
+}
+
+#header{
+    margin-top:15px;
+}
+
+.button{
+    background-color:#205067;
+    border-radius: 3px;}
