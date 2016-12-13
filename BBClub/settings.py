@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 import os
 
 EXEC_PROFILE = os.environ.get('EXEC_PROFILE','dev')
-print('EXEC PROFILE : %s =====================================',EXEC_PROFILE)
+print('EXEC PROFILE : %s ====================================='%EXEC_PROFILE)
 #si on est en prod...
 if EXEC_PROFILE == 'prod' :
     print('================= PROOOOOOOOOOOOOOOD ====================')

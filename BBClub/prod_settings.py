@@ -20,7 +20,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "BBClub",
         "USER": "root",
-        "PASSWORD": "root",
+        "PASSWORD": os.environ.get('DB_PWD',''),
         "HOST": "localhost",   # Or an IP Address that your DB is hosted on
         "PORT": "3306",
     }
