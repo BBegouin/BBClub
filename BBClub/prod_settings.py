@@ -35,7 +35,7 @@ DATABASES = {
 ###################
 
 # Domains for public site
-# ALLOWED_HOSTS = [""]
+ALLOWED_HOSTS = ["back.bloodbowlclub.com"]
 
 # These settings are used by the default fabfile.py provided.
 # Check fabfile.py for defaults.
