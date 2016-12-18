@@ -116,7 +116,7 @@ def crop_image(request):
     img2.save(dest_file)
 
     static_url = getattr(settings, "STATIC_URL", None)
-    cropped_file_url = static_url +"media/uploads/cropped/"+ computed_file_name;
+    cropped_file_url = static_url +"medias/uploads/cropped/"+ computed_file_name;
     domain = request.build_absolute_uri('/')[:-1]
     return Response(domain+cropped_file_url,status.HTTP_200_OK)
 
@@ -145,7 +145,7 @@ def binary_upload(request):
 
     static_url = getattr(settings, "STATIC_URL", None)
     domain = request.build_absolute_uri('/')[:-1]
-    file_url = domain+static_url+"media/uploads/cropped/"+filename
+    file_url = domain+static_url+"medias/uploads/cropped/"+filename
     img_data = {"url":file_url,"name":filename}
 
     return Response(img_data,status.HTTP_200_OK)
