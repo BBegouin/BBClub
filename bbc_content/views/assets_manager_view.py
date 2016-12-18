@@ -20,7 +20,7 @@ PAGE_SIZE = 8
 def get_static_storage_url(request):
     domain = request.build_absolute_uri('/')[:-1]
     static_path = getattr(settings, "STATIC_URL", None)
-    file_url = domain + static_path +"media/uploads/"
+    file_url = domain + static_path +"medias/uploads/"
     return file_url
 
  # list all assets
