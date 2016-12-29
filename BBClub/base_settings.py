@@ -279,6 +279,7 @@ INSTALLED_APPS = (
     "league_manager",
     'bbc_auth',
     'bbc_user',
+    'bbc_content',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
