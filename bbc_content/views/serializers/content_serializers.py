@@ -2,7 +2,7 @@ __author__ = 'Bertrand'
 from mezzanine.blog.models import BlogPost
 from rest_framework import serializers
 from bbc_user.views.serializers.user_serializer import UserSerializer
-from django_comments.models import Comment
+from mezzanine.generic.models import ThreadedComment
 from bbc_content.models.like import Like
 
 
@@ -18,14 +18,21 @@ class BlogPostDescriptionSerializer(serializers.ModelSerializer):
         model = BlogPost
         exclude = ('content','in_sitemap','gen_description','site','short_url','allow_comments')
 
-class CommentSerializer(serializers.ModelSerializer):
+class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Comment
+        model = ThreadedComment
+        exclude = ('user_url','user_email','ip_address','is_public','is_removed','rating_count','rating_sum','rating_average','by_author','content_type','site','user')
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ThreadedComment
+        exclude = ('user_url','user_email','ip_address','is_public','is_removed','rating_count','rating_sum','rating_average','by_author')
 
 class BlogPostDetailSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False,read_only=True)
-    Comment = CommentSerializer(many=True,read_only=True)
+    comments = CommentListSerializer(many=True,read_only=True)
     likes = serializers.SerializerMethodField()
 
     #on renvoi le nombre de like pour le post

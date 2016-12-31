@@ -70,7 +70,7 @@ class TestLike(APITestCase):
     """
      Test de récupération de likes, tous, par user, et par post
     """
-    def a_test_get_like(self):
+    def test_1_get_like(self):
 
         # On crée des like :
         # user_1 va liker 3 posts
@@ -131,7 +131,7 @@ class TestLike(APITestCase):
     """
      Test de suppression de likes, en utilisant user et post
     """
-    def b_test_delete_like(self):
+    def test_2_delete_like(self):
 
         #initialisation -------------------------------
 

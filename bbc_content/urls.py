@@ -8,12 +8,14 @@ from django.views.decorators.csrf import csrf_exempt
 from bbc_content.views.assets_manager_view import list_image_assets,crop_image,binary_upload
 from bbc_content.views import post_view_set
 from bbc_content.views import like_view_set
+from bbc_content.views import comment_view_set
 from rest_framework import routers
 from django.conf.urls import url
 
 router = routers.DefaultRouter()
 router.register(r'post', post_view_set.PostViewSet)
 router.register(r'like', like_view_set.LikeViewSet)
+router.register(r'comment', comment_view_set.CommentViewSet)
 
 urlpatterns = [
     # upload services : upload a file
