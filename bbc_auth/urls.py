@@ -5,7 +5,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from django.views.decorators.csrf import csrf_exempt
 from bbc_auth.views.bbc_password_reset_view import BBCPasswordResetView
 from bbc_auth.views import check_token
-from bbc_auth.views.facebook_login import FacebookLogin
+from bbc_auth.views import facebook_login
 
 #
 # Remote Auth App is meant to wrap django allauth, rest_auth, and to customize the mechanism
@@ -18,9 +18,8 @@ urlpatterns = [
     #TODO : remove the function to use the built-in user function
     url(r'^auth/check-token/', csrf_exempt(check_token.CheckToken)),
 
-    # Endpoint to connect using facebook Oauth
-    #TODO : implement facebook login - postponed due to deployment
-    url(r'^auth/facebook/$', FacebookLogin.as_view(), name='fb_login'),
+    # Endpoint to log facebook user
+    url(r'^auth/facebook/$', csrf_exempt(facebook_login.FacebookLogin)),
 
     # password reset : customisation for sending html emails
     #TODO implement a child of the register view and lost login view, in order to don't let the back end depend on the backend

@@ -10,4 +10,6 @@ if EXEC_PROFILE == 'prod' :
     from BBClub.prod_settings import *
 elif EXEC_PROFILE == 'dev' :
     from BBClub.local_settings import *
+elif EXEC_PROFILE == 'test' :
+    from BBClub.test_settings import *
 
