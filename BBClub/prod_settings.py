@@ -10,7 +10,8 @@ from BBClub.base_settings import *
 DEBUG = False
 
 # Make these unique, and don't share it with anybody.
-SECRET_KEY = "z_=_tychz8m8k@4)kmzn(!=s9a-ao=g-@b7qutwmau@2qozlxs"
+SECRET_KEY = os.environ.get('BBC_KEY','')
+
 NEVERCACHE_KEY = "2f_)*3b6$*&7dpj%%^a(z8wpiq=gd&kya8@1)okiro#yv34d(d"
 
 FRONT_DOMAIN = "localhost:5555"
